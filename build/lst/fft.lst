@@ -1,0 +1,1211 @@
+ARM GAS  /tmp/cczVMXg2.s 			page 1
+
+
+   1              	# 1 "fmcw/fft.s"
+   1              	    .syntax unified
+   1              	...
+   0              	
+   0              	
+   2              	    .cpu    cortex-a7
+   3              	    .fpu    softvfp
+   4              	
+   5              	    .text
+   6              	    .globl  complex16_t_fft64
+   7              	    .type	complex16_t_fft64, %function
+   8              	    .globl  complex16_t_fft32
+   9              	    .type	complex16_t_fft32, %function
+  10              	
+  11              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 64点基8FFT @@@@@@@@@@@@@@@@@@@@@@@@@@@
+  12              	@ void        complex16_t_fft64(complex_16t *xin, complex_16t *buff, complex_16t *table);
+  13              	@@@@@@@@@@@@@@@@@@@@ butterfly for first @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+  14              	.macro butterfly_load_k1
+  15              	    ldr r3,  [r0, #0]           
+  16              	    ldr r4,  [r0, #32]          
+  17              	    ldr r5,  [r0, #64]          
+  18              	    ldr r6,  [r0, #96]          
+  19              	    ldr r7,  [r0, #128]         
+  20              	    ldr r8,  [r0, #160]         
+  21              	    ldr r9,  [r0, #192]         
+  22              	    ldr r10, [r0, #224]    
+  23              	.endm
+  24              	
+  25              	.macro butterfly_load_k2
+  26              	    ldr r3,  [r0, #0]           
+  27              	    ldr r4,  [r0, #4]          
+  28              	    ldr r5,  [r0, #8]          
+  29              	    ldr r6,  [r0, #12]          
+  30              	    ldr r7,  [r0, #16]         
+  31              	    ldr r8,  [r0, #20]         
+  32              	    ldr r9,  [r0, #24]         
+  33              	    ldr r10, [r0, #28]   
+  34              	.endm
+  35              	
+  36              	.macro butterfly_radix8
+  37              	    qadd16 r11, r3, r7                  @ r1
+  38              	    qsub16 r12, r3, r7                  @ r5
+  39              	    qadd16 r3, r4, r8                   @ r2
+  40              	    qsub16 r7, r4, r8                   @ r6
+  41              	    qadd16 r4, r5, r9                   @ r3
+  42              	    qsub16 r8, r5, r9                   @ r7
+  43              	    qadd16 r5, r6, r10                  @ r4
+  44              	    qsub16 r9, r6, r10                  @ r8
+  45              	        
+  46              	    ror r10, r8, #16                    @ r7 * (-i)
+  47              	    rsb r8, r10, #0     
+  48              	    pkhtb r8, r8, r10       
+  49              	    ror r10, r9, #16                    @ r8 * (-i)
+  50              	    rsb r9, r10, #0     
+  51              	    pkhtb r9, r9, r10       
+  52              	        
+  53              	    qadd16 r6,  r11, r4                 @ t1 = r1 + r3
+ARM GAS  /tmp/cczVMXg2.s 			page 2
+
+
+  54              	    qsub16 r10, r11, r4                 @ t3 = r1 - r3
+  55              	    qadd16 r4,  r3,  r5                 @ t2 = r2 + r4
+  56              	    qsub16 r11, r3,  r5                 @ t4 = r2 - r4
+  57              	    qadd16 r3,  r12, r8                 @ t5 = r5 + r7
+  58              	    qsub16 r5,  r12, r8                 @ t7 = r5 - r7
+  59              	    qadd16 r8,  r7,  r9                 @ t6 = r6 + r8
+  60              	    qsub16 r12, r7,  r9                 @ t8 = r6 - r8
+  61              	        
+  62              	    ror r9, r11, #16                    @ r8 * (-i)
+  63              	    rsb r11, r9, #0
+  64              	    pkhtb r11, r11, r9    
+  65              	
+  66              	    ldr r7, =0xa57e5a82
+  67              	    smusd   r9, r8, r7
+  68              	    smuadx  r8, r8, r7
+  69              	    lsl     r8, r8, #1
+  70              	    pkhtb   r8, r8, r9, asr #15
+  71              	    pkhtb   r7, r7, r7, asr #16         @(-0.707 -0.707i)
+  72              	    smusd   r9,  r12, r7
+  73              	    smuadx  r12, r12, r7
+  74              	    lsl     r12, r12, #1
+  75              	    pkhtb   r12, r12, r9, asr #15
+  76              	
+  77              	    qadd16 r7,  r6, r4                  @ p1 = t1 + t2
+  78              	    qsub16 r9,  r6, r4                  @ p5 = t1 - t2
+  79              	    qadd16 r4,  r10,r11                 @ p3 = t3 + t4
+  80              	    qsub16 r6,  r10,r11                 @ p7 = t3 - t4
+  81              	    qadd16 r10, r3,r8                   @ p2 = t5 + t6
+  82              	    qsub16 r11, r3,r8                   @ p6 = t5 - t6
+  83              	    qadd16 r3, r5,r12                   @ p4 = t7 + t8
+  84              	    qsub16 r8, r5,r12                   @ p8 = t7 - t8
+  85              	.endm
+  86              	
+  87              	.macro koutput_div8
+  88              	    ldr r5, =0x20002000
+  89              	    smulbb r12, r7, r5                  @ real
+  90              	    smultt r7,  r7, r5                  @ imag
+  91              	    pkhtb  r7,  r7, r12, asr #16
+  92              	
+  93              	    smulbb r12,  r10, r5                @ real
+  94              	    smultt r10,  r10, r5                @ imag
+  95              	    pkhtb  r10,  r10, r12, asr #16
+  96              	
+  97              	    smulbb r12, r4, r5                  @ real
+  98              	    smultt r4,  r4, r5                  @ imag
+  99              	    pkhtb  r4,  r4, r12, asr #16
+ 100              	
+ 101              	    smulbb r12, r3, r5                  @ real
+ 102              	    smultt r3,  r3, r5                  @ imag
+ 103              	    pkhtb  r3,  r3, r12, asr #16
+ 104              	
+ 105              	    smulbb r12, r9, r5                  @ real
+ 106              	    smultt r9,  r9, r5                  @ imag
+ 107              	    pkhtb  r9,  r9, r12, asr #16
+ 108              	
+ 109              	    smulbb r12, r11, r5                 @ real
+ 110              	    smultt r11, r11, r5                 @ imag
+ARM GAS  /tmp/cczVMXg2.s 			page 3
+
+
+ 111              	    pkhtb  r11, r11, r12, asr #16
+ 112              	
+ 113              	    smulbb r12, r6, r5                  @ real
+ 114              	    smultt r6,  r6, r5                  @ imag
+ 115              	    pkhtb  r6,  r6, r12, asr #16
+ 116              	
+ 117              	    smulbb r12, r8, r5                  @ real
+ 118              	    smultt r8,  r8, r5                  @ imag
+ 119              	    pkhtb  r8,  r8, r12, asr #16
+ 120              	.endm
+ 121              	
+ 122              	.macro koutput_k1_rote_wnK
+ 123              	    ldr r5, =0x20002000
+ 124              	    smulbb r12, r7, r5                  @ real
+ 125              	    smultt r7,  r7, r5                  @ imag
+ 126              	    pkhtb  r7,  r7, r12, asr #16
+ 127              	
+ 128              	    ldr r5, [r2, r1]
+ 129              	    add r2, r1
+ 130              	    smusd   r12, r10, r5                @ real
+ 131              	    smuadx  r10, r10, r5                @ imag
+ 132              	    pkhtb   r10, r10, r12, asr #16
+ 133              	
+ 134              	    ldr r5, [r2, r1]
+ 135              	    add r2, r1
+ 136              	    smusd   r12, r4, r5
+ 137              	    smuadx  r4, r4, r5
+ 138              	    pkhtb   r4, r4, r12, asr #16
+ 139              	
+ 140              	    ldr r5, [r2, r1]
+ 141              	    add r2, r1
+ 142              	    smusd   r12, r3, r5
+ 143              	    smuadx  r3,  r3, r5
+ 144              	    pkhtb   r3,  r3, r12, asr #16
+ 145              	
+ 146              	    ldr r5, [r2, r1]
+ 147              	    add r2, r1
+ 148              	    smusd   r12, r9, r5
+ 149              	    smuadx  r9,  r9, r5
+ 150              	    pkhtb   r9,  r9, r12, asr #16
+ 151              	
+ 152              	    ldr r5, [r2, r1]
+ 153              	    add r2, r1
+ 154              	    smusd   r12, r11, r5
+ 155              	    smuadx  r11, r11, r5
+ 156              	    pkhtb   r11, r11, r12, asr #16
+ 157              	
+ 158              	    ldr r5, [r2, r1]
+ 159              	    add r2, r1
+ 160              	    smusd   r12, r6, r5
+ 161              	    smuadx  r6,  r6, r5
+ 162              	    pkhtb   r6,  r6, r12, asr #16
+ 163              	
+ 164              	    ldr r5, [r2, r1]
+ 165              	    smusd   r12, r8, r5
+ 166              	    smuadx  r8,  r8, r5
+ 167              	    pkhtb   r8,  r8, r12, asr #16
+ARM GAS  /tmp/cczVMXg2.s 			page 4
+
+
+ 168              	.endm
+ 169              	
+ 170              	.macro butterfly_save_k1
+ 171              	    str r7  ,       [r0, #0]           
+ 172              	    str r10 ,       [r0, #32]          
+ 173              	    str r4  ,       [r0, #64]          
+ 174              	    str r3  ,       [r0, #96]          
+ 175              	    str r9  ,       [r0, #128]         
+ 176              	    str r11 ,       [r0, #160]         
+ 177              	    str r6  ,       [r0, #192]         
+ 178              	    str r8  ,       [r0, #224]   
+ 179              	.endm
+ 180              	
+ 181              	.macro butterfly_save_k2
+ 182              	    str r7  ,       [r1, #0]           
+ 183              	    str r10 ,       [r1, #32]          
+ 184              	    str r4  ,       [r1, #64]          
+ 185              	    str r3  ,       [r1, #96]          
+ 186              	    str r9  ,       [r1, #128]         
+ 187              	    str r11 ,       [r1, #160]         
+ 188              	    str r6  ,       [r1, #192]         
+ 189              	    str r8  ,       [r1, #224]  
+ 190              	.endm
+ 191              	
+ 192              	complex16_t_fft64:
+ 193 0000 2DE9F05F 	    push {r4,r5,r6,r7,r8,r9,r10,r11,r12,lr} 
+ 194 0004 85B0     	    sub	sp, #20                                         @ 局部变量
+ 195 0006 0290     	    str r0, [sp, #8]
+ 196 0008 0391     	    str r1, [sp, #12]
+ 197 000a 0492     	    str r2, [sp, #16]
+ 198              	
+ 199              	    butterfly_load_k1
+ 199 000c 0368     	>  ldr r3,[r0,#0]
+ 199 000e 046A     	>  ldr r4,[r0,#32]
+ 199 0010 056C     	>  ldr r5,[r0,#64]
+ 199 0012 066E     	>  ldr r6,[r0,#96]
+ 199 0014 D0F88070 	>  ldr r7,[r0,#128]
+ 199 0018 D0F8A080 	>  ldr r8,[r0,#160]
+ 199 001c D0F8C090 	>  ldr r9,[r0,#192]
+ 199 0020 D0F8E0A0 	>  ldr r10,[r0,#224]
+ 200              	    butterfly_radix8
+ 200 0024 93FA17FB 	>  qadd16 r11,r3,r7
+ 200 0028 D3FA17FC 	>  qsub16 r12,r3,r7
+ 200 002c 94FA18F3 	>  qadd16 r3,r4,r8
+ 200 0030 D4FA18F7 	>  qsub16 r7,r4,r8
+ 200 0034 95FA19F4 	>  qadd16 r4,r5,r9
+ 200 0038 D5FA19F8 	>  qsub16 r8,r5,r9
+ 200 003c 96FA1AF5 	>  qadd16 r5,r6,r10
+ 200 0040 D6FA1AF9 	>  qsub16 r9,r6,r10
+ 200              	> 
+ 200 0044 4FEA384A 	>  ror r10,r8,#16
+ 200 0048 CAF10008 	>  rsb r8,r10,#0
+ 200 004c CAEA0808 	>  pkhtb r8,r8,r10
+ 200 0050 4FEA394A 	>  ror r10,r9,#16
+ 200 0054 CAF10009 	>  rsb r9,r10,#0
+ 200 0058 CAEA0909 	>  pkhtb r9,r9,r10
+ 200              	> 
+ARM GAS  /tmp/cczVMXg2.s 			page 5
+
+
+ 200 005c 9BFA14F6 	>  qadd16 r6,r11,r4
+ 200 0060 DBFA14FA 	>  qsub16 r10,r11,r4
+ 200 0064 93FA15F4 	>  qadd16 r4,r3,r5
+ 200 0068 D3FA15FB 	>  qsub16 r11,r3,r5
+ 200 006c 9CFA18F3 	>  qadd16 r3,r12,r8
+ 200 0070 DCFA18F5 	>  qsub16 r5,r12,r8
+ 200 0074 97FA19F8 	>  qadd16 r8,r7,r9
+ 200 0078 D7FA19FC 	>  qsub16 r12,r7,r9
+ 200              	> 
+ 200 007c 4FEA3B49 	>  ror r9,r11,#16
+ 200 0080 C9F1000B 	>  rsb r11,r9,#0
+ 200 0084 C9EA0B0B 	>  pkhtb r11,r11,r9
+ 200              	> 
+ 200 0088 DFF8D878 	>  ldr r7,=0xa57e5a82
+ 200 008c 48FB07F9 	>  smusd r9,r8,r7
+ 200 0090 28FB17F8 	>  smuadx r8,r8,r7
+ 200 0094 4FEA4808 	>  lsl r8,r8,#1
+ 200 0098 C8EAE938 	>  pkhtb r8,r8,r9,asr#15
+ 200 009c C7EA2747 	>  pkhtb r7,r7,r7,asr#16
+ 200 00a0 4CFB07F9 	>  smusd r9,r12,r7
+ 200 00a4 2CFB17FC 	>  smuadx r12,r12,r7
+ 200 00a8 4FEA4C0C 	>  lsl r12,r12,#1
+ 200 00ac CCEAE93C 	>  pkhtb r12,r12,r9,asr#15
+ 200              	> 
+ 200 00b0 96FA14F7 	>  qadd16 r7,r6,r4
+ 200 00b4 D6FA14F9 	>  qsub16 r9,r6,r4
+ 200 00b8 9AFA1BF4 	>  qadd16 r4,r10,r11
+ 200 00bc DAFA1BF6 	>  qsub16 r6,r10,r11
+ 200 00c0 93FA18FA 	>  qadd16 r10,r3,r8
+ 200 00c4 D3FA18FB 	>  qsub16 r11,r3,r8
+ 200 00c8 95FA1CF3 	>  qadd16 r3,r5,r12
+ 200 00cc D5FA1CF8 	>  qsub16 r8,r5,r12
+ 201              	    koutput_div8
+ 201 00d0 4FF02025 	>  ldr r5,=0x20002000
+ 201 00d4 17FB05FC 	>  smulbb r12,r7,r5
+ 201 00d8 17FB35F7 	>  smultt r7,r7,r5
+ 201 00dc C7EA2C47 	>  pkhtb r7,r7,r12,asr#16
+ 201              	> 
+ 201 00e0 1AFB05FC 	>  smulbb r12,r10,r5
+ 201 00e4 1AFB35FA 	>  smultt r10,r10,r5
+ 201 00e8 CAEA2C4A 	>  pkhtb r10,r10,r12,asr#16
+ 201              	> 
+ 201 00ec 14FB05FC 	>  smulbb r12,r4,r5
+ 201 00f0 14FB35F4 	>  smultt r4,r4,r5
+ 201 00f4 C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 201              	> 
+ 201 00f8 13FB05FC 	>  smulbb r12,r3,r5
+ 201 00fc 13FB35F3 	>  smultt r3,r3,r5
+ 201 0100 C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 201              	> 
+ 201 0104 19FB05FC 	>  smulbb r12,r9,r5
+ 201 0108 19FB35F9 	>  smultt r9,r9,r5
+ 201 010c C9EA2C49 	>  pkhtb r9,r9,r12,asr#16
+ 201              	> 
+ 201 0110 1BFB05FC 	>  smulbb r12,r11,r5
+ 201 0114 1BFB35FB 	>  smultt r11,r11,r5
+ 201 0118 CBEA2C4B 	>  pkhtb r11,r11,r12,asr#16
+ARM GAS  /tmp/cczVMXg2.s 			page 6
+
+
+ 201              	> 
+ 201 011c 16FB05FC 	>  smulbb r12,r6,r5
+ 201 0120 16FB35F6 	>  smultt r6,r6,r5
+ 201 0124 C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 201              	> 
+ 201 0128 18FB05FC 	>  smulbb r12,r8,r5
+ 201 012c 18FB35F8 	>  smultt r8,r8,r5
+ 201 0130 C8EA2C48 	>  pkhtb r8,r8,r12,asr#16
+ 202              	    butterfly_save_k1
+ 202 0134 0760     	>  str r7,[r0,#0]
+ 202 0136 C0F820A0 	>  str r10,[r0,#32]
+ 202 013a 0464     	>  str r4,[r0,#64]
+ 202 013c 0366     	>  str r3,[r0,#96]
+ 202 013e C0F88090 	>  str r9,[r0,#128]
+ 202 0142 C0F8A0B0 	>  str r11,[r0,#160]
+ 202 0146 C0F8C060 	>  str r6,[r0,#192]
+ 202 014a C0F8E080 	>  str r8,[r0,#224]
+ 203              	
+ 204 014e 4FF00401 	    mov r1, #4
+ 205 0152 00F10400 	    add r0, #4
+ 206 0156 00F07BFA 	    bl complex16_t_fft64_s1
+ 207              	
+ 208 015a 01F10401 	    add r1, #4
+ 209 015e 00F10400 	    add r0, #4
+ 210 0162 049A     	    ldr r2, [sp, #16]
+ 211 0164 00F074FA 	    bl complex16_t_fft64_s1
+ 212              	
+ 213 0168 01F10401 	    add r1, #4
+ 214 016c 00F10400 	    add r0, #4
+ 215 0170 049A     	    ldr r2, [sp, #16]
+ 216 0172 00F06DFA 	    bl complex16_t_fft64_s1
+ 217              	
+ 218 0176 01F10401 	    add r1, #4
+ 219 017a 00F10400 	    add r0, #4
+ 220 017e 049A     	    ldr r2, [sp, #16]
+ 221 0180 00F066FA 	    bl complex16_t_fft64_s1
+ 222              	
+ 223 0184 01F10401 	    add r1, #4
+ 224 0188 00F10400 	    add r0, #4
+ 225 018c 049A     	    ldr r2, [sp, #16]
+ 226 018e 00F05FFA 	    bl complex16_t_fft64_s1
+ 227              	
+ 228 0192 01F10401 	    add r1, #4
+ 229 0196 00F10400 	    add r0, #4
+ 230 019a 049A     	    ldr r2, [sp, #16]
+ 231 019c 00F058FA 	    bl complex16_t_fft64_s1
+ 232              	
+ 233 01a0 01F10401 	    add r1, #4
+ 234 01a4 00F10400 	    add r0, #4
+ 235 01a8 049A     	    ldr r2, [sp, #16]
+ 236 01aa 00F051FA 	    bl complex16_t_fft64_s1
+ 237              	
+ 238              	    @@@@@@@@@@@@@@@@@@ part 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 239 01ae 0298     	    ldr r0, [sp, #8]
+ 240 01b0 0399     	    ldr r1, [sp, #12]
+ 241 01b2 00F0FBFA 	    bl complex16_t_fft64_s2
+ 242              	
+ARM GAS  /tmp/cczVMXg2.s 			page 7
+
+
+ 243 01b6 00F12000 	    add r0, #32
+ 244 01ba 01F10401 	    add r1, #4
+ 245 01be 00F0F5FA 	    bl complex16_t_fft64_s2
+ 246              	
+ 247 01c2 00F12000 	    add r0, #32
+ 248 01c6 01F10401 	    add r1, #4
+ 249 01ca 00F0EFFA 	    bl complex16_t_fft64_s2
+ 250              	
+ 251 01ce 00F12000 	    add r0, #32
+ 252 01d2 01F10401 	    add r1, #4
+ 253 01d6 00F0E9FA 	    bl complex16_t_fft64_s2
+ 254              	
+ 255 01da 00F12000 	    add r0, #32
+ 256 01de 01F10401 	    add r1, #4
+ 257 01e2 00F0E3FA 	    bl complex16_t_fft64_s2
+ 258              	
+ 259 01e6 00F12000 	    add r0, #32
+ 260 01ea 01F10401 	    add r1, #4
+ 261 01ee 00F0DDFA 	    bl complex16_t_fft64_s2
+ 262              	
+ 263 01f2 00F12000 	    add r0, #32
+ 264 01f6 01F10401 	    add r1, #4
+ 265 01fa 00F0D7FA 	    bl complex16_t_fft64_s2
+ 266              	
+ 267 01fe 00F12000 	    add r0, #32
+ 268 0202 01F10401 	    add r1, #4
+ 269 0206 00F0D1FA 	    bl complex16_t_fft64_s2
+ 270              	
+ 271 020a 05B0     	    add sp, #20
+ 272 020c BDE8F09F 	    pop  {r4,r5,r6,r7,r8,r9,r10,r11,r12,pc}  
+ 273              	
+ 274              	
+ 275              	@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 32点基8FFT @@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 276              	@ void        complex16_t_fft32(complex_16t *xin, complex_16t *buff, complex_16t *table);
+ 277              	@@@@@@@@@@@@@@@@@@@@ butterfly for first @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+ 278              	
+ 279              	.macro butterfly_load_32_k1
+ 280              	    ldr r3,  [r0, #0]                 
+ 281              	    ldr r4,  [r0, #32]          
+ 282              	    ldr r5,  [r0, #64]          
+ 283              	    ldr r6,  [r0, #96]  
+ 284              	.endm
+ 285              	
+ 286              	.macro butterfly_p4_32_k1
+ 287              	    qadd16 r7,  r3, r5              @ r1         
+ 288              	    qsub16 r8,  r3, r5              @ r3       
+ 289              	    qadd16 r9,  r4, r6              @ r2         
+ 290              	    qsub16 r10, r4, r6              @ r4   
+ 291              	
+ 292              	    ror r11, r10, #16               @ r4 * (-i)
+ 293              	    rsb r10, r11, #0     
+ 294              	    pkhtb r10, r10, r11    
+ 295              	
+ 296              	    qadd16 r3, r7, r9               @ p1
+ 297              	    qsub16 r5, r7, r9               @ p3
+ 298              	    qadd16 r4, r8, r10              @ p2
+ 299              	    qsub16 r6, r8, r10              @ p4
+ARM GAS  /tmp/cczVMXg2.s 			page 8
+
+
+ 300              	
+ 301              	    ldr r7,  [r2]
+ 302              	    ldr r8,  [r2, #4]
+ 303              	    ldr r9,  [r2, #8]
+ 304              	    ldr r10, [r2, #12]
+ 305              	
+ 306              	    smusd   r12, r3, r7
+ 307              	    smuadx  r3,  r3, r7
+ 308              	    pkhtb   r3,  r3, r12, asr #16
+ 309              	
+ 310              	    smusd   r12, r4, r8
+ 311              	    smuadx  r4,  r4, r8
+ 312              	    pkhtb   r4,  r4, r12, asr #16
+ 313              	
+ 314              	    smusd   r12, r5, r9
+ 315              	    smuadx  r5,  r5, r9
+ 316              	    pkhtb   r5,  r5, r12, asr #16
+ 317              	
+ 318              	    smusd   r12, r6, r10
+ 319              	    smuadx  r6,  r6, r10
+ 320              	    pkhtb   r6,  r6, r12, asr #16
+ 321              	.endm
+ 322              	
+ 323              	.macro butterfly_p4_32_k2
+ 324              	    qadd16 r7,  r3, r5              @ r1         
+ 325              	    qsub16 r8,  r3, r5              @ r3       
+ 326              	    qadd16 r9,  r4, r6              @ r2         
+ 327              	    qsub16 r10, r4, r6              @ r4  
+ 328              	
+ 329              	    ror r11, r10, #16               @ r4 * (-i)
+ 330              	    rsb r10, r11, #0     
+ 331              	    pkhtb r10, r10, r11    
+ 332              	
+ 333              	    qadd16 r3, r7, r9               @ p1
+ 334              	    qsub16 r5, r7, r9               @ p3
+ 335              	    qadd16 r4, r8, r10              @ p2
+ 336              	    qsub16 r6, r8, r10              @ p4
+ 337              	
+ 338              	    ldr r7,  [r2]
+ 339              	    ldr r8,  [r2, #4]
+ 340              	    ldr r9,  [r2, #8]
+ 341              	    ldr r10, [r2, #12]
+ 342              	
+ 343              	    smusd   r12, r3, r7
+ 344              	    smuadx  r3,  r3, r7
+ 345              	    pkhtb   r3,  r3, r12, asr #16
+ 346              	
+ 347              	    smusd   r12, r4, r8
+ 348              	    smuadx  r4,  r4, r8
+ 349              	    pkhtb   r4,  r4, r12, asr #16
+ 350              	
+ 351              	    smusd   r12, r5, r9
+ 352              	    smuadx  r5,  r5, r9
+ 353              	    pkhtb   r5,  r5, r12, asr #16
+ 354              	
+ 355              	    smusd   r12, r6, r10
+ 356              	    smuadx  r6,  r6, r10
+ARM GAS  /tmp/cczVMXg2.s 			page 9
+
+
+ 357              	    pkhtb   r6,  r6, r12, asr #16
+ 358              	.endm
+ 359              	
+ 360              	.macro butterfly_save_k3
+ 361              	    str r7  ,       [r1, #0]         
+ 362              	    str r10 ,       [r1, #16]         
+ 363              	    str r4  ,       [r1, #32]         
+ 364              	    str r3  ,       [r1, #48]        
+ 365              	    str r9  ,       [r1, #64]        
+ 366              	    str r11 ,       [r1, #80]        
+ 367              	    str r6  ,       [r1, #96]        
+ 368              	    str r8  ,       [r1, #112] 
+ 369              	.endm
+ 370              	
+ 371              	.macro butterfly_save_32_k1 
+ 372              	    str r3,  [r0, #0]           
+ 373              	    str r4,  [r0, #32]          
+ 374              	    str r5,  [r0, #64]          
+ 375              	    str r6,  [r0, #96]           
+ 376              	.endm
+ 377              	
+ 378              	complex16_t_fft32:
+ 379 0210 2DE9F05F 	    push {r4,r5,r6,r7,r8,r9,r10,r11,r12,lr} 
+ 380 0214 85B0     	    sub	sp, #20                                         @ 局部变量
+ 381 0216 0290     	    str r0, [sp, #8]
+ 382              	
+ 383              	    butterfly_load_32_k1
+ 383 0218 0368     	>  ldr r3,[r0,#0]
+ 383 021a 046A     	>  ldr r4,[r0,#32]
+ 383 021c 056C     	>  ldr r5,[r0,#64]
+ 383 021e 066E     	>  ldr r6,[r0,#96]
+ 384              	    butterfly_p4_32_k1
+ 384 0220 93FA15F7 	>  qadd16 r7,r3,r5
+ 384 0224 D3FA15F8 	>  qsub16 r8,r3,r5
+ 384 0228 94FA16F9 	>  qadd16 r9,r4,r6
+ 384 022c D4FA16FA 	>  qsub16 r10,r4,r6
+ 384              	> 
+ 384 0230 4FEA3A4B 	>  ror r11,r10,#16
+ 384 0234 CBF1000A 	>  rsb r10,r11,#0
+ 384 0238 CBEA0A0A 	>  pkhtb r10,r10,r11
+ 384              	> 
+ 384 023c 97FA19F3 	>  qadd16 r3,r7,r9
+ 384 0240 D7FA19F5 	>  qsub16 r5,r7,r9
+ 384 0244 98FA1AF4 	>  qadd16 r4,r8,r10
+ 384 0248 D8FA1AF6 	>  qsub16 r6,r8,r10
+ 384              	> 
+ 384 024c 1768     	>  ldr r7,[r2]
+ 384 024e D2F80480 	>  ldr r8,[r2,#4]
+ 384 0252 D2F80890 	>  ldr r9,[r2,#8]
+ 384 0256 D2F80CA0 	>  ldr r10,[r2,#12]
+ 384              	> 
+ 384 025a 43FB07FC 	>  smusd r12,r3,r7
+ 384 025e 23FB17F3 	>  smuadx r3,r3,r7
+ 384 0262 C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 384              	> 
+ 384 0266 44FB08FC 	>  smusd r12,r4,r8
+ 384 026a 24FB18F4 	>  smuadx r4,r4,r8
+ARM GAS  /tmp/cczVMXg2.s 			page 10
+
+
+ 384 026e C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 384              	> 
+ 384 0272 45FB09FC 	>  smusd r12,r5,r9
+ 384 0276 25FB19F5 	>  smuadx r5,r5,r9
+ 384 027a C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 384              	> 
+ 384 027e 46FB0AFC 	>  smusd r12,r6,r10
+ 384 0282 26FB1AF6 	>  smuadx r6,r6,r10
+ 384 0286 C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 385              	    butterfly_save_32_k1
+ 385 028a 0360     	>  str r3,[r0,#0]
+ 385 028c 0462     	>  str r4,[r0,#32]
+ 385 028e 0564     	>  str r5,[r0,#64]
+ 385 0290 0666     	>  str r6,[r0,#96]
+ 386              	
+ 387 0292 00F10400 	    add r0, #4
+ 388 0296 02F11002 	    add r2, #16
+ 389              	    butterfly_load_32_k1
+ 389 029a 0368     	>  ldr r3,[r0,#0]
+ 389 029c 046A     	>  ldr r4,[r0,#32]
+ 389 029e 056C     	>  ldr r5,[r0,#64]
+ 389 02a0 066E     	>  ldr r6,[r0,#96]
+ 390              	    butterfly_p4_32_k1
+ 390 02a2 93FA15F7 	>  qadd16 r7,r3,r5
+ 390 02a6 D3FA15F8 	>  qsub16 r8,r3,r5
+ 390 02aa 94FA16F9 	>  qadd16 r9,r4,r6
+ 390 02ae D4FA16FA 	>  qsub16 r10,r4,r6
+ 390              	> 
+ 390 02b2 4FEA3A4B 	>  ror r11,r10,#16
+ 390 02b6 CBF1000A 	>  rsb r10,r11,#0
+ 390 02ba CBEA0A0A 	>  pkhtb r10,r10,r11
+ 390              	> 
+ 390 02be 97FA19F3 	>  qadd16 r3,r7,r9
+ 390 02c2 D7FA19F5 	>  qsub16 r5,r7,r9
+ 390 02c6 98FA1AF4 	>  qadd16 r4,r8,r10
+ 390 02ca D8FA1AF6 	>  qsub16 r6,r8,r10
+ 390              	> 
+ 390 02ce 1768     	>  ldr r7,[r2]
+ 390 02d0 D2F80480 	>  ldr r8,[r2,#4]
+ 390 02d4 D2F80890 	>  ldr r9,[r2,#8]
+ 390 02d8 D2F80CA0 	>  ldr r10,[r2,#12]
+ 390              	> 
+ 390 02dc 43FB07FC 	>  smusd r12,r3,r7
+ 390 02e0 23FB17F3 	>  smuadx r3,r3,r7
+ 390 02e4 C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 390              	> 
+ 390 02e8 44FB08FC 	>  smusd r12,r4,r8
+ 390 02ec 24FB18F4 	>  smuadx r4,r4,r8
+ 390 02f0 C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 390              	> 
+ 390 02f4 45FB09FC 	>  smusd r12,r5,r9
+ 390 02f8 25FB19F5 	>  smuadx r5,r5,r9
+ 390 02fc C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 390              	> 
+ 390 0300 46FB0AFC 	>  smusd r12,r6,r10
+ 390 0304 26FB1AF6 	>  smuadx r6,r6,r10
+ 390 0308 C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ARM GAS  /tmp/cczVMXg2.s 			page 11
+
+
+ 391              	    butterfly_save_32_k1  
+ 391 030c 0360     	>  str r3,[r0,#0]
+ 391 030e 0462     	>  str r4,[r0,#32]
+ 391 0310 0564     	>  str r5,[r0,#64]
+ 391 0312 0666     	>  str r6,[r0,#96]
+ 392              	
+ 393 0314 00F10400 	    add r0, #4
+ 394 0318 02F11002 	    add r2, #16
+ 395              	    butterfly_load_32_k1
+ 395 031c 0368     	>  ldr r3,[r0,#0]
+ 395 031e 046A     	>  ldr r4,[r0,#32]
+ 395 0320 056C     	>  ldr r5,[r0,#64]
+ 395 0322 066E     	>  ldr r6,[r0,#96]
+ 396              	    butterfly_p4_32_k1
+ 396 0324 93FA15F7 	>  qadd16 r7,r3,r5
+ 396 0328 D3FA15F8 	>  qsub16 r8,r3,r5
+ 396 032c 94FA16F9 	>  qadd16 r9,r4,r6
+ 396 0330 D4FA16FA 	>  qsub16 r10,r4,r6
+ 396              	> 
+ 396 0334 4FEA3A4B 	>  ror r11,r10,#16
+ 396 0338 CBF1000A 	>  rsb r10,r11,#0
+ 396 033c CBEA0A0A 	>  pkhtb r10,r10,r11
+ 396              	> 
+ 396 0340 97FA19F3 	>  qadd16 r3,r7,r9
+ 396 0344 D7FA19F5 	>  qsub16 r5,r7,r9
+ 396 0348 98FA1AF4 	>  qadd16 r4,r8,r10
+ 396 034c D8FA1AF6 	>  qsub16 r6,r8,r10
+ 396              	> 
+ 396 0350 1768     	>  ldr r7,[r2]
+ 396 0352 D2F80480 	>  ldr r8,[r2,#4]
+ 396 0356 D2F80890 	>  ldr r9,[r2,#8]
+ 396 035a D2F80CA0 	>  ldr r10,[r2,#12]
+ 396              	> 
+ 396 035e 43FB07FC 	>  smusd r12,r3,r7
+ 396 0362 23FB17F3 	>  smuadx r3,r3,r7
+ 396 0366 C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 396              	> 
+ 396 036a 44FB08FC 	>  smusd r12,r4,r8
+ 396 036e 24FB18F4 	>  smuadx r4,r4,r8
+ 396 0372 C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 396              	> 
+ 396 0376 45FB09FC 	>  smusd r12,r5,r9
+ 396 037a 25FB19F5 	>  smuadx r5,r5,r9
+ 396 037e C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 396              	> 
+ 396 0382 46FB0AFC 	>  smusd r12,r6,r10
+ 396 0386 26FB1AF6 	>  smuadx r6,r6,r10
+ 396 038a C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 397              	    butterfly_save_32_k1  
+ 397 038e 0360     	>  str r3,[r0,#0]
+ 397 0390 0462     	>  str r4,[r0,#32]
+ 397 0392 0564     	>  str r5,[r0,#64]
+ 397 0394 0666     	>  str r6,[r0,#96]
+ 398              	
+ 399 0396 00F10400 	    add r0, #4
+ 400 039a 02F11002 	    add r2, #16
+ 401              	    butterfly_load_32_k1
+ARM GAS  /tmp/cczVMXg2.s 			page 12
+
+
+ 401 039e 0368     	>  ldr r3,[r0,#0]
+ 401 03a0 046A     	>  ldr r4,[r0,#32]
+ 401 03a2 056C     	>  ldr r5,[r0,#64]
+ 401 03a4 066E     	>  ldr r6,[r0,#96]
+ 402              	    butterfly_p4_32_k1
+ 402 03a6 93FA15F7 	>  qadd16 r7,r3,r5
+ 402 03aa D3FA15F8 	>  qsub16 r8,r3,r5
+ 402 03ae 94FA16F9 	>  qadd16 r9,r4,r6
+ 402 03b2 D4FA16FA 	>  qsub16 r10,r4,r6
+ 402              	> 
+ 402 03b6 4FEA3A4B 	>  ror r11,r10,#16
+ 402 03ba CBF1000A 	>  rsb r10,r11,#0
+ 402 03be CBEA0A0A 	>  pkhtb r10,r10,r11
+ 402              	> 
+ 402 03c2 97FA19F3 	>  qadd16 r3,r7,r9
+ 402 03c6 D7FA19F5 	>  qsub16 r5,r7,r9
+ 402 03ca 98FA1AF4 	>  qadd16 r4,r8,r10
+ 402 03ce D8FA1AF6 	>  qsub16 r6,r8,r10
+ 402              	> 
+ 402 03d2 1768     	>  ldr r7,[r2]
+ 402 03d4 D2F80480 	>  ldr r8,[r2,#4]
+ 402 03d8 D2F80890 	>  ldr r9,[r2,#8]
+ 402 03dc D2F80CA0 	>  ldr r10,[r2,#12]
+ 402              	> 
+ 402 03e0 43FB07FC 	>  smusd r12,r3,r7
+ 402 03e4 23FB17F3 	>  smuadx r3,r3,r7
+ 402 03e8 C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 402              	> 
+ 402 03ec 44FB08FC 	>  smusd r12,r4,r8
+ 402 03f0 24FB18F4 	>  smuadx r4,r4,r8
+ 402 03f4 C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 402              	> 
+ 402 03f8 45FB09FC 	>  smusd r12,r5,r9
+ 402 03fc 25FB19F5 	>  smuadx r5,r5,r9
+ 402 0400 C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 402              	> 
+ 402 0404 46FB0AFC 	>  smusd r12,r6,r10
+ 402 0408 26FB1AF6 	>  smuadx r6,r6,r10
+ 402 040c C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 403              	    butterfly_save_32_k1  
+ 403 0410 0360     	>  str r3,[r0,#0]
+ 403 0412 0462     	>  str r4,[r0,#32]
+ 403 0414 0564     	>  str r5,[r0,#64]
+ 403 0416 0666     	>  str r6,[r0,#96]
+ 404              	
+ 405 0418 00F10400 	    add r0, #4
+ 406 041c 02F11002 	    add r2, #16
+ 407              	    butterfly_load_32_k1
+ 407 0420 0368     	>  ldr r3,[r0,#0]
+ 407 0422 046A     	>  ldr r4,[r0,#32]
+ 407 0424 056C     	>  ldr r5,[r0,#64]
+ 407 0426 066E     	>  ldr r6,[r0,#96]
+ 408              	    butterfly_p4_32_k1
+ 408 0428 93FA15F7 	>  qadd16 r7,r3,r5
+ 408 042c D3FA15F8 	>  qsub16 r8,r3,r5
+ 408 0430 94FA16F9 	>  qadd16 r9,r4,r6
+ 408 0434 D4FA16FA 	>  qsub16 r10,r4,r6
+ARM GAS  /tmp/cczVMXg2.s 			page 13
+
+
+ 408              	> 
+ 408 0438 4FEA3A4B 	>  ror r11,r10,#16
+ 408 043c CBF1000A 	>  rsb r10,r11,#0
+ 408 0440 CBEA0A0A 	>  pkhtb r10,r10,r11
+ 408              	> 
+ 408 0444 97FA19F3 	>  qadd16 r3,r7,r9
+ 408 0448 D7FA19F5 	>  qsub16 r5,r7,r9
+ 408 044c 98FA1AF4 	>  qadd16 r4,r8,r10
+ 408 0450 D8FA1AF6 	>  qsub16 r6,r8,r10
+ 408              	> 
+ 408 0454 1768     	>  ldr r7,[r2]
+ 408 0456 D2F80480 	>  ldr r8,[r2,#4]
+ 408 045a D2F80890 	>  ldr r9,[r2,#8]
+ 408 045e D2F80CA0 	>  ldr r10,[r2,#12]
+ 408              	> 
+ 408 0462 43FB07FC 	>  smusd r12,r3,r7
+ 408 0466 23FB17F3 	>  smuadx r3,r3,r7
+ 408 046a C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 408              	> 
+ 408 046e 44FB08FC 	>  smusd r12,r4,r8
+ 408 0472 24FB18F4 	>  smuadx r4,r4,r8
+ 408 0476 C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 408              	> 
+ 408 047a 45FB09FC 	>  smusd r12,r5,r9
+ 408 047e 25FB19F5 	>  smuadx r5,r5,r9
+ 408 0482 C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 408              	> 
+ 408 0486 46FB0AFC 	>  smusd r12,r6,r10
+ 408 048a 26FB1AF6 	>  smuadx r6,r6,r10
+ 408 048e C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 409              	    butterfly_save_32_k1  
+ 409 0492 0360     	>  str r3,[r0,#0]
+ 409 0494 0462     	>  str r4,[r0,#32]
+ 409 0496 0564     	>  str r5,[r0,#64]
+ 409 0498 0666     	>  str r6,[r0,#96]
+ 410              	
+ 411 049a 00F10400 	    add r0, #4
+ 412 049e 02F11002 	    add r2, #16
+ 413              	    butterfly_load_32_k1
+ 413 04a2 0368     	>  ldr r3,[r0,#0]
+ 413 04a4 046A     	>  ldr r4,[r0,#32]
+ 413 04a6 056C     	>  ldr r5,[r0,#64]
+ 413 04a8 066E     	>  ldr r6,[r0,#96]
+ 414              	    butterfly_p4_32_k1
+ 414 04aa 93FA15F7 	>  qadd16 r7,r3,r5
+ 414 04ae D3FA15F8 	>  qsub16 r8,r3,r5
+ 414 04b2 94FA16F9 	>  qadd16 r9,r4,r6
+ 414 04b6 D4FA16FA 	>  qsub16 r10,r4,r6
+ 414              	> 
+ 414 04ba 4FEA3A4B 	>  ror r11,r10,#16
+ 414 04be CBF1000A 	>  rsb r10,r11,#0
+ 414 04c2 CBEA0A0A 	>  pkhtb r10,r10,r11
+ 414              	> 
+ 414 04c6 97FA19F3 	>  qadd16 r3,r7,r9
+ 414 04ca D7FA19F5 	>  qsub16 r5,r7,r9
+ 414 04ce 98FA1AF4 	>  qadd16 r4,r8,r10
+ 414 04d2 D8FA1AF6 	>  qsub16 r6,r8,r10
+ARM GAS  /tmp/cczVMXg2.s 			page 14
+
+
+ 414              	> 
+ 414 04d6 1768     	>  ldr r7,[r2]
+ 414 04d8 D2F80480 	>  ldr r8,[r2,#4]
+ 414 04dc D2F80890 	>  ldr r9,[r2,#8]
+ 414 04e0 D2F80CA0 	>  ldr r10,[r2,#12]
+ 414              	> 
+ 414 04e4 43FB07FC 	>  smusd r12,r3,r7
+ 414 04e8 23FB17F3 	>  smuadx r3,r3,r7
+ 414 04ec C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 414              	> 
+ 414 04f0 44FB08FC 	>  smusd r12,r4,r8
+ 414 04f4 24FB18F4 	>  smuadx r4,r4,r8
+ 414 04f8 C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 414              	> 
+ 414 04fc 45FB09FC 	>  smusd r12,r5,r9
+ 414 0500 25FB19F5 	>  smuadx r5,r5,r9
+ 414 0504 C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 414              	> 
+ 414 0508 46FB0AFC 	>  smusd r12,r6,r10
+ 414 050c 26FB1AF6 	>  smuadx r6,r6,r10
+ 414 0510 C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 415              	    butterfly_save_32_k1  
+ 415 0514 0360     	>  str r3,[r0,#0]
+ 415 0516 0462     	>  str r4,[r0,#32]
+ 415 0518 0564     	>  str r5,[r0,#64]
+ 415 051a 0666     	>  str r6,[r0,#96]
+ 416              	
+ 417 051c 00F10400 	    add r0, #4
+ 418 0520 02F11002 	    add r2, #16
+ 419              	    butterfly_load_32_k1
+ 419 0524 0368     	>  ldr r3,[r0,#0]
+ 419 0526 046A     	>  ldr r4,[r0,#32]
+ 419 0528 056C     	>  ldr r5,[r0,#64]
+ 419 052a 066E     	>  ldr r6,[r0,#96]
+ 420              	    butterfly_p4_32_k1
+ 420 052c 93FA15F7 	>  qadd16 r7,r3,r5
+ 420 0530 D3FA15F8 	>  qsub16 r8,r3,r5
+ 420 0534 94FA16F9 	>  qadd16 r9,r4,r6
+ 420 0538 D4FA16FA 	>  qsub16 r10,r4,r6
+ 420              	> 
+ 420 053c 4FEA3A4B 	>  ror r11,r10,#16
+ 420 0540 CBF1000A 	>  rsb r10,r11,#0
+ 420 0544 CBEA0A0A 	>  pkhtb r10,r10,r11
+ 420              	> 
+ 420 0548 97FA19F3 	>  qadd16 r3,r7,r9
+ 420 054c D7FA19F5 	>  qsub16 r5,r7,r9
+ 420 0550 98FA1AF4 	>  qadd16 r4,r8,r10
+ 420 0554 D8FA1AF6 	>  qsub16 r6,r8,r10
+ 420              	> 
+ 420 0558 1768     	>  ldr r7,[r2]
+ 420 055a D2F80480 	>  ldr r8,[r2,#4]
+ 420 055e D2F80890 	>  ldr r9,[r2,#8]
+ 420 0562 D2F80CA0 	>  ldr r10,[r2,#12]
+ 420              	> 
+ 420 0566 43FB07FC 	>  smusd r12,r3,r7
+ 420 056a 23FB17F3 	>  smuadx r3,r3,r7
+ 420 056e C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ARM GAS  /tmp/cczVMXg2.s 			page 15
+
+
+ 420              	> 
+ 420 0572 44FB08FC 	>  smusd r12,r4,r8
+ 420 0576 24FB18F4 	>  smuadx r4,r4,r8
+ 420 057a C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 420              	> 
+ 420 057e 45FB09FC 	>  smusd r12,r5,r9
+ 420 0582 25FB19F5 	>  smuadx r5,r5,r9
+ 420 0586 C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 420              	> 
+ 420 058a 46FB0AFC 	>  smusd r12,r6,r10
+ 420 058e 26FB1AF6 	>  smuadx r6,r6,r10
+ 420 0592 C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 421              	    butterfly_save_32_k1  
+ 421 0596 0360     	>  str r3,[r0,#0]
+ 421 0598 0462     	>  str r4,[r0,#32]
+ 421 059a 0564     	>  str r5,[r0,#64]
+ 421 059c 0666     	>  str r6,[r0,#96]
+ 422              	
+ 423 059e 00F10400 	    add r0, #4
+ 424 05a2 02F11002 	    add r2, #16
+ 425              	    butterfly_load_32_k1
+ 425 05a6 0368     	>  ldr r3,[r0,#0]
+ 425 05a8 046A     	>  ldr r4,[r0,#32]
+ 425 05aa 056C     	>  ldr r5,[r0,#64]
+ 425 05ac 066E     	>  ldr r6,[r0,#96]
+ 426              	    butterfly_p4_32_k1
+ 426 05ae 93FA15F7 	>  qadd16 r7,r3,r5
+ 426 05b2 D3FA15F8 	>  qsub16 r8,r3,r5
+ 426 05b6 94FA16F9 	>  qadd16 r9,r4,r6
+ 426 05ba D4FA16FA 	>  qsub16 r10,r4,r6
+ 426              	> 
+ 426 05be 4FEA3A4B 	>  ror r11,r10,#16
+ 426 05c2 CBF1000A 	>  rsb r10,r11,#0
+ 426 05c6 CBEA0A0A 	>  pkhtb r10,r10,r11
+ 426              	> 
+ 426 05ca 97FA19F3 	>  qadd16 r3,r7,r9
+ 426 05ce D7FA19F5 	>  qsub16 r5,r7,r9
+ 426 05d2 98FA1AF4 	>  qadd16 r4,r8,r10
+ 426 05d6 D8FA1AF6 	>  qsub16 r6,r8,r10
+ 426              	> 
+ 426 05da 1768     	>  ldr r7,[r2]
+ 426 05dc D2F80480 	>  ldr r8,[r2,#4]
+ 426 05e0 D2F80890 	>  ldr r9,[r2,#8]
+ 426 05e4 D2F80CA0 	>  ldr r10,[r2,#12]
+ 426              	> 
+ 426 05e8 43FB07FC 	>  smusd r12,r3,r7
+ 426 05ec 23FB17F3 	>  smuadx r3,r3,r7
+ 426 05f0 C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 426              	> 
+ 426 05f4 44FB08FC 	>  smusd r12,r4,r8
+ 426 05f8 24FB18F4 	>  smuadx r4,r4,r8
+ 426 05fc C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 426              	> 
+ 426 0600 45FB09FC 	>  smusd r12,r5,r9
+ 426 0604 25FB19F5 	>  smuadx r5,r5,r9
+ 426 0608 C5EA2C45 	>  pkhtb r5,r5,r12,asr#16
+ 426              	> 
+ARM GAS  /tmp/cczVMXg2.s 			page 16
+
+
+ 426 060c 46FB0AFC 	>  smusd r12,r6,r10
+ 426 0610 26FB1AF6 	>  smuadx r6,r6,r10
+ 426 0614 C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 427              	    butterfly_save_32_k1  
+ 427 0618 0360     	>  str r3,[r0,#0]
+ 427 061a 0462     	>  str r4,[r0,#32]
+ 427 061c 0564     	>  str r5,[r0,#64]
+ 427 061e 0666     	>  str r6,[r0,#96]
+ 428              	
+ 429              	complex16_t_fft32_c2:
+ 430 0620 0298     	    ldr r0, [sp, #8]
+ 431 0622 00F031F9 	    bl complex16_t_fft32_s1
+ 432 0626 00F12000 	    add r0, #32
+ 433 062a 01F10401 	    add r1, #4
+ 434 062e 00F02BF9 	    bl complex16_t_fft32_s1
+ 435 0632 00F12000 	    add r0, #32
+ 436 0636 01F10401 	    add r1, #4
+ 437 063a 00F025F9 	    bl complex16_t_fft32_s1
+ 438 063e 00F12000 	    add r0, #32
+ 439 0642 01F10401 	    add r1, #4
+ 440 0646 00F01FF9 	    bl complex16_t_fft32_s1
+ 441              	
+ 442 064a 05B0     	    add sp, #20
+ 443 064c BDE8F09F 	    pop {r4,r5,r6,r7,r8,r9,r10,r11,r12,pc} 
+ 444              	
+ 445              	complex16_t_fft64_s1:
+ 446              	    butterfly_load_k1
+ 446 0650 0368     	>  ldr r3,[r0,#0]
+ 446 0652 046A     	>  ldr r4,[r0,#32]
+ 446 0654 056C     	>  ldr r5,[r0,#64]
+ 446 0656 066E     	>  ldr r6,[r0,#96]
+ 446 0658 D0F88070 	>  ldr r7,[r0,#128]
+ 446 065c D0F8A080 	>  ldr r8,[r0,#160]
+ 446 0660 D0F8C090 	>  ldr r9,[r0,#192]
+ 446 0664 D0F8E0A0 	>  ldr r10,[r0,#224]
+ 447              	    butterfly_radix8
+ 447 0668 93FA17FB 	>  qadd16 r11,r3,r7
+ 447 066c D3FA17FC 	>  qsub16 r12,r3,r7
+ 447 0670 94FA18F3 	>  qadd16 r3,r4,r8
+ 447 0674 D4FA18F7 	>  qsub16 r7,r4,r8
+ 447 0678 95FA19F4 	>  qadd16 r4,r5,r9
+ 447 067c D5FA19F8 	>  qsub16 r8,r5,r9
+ 447 0680 96FA1AF5 	>  qadd16 r5,r6,r10
+ 447 0684 D6FA1AF9 	>  qsub16 r9,r6,r10
+ 447              	> 
+ 447 0688 4FEA384A 	>  ror r10,r8,#16
+ 447 068c CAF10008 	>  rsb r8,r10,#0
+ 447 0690 CAEA0808 	>  pkhtb r8,r8,r10
+ 447 0694 4FEA394A 	>  ror r10,r9,#16
+ 447 0698 CAF10009 	>  rsb r9,r10,#0
+ 447 069c CAEA0909 	>  pkhtb r9,r9,r10
+ 447              	> 
+ 447 06a0 9BFA14F6 	>  qadd16 r6,r11,r4
+ 447 06a4 DBFA14FA 	>  qsub16 r10,r11,r4
+ 447 06a8 93FA15F4 	>  qadd16 r4,r3,r5
+ 447 06ac D3FA15FB 	>  qsub16 r11,r3,r5
+ 447 06b0 9CFA18F3 	>  qadd16 r3,r12,r8
+ARM GAS  /tmp/cczVMXg2.s 			page 17
+
+
+ 447 06b4 DCFA18F5 	>  qsub16 r5,r12,r8
+ 447 06b8 97FA19F8 	>  qadd16 r8,r7,r9
+ 447 06bc D7FA19FC 	>  qsub16 r12,r7,r9
+ 447              	> 
+ 447 06c0 4FEA3B49 	>  ror r9,r11,#16
+ 447 06c4 C9F1000B 	>  rsb r11,r9,#0
+ 447 06c8 C9EA0B0B 	>  pkhtb r11,r11,r9
+ 447              	> 
+ 447 06cc A54F     	>  ldr r7,=0xa57e5a82
+ 447 06ce 48FB07F9 	>  smusd r9,r8,r7
+ 447 06d2 28FB17F8 	>  smuadx r8,r8,r7
+ 447 06d6 4FEA4808 	>  lsl r8,r8,#1
+ 447 06da C8EAE938 	>  pkhtb r8,r8,r9,asr#15
+ 447 06de C7EA2747 	>  pkhtb r7,r7,r7,asr#16
+ 447 06e2 4CFB07F9 	>  smusd r9,r12,r7
+ 447 06e6 2CFB17FC 	>  smuadx r12,r12,r7
+ 447 06ea 4FEA4C0C 	>  lsl r12,r12,#1
+ 447 06ee CCEAE93C 	>  pkhtb r12,r12,r9,asr#15
+ 447              	> 
+ 447 06f2 96FA14F7 	>  qadd16 r7,r6,r4
+ 447 06f6 D6FA14F9 	>  qsub16 r9,r6,r4
+ 447 06fa 9AFA1BF4 	>  qadd16 r4,r10,r11
+ 447 06fe DAFA1BF6 	>  qsub16 r6,r10,r11
+ 447 0702 93FA18FA 	>  qadd16 r10,r3,r8
+ 447 0706 D3FA18FB 	>  qsub16 r11,r3,r8
+ 447 070a 95FA1CF3 	>  qadd16 r3,r5,r12
+ 447 070e D5FA1CF8 	>  qsub16 r8,r5,r12
+ 448              	    koutput_k1_rote_wnK
+ 448 0712 4FF02025 	>  ldr r5,=0x20002000
+ 448 0716 17FB05FC 	>  smulbb r12,r7,r5
+ 448 071a 17FB35F7 	>  smultt r7,r7,r5
+ 448 071e C7EA2C47 	>  pkhtb r7,r7,r12,asr#16
+ 448              	> 
+ 448 0722 5558     	>  ldr r5,[r2,r1]
+ 448 0724 0A44     	>  add r2,r1
+ 448 0726 4AFB05FC 	>  smusd r12,r10,r5
+ 448 072a 2AFB15FA 	>  smuadx r10,r10,r5
+ 448 072e CAEA2C4A 	>  pkhtb r10,r10,r12,asr#16
+ 448              	> 
+ 448 0732 5558     	>  ldr r5,[r2,r1]
+ 448 0734 0A44     	>  add r2,r1
+ 448 0736 44FB05FC 	>  smusd r12,r4,r5
+ 448 073a 24FB15F4 	>  smuadx r4,r4,r5
+ 448 073e C4EA2C44 	>  pkhtb r4,r4,r12,asr#16
+ 448              	> 
+ 448 0742 5558     	>  ldr r5,[r2,r1]
+ 448 0744 0A44     	>  add r2,r1
+ 448 0746 43FB05FC 	>  smusd r12,r3,r5
+ 448 074a 23FB15F3 	>  smuadx r3,r3,r5
+ 448 074e C3EA2C43 	>  pkhtb r3,r3,r12,asr#16
+ 448              	> 
+ 448 0752 5558     	>  ldr r5,[r2,r1]
+ 448 0754 0A44     	>  add r2,r1
+ 448 0756 49FB05FC 	>  smusd r12,r9,r5
+ 448 075a 29FB15F9 	>  smuadx r9,r9,r5
+ 448 075e C9EA2C49 	>  pkhtb r9,r9,r12,asr#16
+ 448              	> 
+ARM GAS  /tmp/cczVMXg2.s 			page 18
+
+
+ 448 0762 5558     	>  ldr r5,[r2,r1]
+ 448 0764 0A44     	>  add r2,r1
+ 448 0766 4BFB05FC 	>  smusd r12,r11,r5
+ 448 076a 2BFB15FB 	>  smuadx r11,r11,r5
+ 448 076e CBEA2C4B 	>  pkhtb r11,r11,r12,asr#16
+ 448              	> 
+ 448 0772 5558     	>  ldr r5,[r2,r1]
+ 448 0774 0A44     	>  add r2,r1
+ 448 0776 46FB05FC 	>  smusd r12,r6,r5
+ 448 077a 26FB15F6 	>  smuadx r6,r6,r5
+ 448 077e C6EA2C46 	>  pkhtb r6,r6,r12,asr#16
+ 448              	> 
+ 448 0782 5558     	>  ldr r5,[r2,r1]
+ 448 0784 48FB05FC 	>  smusd r12,r8,r5
+ 448 0788 28FB15F8 	>  smuadx r8,r8,r5
+ 448 078c C8EA2C48 	>  pkhtb r8,r8,r12,asr#16
+ 449              	    butterfly_save_k1 
+ 449 0790 0760     	>  str r7,[r0,#0]
+ 449 0792 C0F820A0 	>  str r10,[r0,#32]
+ 449 0796 0464     	>  str r4,[r0,#64]
+ 449 0798 0366     	>  str r3,[r0,#96]
+ 449 079a C0F88090 	>  str r9,[r0,#128]
+ 449 079e C0F8A0B0 	>  str r11,[r0,#160]
+ 449 07a2 C0F8C060 	>  str r6,[r0,#192]
+ 449 07a6 C0F8E080 	>  str r8,[r0,#224]
+ 450 07aa 7047     	    bx lr
+ 451              	
+ 452              	complex16_t_fft64_s2:
+ 453              	    butterfly_load_k2
+ 453 07ac 0368     	>  ldr r3,[r0,#0]
+ 453 07ae 4468     	>  ldr r4,[r0,#4]
+ 453 07b0 8568     	>  ldr r5,[r0,#8]
+ 453 07b2 C668     	>  ldr r6,[r0,#12]
+ 453 07b4 0769     	>  ldr r7,[r0,#16]
+ 453 07b6 D0F81480 	>  ldr r8,[r0,#20]
+ 453 07ba D0F81890 	>  ldr r9,[r0,#24]
+ 453 07be D0F81CA0 	>  ldr r10,[r0,#28]
+ 454              	    butterfly_radix8
+ 454 07c2 93FA17FB 	>  qadd16 r11,r3,r7
+ 454 07c6 D3FA17FC 	>  qsub16 r12,r3,r7
+ 454 07ca 94FA18F3 	>  qadd16 r3,r4,r8
+ 454 07ce D4FA18F7 	>  qsub16 r7,r4,r8
+ 454 07d2 95FA19F4 	>  qadd16 r4,r5,r9
+ 454 07d6 D5FA19F8 	>  qsub16 r8,r5,r9
+ 454 07da 96FA1AF5 	>  qadd16 r5,r6,r10
+ 454 07de D6FA1AF9 	>  qsub16 r9,r6,r10
+ 454              	> 
+ 454 07e2 4FEA384A 	>  ror r10,r8,#16
+ 454 07e6 CAF10008 	>  rsb r8,r10,#0
+ 454 07ea CAEA0808 	>  pkhtb r8,r8,r10
+ 454 07ee 4FEA394A 	>  ror r10,r9,#16
+ 454 07f2 CAF10009 	>  rsb r9,r10,#0
+ 454 07f6 CAEA0909 	>  pkhtb r9,r9,r10
+ 454              	> 
+ 454 07fa 9BFA14F6 	>  qadd16 r6,r11,r4
+ 454 07fe DBFA14FA 	>  qsub16 r10,r11,r4
+ 454 0802 93FA15F4 	>  qadd16 r4,r3,r5
+ARM GAS  /tmp/cczVMXg2.s 			page 19
+
+
+ 454 0806 D3FA15FB 	>  qsub16 r11,r3,r5
+ 454 080a 9CFA18F3 	>  qadd16 r3,r12,r8
+ 454 080e DCFA18F5 	>  qsub16 r5,r12,r8
+ 454 0812 97FA19F8 	>  qadd16 r8,r7,r9
+ 454 0816 D7FA19FC 	>  qsub16 r12,r7,r9
+ 454              	> 
+ 454 081a 4FEA3B49 	>  ror r9,r11,#16
+ 454 081e C9F1000B 	>  rsb r11,r9,#0
+ 454 0822 C9EA0B0B 	>  pkhtb r11,r11,r9
+ 454              	> 
+ 454 0826 4F4F     	>  ldr r7,=0xa57e5a82
+ 454 0828 48FB07F9 	>  smusd r9,r8,r7
+ 454 082c 28FB17F8 	>  smuadx r8,r8,r7
+ 454 0830 4FEA4808 	>  lsl r8,r8,#1
+ 454 0834 C8EAE938 	>  pkhtb r8,r8,r9,asr#15
+ 454 0838 C7EA2747 	>  pkhtb r7,r7,r7,asr#16
+ 454 083c 4CFB07F9 	>  smusd r9,r12,r7
+ 454 0840 2CFB17FC 	>  smuadx r12,r12,r7
+ 454 0844 4FEA4C0C 	>  lsl r12,r12,#1
+ 454 0848 CCEAE93C 	>  pkhtb r12,r12,r9,asr#15
+ 454              	> 
+ 454 084c 96FA14F7 	>  qadd16 r7,r6,r4
+ 454 0850 D6FA14F9 	>  qsub16 r9,r6,r4
+ 454 0854 9AFA1BF4 	>  qadd16 r4,r10,r11
+ 454 0858 DAFA1BF6 	>  qsub16 r6,r10,r11
+ 454 085c 93FA18FA 	>  qadd16 r10,r3,r8
+ 454 0860 D3FA18FB 	>  qsub16 r11,r3,r8
+ 454 0864 95FA1CF3 	>  qadd16 r3,r5,r12
+ 454 0868 D5FA1CF8 	>  qsub16 r8,r5,r12
+ 455              	    butterfly_save_k2
+ 455 086c 0F60     	>  str r7,[r1,#0]
+ 455 086e C1F820A0 	>  str r10,[r1,#32]
+ 455 0872 0C64     	>  str r4,[r1,#64]
+ 455 0874 0B66     	>  str r3,[r1,#96]
+ 455 0876 C1F88090 	>  str r9,[r1,#128]
+ 455 087a C1F8A0B0 	>  str r11,[r1,#160]
+ 455 087e C1F8C060 	>  str r6,[r1,#192]
+ 455 0882 C1F8E080 	>  str r8,[r1,#224]
+ 456 0886 7047     	    bx lr
+ 457              	
+ 458              	complex16_t_fft32_s1:
+ 459              	    butterfly_load_k2
+ 459 0888 0368     	>  ldr r3,[r0,#0]
+ 459 088a 4468     	>  ldr r4,[r0,#4]
+ 459 088c 8568     	>  ldr r5,[r0,#8]
+ 459 088e C668     	>  ldr r6,[r0,#12]
+ 459 0890 0769     	>  ldr r7,[r0,#16]
+ 459 0892 D0F81480 	>  ldr r8,[r0,#20]
+ 459 0896 D0F81890 	>  ldr r9,[r0,#24]
+ 459 089a D0F81CA0 	>  ldr r10,[r0,#28]
+ 460              	    butterfly_radix8
+ 460 089e 93FA17FB 	>  qadd16 r11,r3,r7
+ 460 08a2 D3FA17FC 	>  qsub16 r12,r3,r7
+ 460 08a6 94FA18F3 	>  qadd16 r3,r4,r8
+ 460 08aa D4FA18F7 	>  qsub16 r7,r4,r8
+ 460 08ae 95FA19F4 	>  qadd16 r4,r5,r9
+ 460 08b2 D5FA19F8 	>  qsub16 r8,r5,r9
+ARM GAS  /tmp/cczVMXg2.s 			page 20
+
+
+ 460 08b6 96FA1AF5 	>  qadd16 r5,r6,r10
+ 460 08ba D6FA1AF9 	>  qsub16 r9,r6,r10
+ 460              	> 
+ 460 08be 4FEA384A 	>  ror r10,r8,#16
+ 460 08c2 CAF10008 	>  rsb r8,r10,#0
+ 460 08c6 CAEA0808 	>  pkhtb r8,r8,r10
+ 460 08ca 4FEA394A 	>  ror r10,r9,#16
+ 460 08ce CAF10009 	>  rsb r9,r10,#0
+ 460 08d2 CAEA0909 	>  pkhtb r9,r9,r10
+ 460              	> 
+ 460 08d6 9BFA14F6 	>  qadd16 r6,r11,r4
+ 460 08da DBFA14FA 	>  qsub16 r10,r11,r4
+ 460 08de 93FA15F4 	>  qadd16 r4,r3,r5
+ 460 08e2 D3FA15FB 	>  qsub16 r11,r3,r5
+ 460 08e6 9CFA18F3 	>  qadd16 r3,r12,r8
+ 460 08ea DCFA18F5 	>  qsub16 r5,r12,r8
+ 460 08ee 97FA19F8 	>  qadd16 r8,r7,r9
+ 460 08f2 D7FA19FC 	>  qsub16 r12,r7,r9
+ 460              	> 
+ 460 08f6 4FEA3B49 	>  ror r9,r11,#16
+ 460 08fa C9F1000B 	>  rsb r11,r9,#0
+ 460 08fe C9EA0B0B 	>  pkhtb r11,r11,r9
+ 460              	> 
+ 460 0902 184F     	>  ldr r7,=0xa57e5a82
+ 460 0904 48FB07F9 	>  smusd r9,r8,r7
+ 460 0908 28FB17F8 	>  smuadx r8,r8,r7
+ 460 090c 4FEA4808 	>  lsl r8,r8,#1
+ 460 0910 C8EAE938 	>  pkhtb r8,r8,r9,asr#15
+ 460 0914 C7EA2747 	>  pkhtb r7,r7,r7,asr#16
+ 460 0918 4CFB07F9 	>  smusd r9,r12,r7
+ 460 091c 2CFB17FC 	>  smuadx r12,r12,r7
+ 460 0920 4FEA4C0C 	>  lsl r12,r12,#1
+ 460 0924 CCEAE93C 	>  pkhtb r12,r12,r9,asr#15
+ 460              	> 
+ 460 0928 96FA14F7 	>  qadd16 r7,r6,r4
+ 460 092c D6FA14F9 	>  qsub16 r9,r6,r4
+ 460 0930 9AFA1BF4 	>  qadd16 r4,r10,r11
+ 460 0934 DAFA1BF6 	>  qsub16 r6,r10,r11
+ 460 0938 93FA18FA 	>  qadd16 r10,r3,r8
+ 460 093c D3FA18FB 	>  qsub16 r11,r3,r8
+ 460 0940 95FA1CF3 	>  qadd16 r3,r5,r12
+ 460 0944 D5FA1CF8 	>  qsub16 r8,r5,r12
+ 461              	    butterfly_save_k3
+ 461 0948 0F60     	>  str r7,[r1,#0]
+ 461 094a C1F810A0 	>  str r10,[r1,#16]
+ 461 094e 0C62     	>  str r4,[r1,#32]
+ 461 0950 0B63     	>  str r3,[r1,#48]
+ 461 0952 C1F84090 	>  str r9,[r1,#64]
+ 461 0956 C1F850B0 	>  str r11,[r1,#80]
+ 461 095a 0E66     	>  str r6,[r1,#96]
+ 461 095c C1F87080 	>  str r8,[r1,#112]
+ 462 0960 70470000 	    bx lr
+ 462      825A7EA5 
+ARM GAS  /tmp/cczVMXg2.s 			page 21
+
+
+DEFINED SYMBOLS
+          fmcw/fft.s:192    .text:0000000000000000 complex16_t_fft64
+          fmcw/fft.s:378    .text:0000000000000210 complex16_t_fft32
+          fmcw/fft.s:193    .text:0000000000000000 $t
+          fmcw/fft.s:445    .text:0000000000000650 complex16_t_fft64_s1
+          fmcw/fft.s:452    .text:00000000000007ac complex16_t_fft64_s2
+          fmcw/fft.s:429    .text:0000000000000620 complex16_t_fft32_c2
+          fmcw/fft.s:458    .text:0000000000000888 complex16_t_fft32_s1
+          fmcw/fft.s:462    .text:0000000000000962 $d
+          fmcw/fft.s:462    .text:0000000000000964 $d
+
+NO UNDEFINED SYMBOLS

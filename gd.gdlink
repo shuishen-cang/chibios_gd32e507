@@ -1,0 +1,6 @@
+
+loadbin build/ch.bin 8000000
+
+r 
+sleep 10
+q
