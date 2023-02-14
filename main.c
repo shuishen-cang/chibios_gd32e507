@@ -23,14 +23,16 @@ limitations under the License.
 // #include "rt_test_root.h"
 // #include "oslib_test_root.h"
 
-// uint8_t buff[2];
+uint8_t buff[128];
 
 /*
 * Application entry point.
 */
 
 int main(void) {
-    rtcnt_t x1, x2;
+    // rtcnt_t x1, x2;
+    event_listener_t el;
+
     /*
     * System initializations.
     * - HAL initialization, this also initializes the configured device drivers
@@ -43,37 +45,31 @@ int main(void) {
 
     palSetLineMode(LINE_UART3_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
     palSetLineMode(LINE_UART3_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
-    sdStart(&SD3, NULL);
 
-    chprintf((void*)&SD3, "hello, chibios\n");  
+    palSetLineMode(LINE_UART4_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
+    palSetLineMode(LINE_UART4_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
 
+    sdStart(&SD4, NULL);
+    usart_receiver_timeout_threshold_config(UART4,30);                                          //帧尾检测
+    usart_receiver_timeout_enable(UART4);
+    usart_interrupt_enable(UART4, USART_INT_RT);
 
+    // usbStart(&USBD1, NULL);
+
+    // x1 = chSysGetRealtimeCounterX();
+    // x2 = chSysGetRealtimeCounterX();
+
+    // uint32_t system_clock = ;
+    chprintf((void*)&SD3, "hello, chibios, %dMHz\n", rcu_clock_freq_get(CK_SYS) / 1000000);  
+
+    chEvtRegisterMaskWithFlags(&SD4.event, &el, EVENT_MASK(1), CHN_BREAK_DETECTED);
     while (true) {
-        // chnReadTimeout(&SD3, buff, 1, TIME_INFINITE);
-        // chnWrite(&SD3, buff, 1);
+        chEvtWaitOne(EVENT_MASK(1));
 
-        x1 = chSysGetRealtimeCounterX();
-
-        x2 = chSysGetRealtimeCounterX();
-
-        // for(uint32_t i = 0; i < NPOINT; i += 1){
-        //     // fprintf(mat_wr, "%d %d\n",xout[i].real, xout[i].imag);       
-
-        //     chprintf((void*)&SD3, "%d:%d %d\n",i,xout[i].real, xout[i].imag); 
-        //     chThdSleepMilliseconds(50);   
-        // } 
-
-
-
-        chprintf((void*)&SD3, "%d\n", (x2 - x1) >> 0); 
-        chThdSleepMilliseconds(50000);
-
-        // palToggleLine(LINE_LED1);
-        // palSetLine(LINE_LED0);
-        // chThdSleepMilliseconds(500);
-        // palClearLine(LINE_LED0);
-        // chThdSleepMilliseconds(500);
-
-        // chprintf((void*)&SD3, "hello\n");  
+        size_t xlen = chnReadTimeout(&SD4, buff, 128, TIME_IMMEDIATE);
+        // chprintf((void*)&SD4, "system size:%d\n", xlen); 
+        chnWrite(&SD4, buff, xlen);  
     }
+
+    chEvtUnregister(&SD4.event, &el);
 }

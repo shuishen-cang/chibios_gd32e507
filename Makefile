@@ -123,7 +123,9 @@ LDSCRIPT= $(STARTUPLD)/GD32E507R.ld
 # setting.
 CSRC = $(ALLCSRC) \
        $(TESTSRC) \
-       main.c
+       main.c \
+       usb_user.c \
+       usbcfg.c
 
 # C++ sources that can be compiled in ARM or THUMB mode depending on the global
 # setting.
@@ -153,7 +155,7 @@ CPPWARN = -Wall -Wextra -Wundef
 #
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = -DGD32E50X -DGD32E50X_CL -DUSE_STDPERIPH_DRIVER -DCORTEX_USE_FPU=FALSE
+UDEFS = -DGD32E50X -DGD32E50X_CL -DUSE_STDPERIPH_DRIVER -DCORTEX_USE_FPU=FALSE -DUSE_USB_HS
 
 # Define ASM defines here
 UADEFS =

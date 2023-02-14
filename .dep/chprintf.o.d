@@ -86,8 +86,9 @@ build/obj/chprintf.o: os/hal/lib/streams/chprintf.c os/hal/include/hal.h \
  gd32e507/hal_serial_lld.h os/hal/include/hal_sdc.h \
  os/hal/include/hal_sio.h os/hal/include/hal_spi.h \
  os/hal/include/hal_trng.h os/hal/include/hal_uart.h \
- os/hal/include/hal_usb.h os/hal/include/hal_wdg.h \
- os/hal/include/hal_wspi.h os/hal/include/hal_st.h gd32e507/hal_st_lld.h \
+ os/hal/include/hal_usb.h gd32e507/hal_usb_lld.h cfg/drv_usb_regs.h \
+ os/hal/include/hal_wdg.h os/hal/include/hal_wspi.h \
+ os/hal/include/hal_st.h gd32e507/hal_st_lld.h \
  os/hal/include/hal_mmc_spi.h os/hal/include/hal_serial_usb.h \
  os/hal/lib/streams/chprintf.h os/hal/lib/streams/memstreams.h
 
@@ -364,6 +365,10 @@ os/hal/include/hal_trng.h:
 os/hal/include/hal_uart.h:
 
 os/hal/include/hal_usb.h:
+
+gd32e507/hal_usb_lld.h:
+
+cfg/drv_usb_regs.h:
 
 os/hal/include/hal_wdg.h:
 

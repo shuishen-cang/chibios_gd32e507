@@ -52,6 +52,10 @@
 #if STM32_SERIAL_USE_USART3
 extern SerialDriver SD3;
 #endif
+
+#if STM32_SERIAL_USE_UART4
+extern SerialDriver SD4;
+#endif
 /** @} */
 
 /*===========================================================================*/
@@ -93,7 +97,7 @@ typedef struct hal_serial_config {
   uint8_t                   ib[SERIAL_BUFFERS_SIZE];                        \
   /* Output circular buffer.*/                                              \
   uint8_t                   ob[SERIAL_BUFFERS_SIZE];                        \
-  uint32_t                  uart_basic;
+  uint32_t                  uart_basic;                                     
   /* End of the mandatory fields.*/
 
 /*===========================================================================*/
@@ -115,6 +119,7 @@ extern "C" {
   void sd_lld_start(SerialDriver *sdp, const SerialConfig *config);
   void sd_lld_stop(SerialDriver *sdp);
   void sd_lld_serve_interrupt(SerialDriver *sdp);
+  void sd5_lld_serve_interrupt(SerialDriver *sdp);
 #ifdef __cplusplus
 }
 #endif

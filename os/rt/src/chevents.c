@@ -472,6 +472,7 @@ void chEvtDispatch(const evhandler_t *handlers, eventmask_t events) {
  *
  * @api
  */
+
 eventmask_t chEvtWaitOne(eventmask_t events) {
   thread_t *currtp = chThdGetSelfX();
   eventmask_t m;
@@ -483,6 +484,7 @@ eventmask_t chEvtWaitOne(eventmask_t events) {
     chSchGoSleepS(CH_STATE_WTOREVT);
     m = currtp->epending & events;
   }
+
   m ^= m & (m - (eventmask_t)1);
   currtp->epending &= ~m;
   chSysUnlock();

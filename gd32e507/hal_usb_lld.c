@@ -24,6 +24,7 @@
 
 #include "hal.h"
 
+
 #if (HAL_USE_USB == TRUE) || defined(__DOXYGEN__)
 
 /*===========================================================================*/
@@ -75,6 +76,38 @@ static const USBEndpointConfig ep0config = {
   &ep0_state.out
 };
 
+static uint32_t kkk = 0;
+OSAL_IRQ_HANDLER(Vector14C) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  kkk ++;
+
+  // usb_lld_serve_interrupt(&USBD1);
+
+  OSAL_IRQ_EPILOGUE();
+}
+
+#define RX_FIFO_SIZE                          512U
+#define TX0_FIFO_SIZE                         128U
+#define TX1_FIFO_SIZE                         384U
+#define TX2_FIFO_SIZE                         0U
+#define TX3_FIFO_SIZE                         0U
+#define TX4_FIFO_SIZE                         0U
+#define TX5_FIFO_SIZE                         0U
+
+// const uint16_t USBHS_TX_FIFO_SIZE[USBHS_MAX_EP_COUNT] = 
+// {
+//     (uint16_t)TX0_FIFO_SIZE,
+//     (uint16_t)TX1_FIFO_SIZE,
+//     (uint16_t)TX2_FIFO_SIZE,
+//     (uint16_t)TX3_FIFO_SIZE,
+//     (uint16_t)TX4_FIFO_SIZE,
+//     (uint16_t)TX5_FIFO_SIZE
+// };
+
+extern const uint16_t USBHS_TX_FIFO_SIZE[USBHS_MAX_EP_COUNT];
+
 /*===========================================================================*/
 /* Driver local variables and types.                                         */
 /*===========================================================================*/
@@ -91,6 +124,92 @@ static const USBEndpointConfig ep0config = {
 /* Driver exported functions.                                                */
 /*===========================================================================*/
 
+static void usb_set_txfifo(usb_gr *gr, uint8_t fifo, uint16_t size)
+{
+    uint32_t tx_offset;
+
+    tx_offset = gr->GRFLEN;
+
+    if (fifo == 0U) {
+        gr->DIEP0TFLEN_HNPTFLEN = ((uint32_t)size << 16U) | tx_offset;
+    } else {
+        tx_offset += (gr->DIEP0TFLEN_HNPTFLEN) >> 16U;
+
+        for (uint8_t i = 0U; i < (fifo - 1U); i++) {
+            tx_offset += (gr->DIEPTFLEN[i] >> 16U);
+        }
+
+        gr->DIEPTFLEN[fifo - 1U] = ((uint32_t)size << 16U) | tx_offset;
+    }
+}
+
+static int32_t usb_txfifo_flush (usb_gr *gr, uint8_t fifo_num)
+{
+    gr->GRSTCTL = ((uint32_t)fifo_num << 6U) | GRSTCTL_TXFF;
+
+    /* wait for Tx FIFO flush bit is set */
+    while (gr->GRSTCTL & GRSTCTL_TXFF) {
+        /* no operation */
+    }
+
+    /* wait for 3 PHY clocks*/
+    chThdSleepMicroseconds(5);
+
+    return 0;
+}
+
+/*!
+    \brief      flush the entire Rx FIFO
+    \param[in]  usb_regs: pointer to USB core registers
+    \param[out] none
+    \retval     operation status
+*/
+static int32_t usb_rxfifo_flush (usb_gr *gr)
+{
+    gr->GRSTCTL = GRSTCTL_RXFF;
+
+    /* wait for RX FIFO flush bit is set */
+    while (gr->GRSTCTL & GRSTCTL_RXFF) {
+        /* no operation */
+    }
+
+    /* wait for 3 PHY clocks */
+    chThdSleepMicroseconds(5);
+
+    return 0;
+}
+
+static int32_t usb_devint_enable (usb_gr *gr)
+{
+    /* clear any pending USB OTG interrupts */
+    gr->GOTGINTF = 0xFFFFFFFFU;
+
+    /* clear any pending interrupts */
+    gr->GINTF = 0xBFFFFFFFU;
+
+    /* enable the USB wakeup and suspend interrupts */
+    gr->GINTEN = GINTEN_WKUPIE | GINTEN_SPIE;
+
+    /* enable device_mode-related interrupts */
+    // if ((uint8_t)USB_USE_FIFO == udev->bp.transfer_mode) {
+    gr->GINTEN |= GINTEN_RXFNEIE;
+    // }
+
+    gr->GINTEN |= GINTEN_RSTIE | GINTEN_ENUMFIE | GINTEN_IEPIE |\
+                             GINTEN_OEPIE | GINTEN_SOFIE | GINTEN_ISOONCIE | GINTEN_ISOINCIE;
+
+#ifdef VBUS_SENSING_ENABLED
+    gr->GINTEN |= GINTEN_SESIE | GINTEN_OTGIE;
+#endif /* VBUS_SENSING_ENABLED */
+
+
+    /* enable USB global interrupt */
+    gr->GAHBCS |= GAHBCS_GINTEN;
+
+    return 0;
+}
+
+
 /**
  * @brief   Low level USB driver initialization.
  *
@@ -100,7 +219,12 @@ void usb_lld_init(void) {
 
 #if PLATFORM_USB_USE_USB1 == TRUE
   /* Driver initialization.*/
-  usbObjectInit(&USBD1);
+    USBD1.dev_gr = (usb_gr*)USBHS_REG_BASE;
+    USBD1.dev_dr = (usb_dr*)(USBHS_REG_BASE + 0x0800);
+    usbObjectInit(&USBD1);
+
+    rcu_usb_clock_config(RCU_CKUSB_CKPLL_DIV3_5);   
+    rcu_periph_clock_enable(RCU_USBHS);
 #endif
 }
 
@@ -117,12 +241,59 @@ void usb_lld_start(USBDriver *usbp) {
     /* Enables the peripheral.*/
 #if PLATFORM_USB_USE_USB1 == TRUE
     if (&USBD1 == usbp) {
+    /* disable USB global interrupt */
+      usbp->dev_gr->GAHBCS &= ~GAHBCS_GINTEN;
+      usbp->dev_gr->GUSBCS |= GUSBCS_EMBPHY_HS;
 
+      usbp->dev_gr->GRSTCTL |= GRSTCTL_CSRST;
+      while (usbp->dev_gr->GRSTCTL & GRSTCTL_CSRST) {}
+      chThdSleepMicroseconds(4);
+
+      usbp->dev_gr->GCCFG = 0U;
+      usbp->dev_gr->GOTGCS |= GOTGCS_BVOV | GOTGCS_BVOE;
+      usbp->dev_gr->GCCFG |= GCCFG_PWRON;
+
+      usbp->dev_gr->GCCFG |= GCCFG_SOFOEN;          //sof enable
+      chThdSleepMilliseconds(20);   
+
+      usbp->dev_dr->DCTL |= DCTL_SD;               //soft restart
+      chThdSleepMilliseconds(20); 
+
+      usbp->dev_gr->GUSBCS &= ~(GUSBCS_FDM | GUSBCS_FHM);
+      usbp->dev_gr->GUSBCS |= GUSBCS_FDM;          //set ad device
+
+
+      usbp->dev_dr->DCFG &= ~DCFG_EOPFT;
+      usbp->dev_dr->DCFG |= FRAME_INTERVAL_80;
+      usbp->dev_dr->DCFG &= ~DCFG_DS;
+      usbp->dev_dr->DCFG |= USB_SPEED_INP_HIGH;    //high speed
+
+      usbp->dev_gr->GRFLEN = RX_FIFO_SIZE;          //recv fifo 512byte
+
+      for (uint8_t i = 0U; i < USBHS_MAX_EP_COUNT; i++) {						//send fifo
+          usb_set_txfifo(usbp->dev_gr, i, USBHS_TX_FIFO_SIZE[i]);
+      }
+
+      (void)usb_txfifo_flush (usbp->dev_gr, 0x10U);
+      (void)usb_rxfifo_flush (usbp->dev_gr);
+
+      usbp->dev_dr->DIEPINTEN = 0U;
+      usbp->dev_dr->DOEPINTEN = 0U;
+      usbp->dev_dr->DAEPINT = 0xFFFFFFFFU;
+      usbp->dev_dr->DAEPINTEN = 0U;
+
+      //initial endpoint
+      usbp->dev_dr->DIEPINTEN |= DIEPINTEN_EPTXFUDEN;
+
+      usb_devint_enable (usbp->dev_gr);
+
+      usbp->dev_dr->DCTL &= ~DCTL_SD;
+
+      nvic_irq_enable((uint8_t)USBHS_IRQn, 2U, 0U);
     }
 #endif
   }
   /* Configures the peripheral.*/
-
 }
 
 /**

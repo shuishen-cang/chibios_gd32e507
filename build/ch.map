@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-ctype_.o)
                               ./build/obj/chscanf.o (symbol from plugin) (_ctype_)
 /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-memcpy.o)
-                              /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o (memcpy)
+                              /tmp/ch.elf.M99srx.ltrans0.ltrans.o (memcpy)
 
 Discarded input sections
 
@@ -13,133 +13,160 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ./build/obj/crt0_v8m-ml.o
  .data          0x0000000000000000        0x0 ./build/obj/chcoreasm.o
  .bss           0x0000000000000000        0x0 ./build/obj/chcoreasm.o
- .text          0x0000000000000000        0x0 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .data          0x0000000000000000        0x0 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .bss           0x0000000000000000        0x0 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .comment       0x0000000000000000       0x4d /tmp/ccjArmqD.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccKmQaoN.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccXHm0lX.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cceXYQj7.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccJBEIhh.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cceAwBfr.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc9nuvdB.debug.temp.o
- .debug_info    0x0000000000000000     0x1114 /tmp/cc2aKqbL.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x1d8 /tmp/cc2aKqbL.debug.temp.o
- .debug_line    0x0000000000000000      0x337 /tmp/cc2aKqbL.debug.temp.o
- .debug_str     0x0000000000000000      0xb4c /tmp/cc2aKqbL.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc2aKqbL.debug.temp.o
- .debug_info    0x0000000000000000     0x1251 /tmp/ccHeYm9U.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x222 /tmp/ccHeYm9U.debug.temp.o
- .debug_line    0x0000000000000000      0x3b8 /tmp/ccHeYm9U.debug.temp.o
- .debug_str     0x0000000000000000      0xbbd /tmp/ccHeYm9U.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccHeYm9U.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccC29j74.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccjxpi5e.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cck8wh3o.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccxvwh1y.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccGygiZI.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccr5RjXS.debug.temp.o
- .debug_info    0x0000000000000000     0x1114 /tmp/ccAQgmV2.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x1d8 /tmp/ccAQgmV2.debug.temp.o
- .debug_line    0x0000000000000000      0x337 /tmp/ccAQgmV2.debug.temp.o
- .debug_str     0x0000000000000000      0xb56 /tmp/ccAQgmV2.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccAQgmV2.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cctbqpTc.debug.temp.o
- .debug_info    0x0000000000000000      0xcdc /tmp/ccacmtRm.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x182 /tmp/ccacmtRm.debug.temp.o
- .debug_line    0x0000000000000000      0x2ce /tmp/ccacmtRm.debug.temp.o
- .debug_str     0x0000000000000000      0x975 /tmp/ccacmtRm.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccacmtRm.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccL51xPw.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccgQyDNG.debug.temp.o
- .debug_info    0x0000000000000000      0xcdc /tmp/ccVPOJLQ.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x182 /tmp/ccVPOJLQ.debug.temp.o
- .debug_line    0x0000000000000000      0x2ce /tmp/ccVPOJLQ.debug.temp.o
- .debug_str     0x0000000000000000      0x96f /tmp/ccVPOJLQ.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccVPOJLQ.debug.temp.o
- .debug_info    0x0000000000000000      0xcdc /tmp/ccAvOQJ0.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x182 /tmp/ccAvOQJ0.debug.temp.o
- .debug_line    0x0000000000000000      0x2ce /tmp/ccAvOQJ0.debug.temp.o
- .debug_str     0x0000000000000000      0x96f /tmp/ccAvOQJ0.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccAvOQJ0.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cct8KYHa.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccIQG7Fk.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccPkrhEu.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccGsYrCE.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccNktDAO.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccYqQPyY.debug.temp.o
- .debug_info    0x0000000000000000     0x197a /tmp/cc1Ab3w8.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x32c /tmp/cc1Ab3w8.debug.temp.o
- .debug_line    0x0000000000000000      0x323 /tmp/cc1Ab3w8.debug.temp.o
- .debug_str     0x0000000000000000      0xed9 /tmp/cc1Ab3w8.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc1Ab3w8.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc65khvi.debug.temp.o
- .debug_info    0x0000000000000000     0x18c9 /tmp/ccbPnwts.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x33b /tmp/ccbPnwts.debug.temp.o
- .debug_line    0x0000000000000000      0x33c /tmp/ccbPnwts.debug.temp.o
- .debug_str     0x0000000000000000      0xed2 /tmp/ccbPnwts.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccbPnwts.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccWreMrC.debug.temp.o
- .debug_info    0x0000000000000000      0xeed /tmp/ccj8Y2pM.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x295 /tmp/ccj8Y2pM.debug.temp.o
- .debug_line    0x0000000000000000      0x30d /tmp/ccj8Y2pM.debug.temp.o
- .debug_str     0x0000000000000000      0xa57 /tmp/ccj8Y2pM.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccj8Y2pM.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccUrwkoW.debug.temp.o
- .debug_info    0x0000000000000000      0xf49 /tmp/ccr1QCm6.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x22c /tmp/ccr1QCm6.debug.temp.o
- .debug_line    0x0000000000000000      0x2ed /tmp/ccr1QCm6.debug.temp.o
- .debug_str     0x0000000000000000      0xa38 /tmp/ccr1QCm6.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccr1QCm6.debug.temp.o
- .debug_info    0x0000000000000000     0x118d /tmp/cc4v1Vkg.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x266 /tmp/cc4v1Vkg.debug.temp.o
- .debug_line    0x0000000000000000      0x307 /tmp/cc4v1Vkg.debug.temp.o
- .debug_str     0x0000000000000000      0xaf7 /tmp/cc4v1Vkg.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc4v1Vkg.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cctbZfjq.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc6tJAhA.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccdmGWfK.debug.temp.o
- .debug_info    0x0000000000000000     0x18de /tmp/cc8xujeU.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x2d1 /tmp/cc8xujeU.debug.temp.o
- .debug_line    0x0000000000000000      0x326 /tmp/cc8xujeU.debug.temp.o
- .debug_str     0x0000000000000000      0xe60 /tmp/cc8xujeU.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc8xujeU.debug.temp.o
- .debug_info    0x0000000000000000     0x11fe /tmp/ccxj7Gc4.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x298 /tmp/ccxj7Gc4.debug.temp.o
- .debug_line    0x0000000000000000      0x30d /tmp/ccxj7Gc4.debug.temp.o
- .debug_str     0x0000000000000000      0xbb2 /tmp/ccxj7Gc4.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccxj7Gc4.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccS2v5ae.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cczJHu9n.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccISMU7x.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccLYLl6H.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccQdtN4R.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cczxWf31.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccWpjJ1b.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cchFEd0l.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccyo2IYv.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccHxbfXF.debug.temp.o
- .debug_info    0x0000000000000000     0x149d /tmp/ccQiaMVP.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x2aa /tmp/ccQiaMVP.debug.temp.o
- .debug_line    0x0000000000000000      0x3dc /tmp/ccQiaMVP.debug.temp.o
- .debug_str     0x0000000000000000      0xc43 /tmp/ccQiaMVP.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccQiaMVP.debug.temp.o
- .debug_info    0x0000000000000000     0x1baf /tmp/cczmVjUZ.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x285 /tmp/cczmVjUZ.debug.temp.o
- .debug_line    0x0000000000000000      0x38c /tmp/cczmVjUZ.debug.temp.o
- .debug_str     0x0000000000000000      0xf85 /tmp/cczmVjUZ.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cczmVjUZ.debug.temp.o
- .debug_info    0x0000000000000000     0x1293 /tmp/ccCOXSS9.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x239 /tmp/ccCOXSS9.debug.temp.o
- .debug_line    0x0000000000000000      0x36d /tmp/ccCOXSS9.debug.temp.o
- .debug_str     0x0000000000000000      0xb91 /tmp/ccCOXSS9.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccCOXSS9.debug.temp.o
- .debug_info    0x0000000000000000     0x1c37 /tmp/ccPLRsRj.debug.temp.o
- .debug_abbrev  0x0000000000000000      0x294 /tmp/ccPLRsRj.debug.temp.o
- .debug_line    0x0000000000000000      0x39d /tmp/ccPLRsRj.debug.temp.o
- .debug_str     0x0000000000000000      0xfeb /tmp/ccPLRsRj.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/ccPLRsRj.debug.temp.o
- .comment       0x0000000000000000       0x4d /tmp/cc2QB3Pt.debug.temp.o
+ .text          0x0000000000000000        0x0 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .data          0x0000000000000000        0x0 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .bss           0x0000000000000000        0x0 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x4d /tmp/ccXf3awK.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc8cjPpR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc90yujY.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccCjJad5.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccTJMR6b.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccOGQz0i.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc7xNiUp.debug.temp.o
+ .debug_info    0x0000000000000000     0x18c2 /tmp/ccQ2B2Nw.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x202 /tmp/ccQ2B2Nw.debug.temp.o
+ .debug_line    0x0000000000000000      0x36b /tmp/ccQ2B2Nw.debug.temp.o
+ .debug_str     0x0000000000000000     0x103f /tmp/ccQ2B2Nw.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccQ2B2Nw.debug.temp.o
+ .debug_info    0x0000000000000000     0x19fb /tmp/ccRMfNHD.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x253 /tmp/ccRMfNHD.debug.temp.o
+ .debug_line    0x0000000000000000      0x3ec /tmp/ccRMfNHD.debug.temp.o
+ .debug_str     0x0000000000000000     0x10b0 /tmp/ccRMfNHD.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccRMfNHD.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc2hLyBK.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccjgglvR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccqrG8oY.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccntYWi5.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccUn5Lcc.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccP61B6i.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccyt0s0p.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc97VkUw.debug.temp.o
+ .debug_info    0x0000000000000000     0x18c2 /tmp/ccElHdOD.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x202 /tmp/ccElHdOD.debug.temp.o
+ .debug_line    0x0000000000000000      0x36b /tmp/ccElHdOD.debug.temp.o
+ .debug_str     0x0000000000000000     0x1049 /tmp/ccElHdOD.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccElHdOD.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccTwh7HK.debug.temp.o
+ .debug_info    0x0000000000000000      0xcdc /tmp/ccYWF1BR.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x182 /tmp/ccYWF1BR.debug.temp.o
+ .debug_line    0x0000000000000000      0x2ce /tmp/ccYWF1BR.debug.temp.o
+ .debug_str     0x0000000000000000      0x975 /tmp/ccYWF1BR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccYWF1BR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccX3PWvY.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccmIOSp5.debug.temp.o
+ .debug_info    0x0000000000000000      0xcdc /tmp/ccDuxPjc.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x182 /tmp/ccDuxPjc.debug.temp.o
+ .debug_line    0x0000000000000000      0x2ce /tmp/ccDuxPjc.debug.temp.o
+ .debug_str     0x0000000000000000      0x96f /tmp/ccDuxPjc.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccDuxPjc.debug.temp.o
+ .debug_info    0x0000000000000000      0xcdc /tmp/cccMXMdj.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x182 /tmp/cccMXMdj.debug.temp.o
+ .debug_line    0x0000000000000000      0x2ce /tmp/cccMXMdj.debug.temp.o
+ .debug_str     0x0000000000000000      0x96f /tmp/cccMXMdj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cccMXMdj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc3k6K7p.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccEB3J1w.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccBPNJVD.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cccyhKPK.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccxmELJR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccGoPNDY.debug.temp.o
+ .debug_info    0x0000000000000000     0x197a /tmp/ccVHLQx5.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x32c /tmp/ccVHLQx5.debug.temp.o
+ .debug_line    0x0000000000000000      0x323 /tmp/ccVHLQx5.debug.temp.o
+ .debug_str     0x0000000000000000      0xed9 /tmp/ccVHLQx5.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccVHLQx5.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc4ByUrc.debug.temp.o
+ .debug_info    0x0000000000000000     0x18c9 /tmp/ccBYh0lj.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x33b /tmp/ccBYh0lj.debug.temp.o
+ .debug_line    0x0000000000000000      0x33c /tmp/ccBYh0lj.debug.temp.o
+ .debug_str     0x0000000000000000      0xed2 /tmp/ccBYh0lj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccBYh0lj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cceqO6fq.debug.temp.o
+ .debug_info    0x0000000000000000      0xeed /tmp/ccDobeax.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x295 /tmp/ccDobeax.debug.temp.o
+ .debug_line    0x0000000000000000      0x30d /tmp/ccDobeax.debug.temp.o
+ .debug_str     0x0000000000000000      0xa57 /tmp/ccDobeax.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccDobeax.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccaVjm4D.debug.temp.o
+ .debug_info    0x0000000000000000      0xf49 /tmp/cczjcvYK.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x22c /tmp/cczjcvYK.debug.temp.o
+ .debug_line    0x0000000000000000      0x2ed /tmp/cczjcvYK.debug.temp.o
+ .debug_str     0x0000000000000000      0xa38 /tmp/cczjcvYK.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cczjcvYK.debug.temp.o
+ .debug_info    0x0000000000000000     0x118d /tmp/ccaMPESR.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x266 /tmp/ccaMPESR.debug.temp.o
+ .debug_line    0x0000000000000000      0x307 /tmp/ccaMPESR.debug.temp.o
+ .debug_str     0x0000000000000000      0xaf7 /tmp/ccaMPESR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccaMPESR.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccd7bPMY.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccmHi0G5.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccLVbcBc.debug.temp.o
+ .debug_info    0x0000000000000000     0x18de /tmp/ccAlQovj.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x2d1 /tmp/ccAlQovj.debug.temp.o
+ .debug_line    0x0000000000000000      0x326 /tmp/ccAlQovj.debug.temp.o
+ .debug_str     0x0000000000000000      0xe60 /tmp/ccAlQovj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccAlQovj.debug.temp.o
+ .debug_info    0x0000000000000000     0x11fe /tmp/ccpNhCpq.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x298 /tmp/ccpNhCpq.debug.temp.o
+ .debug_line    0x0000000000000000      0x30d /tmp/ccpNhCpq.debug.temp.o
+ .debug_str     0x0000000000000000      0xbb2 /tmp/ccpNhCpq.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccpNhCpq.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc6swQjx.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc5Ft5dE.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cceqjl8K.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc3zXB2R.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccqRiTWY.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccfPobR5.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccYpmuLc.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cctDdOFj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccCT58zq.debug.temp.o
+ .debug_info    0x0000000000000000     0x12e7 /tmp/ccd8Juux.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x2c3 /tmp/ccd8Juux.debug.temp.o
+ .debug_line    0x0000000000000000      0x296 /tmp/ccd8Juux.debug.temp.o
+ .debug_str     0x0000000000000000      0xc06 /tmp/ccd8Juux.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccd8Juux.debug.temp.o
+ .debug_info    0x0000000000000000     0x2593 /tmp/ccGK8QoE.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x307 /tmp/ccGK8QoE.debug.temp.o
+ .debug_line    0x0000000000000000      0x3f1 /tmp/ccGK8QoE.debug.temp.o
+ .debug_str     0x0000000000000000     0x16b5 /tmp/ccGK8QoE.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccGK8QoE.debug.temp.o
+ .debug_info    0x0000000000000000     0x289c /tmp/ccf8pejL.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x309 /tmp/ccf8pejL.debug.temp.o
+ .debug_line    0x0000000000000000      0x3f2 /tmp/ccf8pejL.debug.temp.o
+ .debug_str     0x0000000000000000     0x1860 /tmp/ccf8pejL.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccf8pejL.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc6iyCdS.debug.temp.o
+ .debug_info    0x0000000000000000     0x1c47 /tmp/ccfru17Y.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x2db /tmp/ccfru17Y.debug.temp.o
+ .debug_line    0x0000000000000000      0x410 /tmp/ccfru17Y.debug.temp.o
+ .debug_str     0x0000000000000000     0x1136 /tmp/ccfru17Y.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccfru17Y.debug.temp.o
+ .debug_info    0x0000000000000000     0x2359 /tmp/ccCigr25.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x2a7 /tmp/ccCigr25.debug.temp.o
+ .debug_line    0x0000000000000000      0x3c0 /tmp/ccCigr25.debug.temp.o
+ .debug_str     0x0000000000000000     0x1478 /tmp/ccCigr25.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccCigr25.debug.temp.o
+ .debug_info    0x0000000000000000     0x1a3d /tmp/ccz2QRWc.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x26a /tmp/ccz2QRWc.debug.temp.o
+ .debug_line    0x0000000000000000      0x3a1 /tmp/ccz2QRWc.debug.temp.o
+ .debug_str     0x0000000000000000     0x1084 /tmp/ccz2QRWc.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccz2QRWc.debug.temp.o
+ .debug_info    0x0000000000000000     0x23e1 /tmp/cc8RejRj.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x2b6 /tmp/cc8RejRj.debug.temp.o
+ .debug_line    0x0000000000000000      0x3d1 /tmp/cc8RejRj.debug.temp.o
+ .debug_str     0x0000000000000000     0x14de /tmp/cc8RejRj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cc8RejRj.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccbPsLLq.debug.temp.o
+ .debug_info    0x0000000000000000     0x18ce /tmp/ccmQseGx.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x202 /tmp/ccmQseGx.debug.temp.o
+ .debug_line    0x0000000000000000      0x379 /tmp/ccmQseGx.debug.temp.o
+ .debug_str     0x0000000000000000     0x1039 /tmp/ccmQseGx.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/ccmQseGx.debug.temp.o
+ .debug_info    0x0000000000000000     0x18c2 /tmp/cctxdIAE.debug.temp.o
+ .debug_abbrev  0x0000000000000000      0x202 /tmp/cctxdIAE.debug.temp.o
+ .debug_line    0x0000000000000000      0x36b /tmp/cctxdIAE.debug.temp.o
+ .debug_str     0x0000000000000000     0x102e /tmp/cctxdIAE.debug.temp.o
+ .comment       0x0000000000000000       0x4d /tmp/cctxdIAE.debug.temp.o
  .text          0x0000000000000000        0x0 /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-ctype_.o)
  .data          0x0000000000000000        0x0 /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-ctype_.o)
  .bss           0x0000000000000000        0x0 /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-ctype_.o)
@@ -177,63 +204,70 @@ LOAD ./build/obj/vectors.o
 LOAD ./build/obj/crt0_v8m-ml.o
 LOAD ./build/obj/chcoreasm.o
 LOAD ./build/obj/crt1.o
-LOAD /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-LOAD /tmp/ccjArmqD.debug.temp.o
-LOAD /tmp/ccKmQaoN.debug.temp.o
-LOAD /tmp/ccXHm0lX.debug.temp.o
-LOAD /tmp/cceXYQj7.debug.temp.o
-LOAD /tmp/ccJBEIhh.debug.temp.o
-LOAD /tmp/cceAwBfr.debug.temp.o
-LOAD /tmp/cc9nuvdB.debug.temp.o
-LOAD /tmp/cc2aKqbL.debug.temp.o
-LOAD /tmp/ccHeYm9U.debug.temp.o
-LOAD /tmp/ccC29j74.debug.temp.o
-LOAD /tmp/ccjxpi5e.debug.temp.o
-LOAD /tmp/cck8wh3o.debug.temp.o
-LOAD /tmp/ccxvwh1y.debug.temp.o
-LOAD /tmp/ccGygiZI.debug.temp.o
-LOAD /tmp/ccr5RjXS.debug.temp.o
-LOAD /tmp/ccAQgmV2.debug.temp.o
-LOAD /tmp/cctbqpTc.debug.temp.o
-LOAD /tmp/ccacmtRm.debug.temp.o
-LOAD /tmp/ccL51xPw.debug.temp.o
-LOAD /tmp/ccgQyDNG.debug.temp.o
-LOAD /tmp/ccVPOJLQ.debug.temp.o
-LOAD /tmp/ccAvOQJ0.debug.temp.o
-LOAD /tmp/cct8KYHa.debug.temp.o
-LOAD /tmp/ccIQG7Fk.debug.temp.o
-LOAD /tmp/ccPkrhEu.debug.temp.o
-LOAD /tmp/ccGsYrCE.debug.temp.o
-LOAD /tmp/ccNktDAO.debug.temp.o
-LOAD /tmp/ccYqQPyY.debug.temp.o
-LOAD /tmp/cc1Ab3w8.debug.temp.o
-LOAD /tmp/cc65khvi.debug.temp.o
-LOAD /tmp/ccbPnwts.debug.temp.o
-LOAD /tmp/ccWreMrC.debug.temp.o
-LOAD /tmp/ccj8Y2pM.debug.temp.o
-LOAD /tmp/ccUrwkoW.debug.temp.o
-LOAD /tmp/ccr1QCm6.debug.temp.o
-LOAD /tmp/cc4v1Vkg.debug.temp.o
-LOAD /tmp/cctbZfjq.debug.temp.o
-LOAD /tmp/cc6tJAhA.debug.temp.o
-LOAD /tmp/ccdmGWfK.debug.temp.o
-LOAD /tmp/cc8xujeU.debug.temp.o
-LOAD /tmp/ccxj7Gc4.debug.temp.o
-LOAD /tmp/ccS2v5ae.debug.temp.o
-LOAD /tmp/cczJHu9n.debug.temp.o
-LOAD /tmp/ccISMU7x.debug.temp.o
-LOAD /tmp/ccLYLl6H.debug.temp.o
-LOAD /tmp/ccQdtN4R.debug.temp.o
-LOAD /tmp/cczxWf31.debug.temp.o
-LOAD /tmp/ccWpjJ1b.debug.temp.o
-LOAD /tmp/cchFEd0l.debug.temp.o
-LOAD /tmp/ccyo2IYv.debug.temp.o
-LOAD /tmp/ccHxbfXF.debug.temp.o
-LOAD /tmp/ccQiaMVP.debug.temp.o
-LOAD /tmp/cczmVjUZ.debug.temp.o
-LOAD /tmp/ccCOXSS9.debug.temp.o
-LOAD /tmp/ccPLRsRj.debug.temp.o
-LOAD /tmp/cc2QB3Pt.debug.temp.o
+LOAD /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+LOAD /tmp/ccXf3awK.debug.temp.o
+LOAD /tmp/cc8cjPpR.debug.temp.o
+LOAD /tmp/cc90yujY.debug.temp.o
+LOAD /tmp/ccCjJad5.debug.temp.o
+LOAD /tmp/ccTJMR6b.debug.temp.o
+LOAD /tmp/ccOGQz0i.debug.temp.o
+LOAD /tmp/cc7xNiUp.debug.temp.o
+LOAD /tmp/ccQ2B2Nw.debug.temp.o
+LOAD /tmp/ccRMfNHD.debug.temp.o
+LOAD /tmp/cc2hLyBK.debug.temp.o
+LOAD /tmp/ccjgglvR.debug.temp.o
+LOAD /tmp/ccqrG8oY.debug.temp.o
+LOAD /tmp/ccntYWi5.debug.temp.o
+LOAD /tmp/ccUn5Lcc.debug.temp.o
+LOAD /tmp/ccP61B6i.debug.temp.o
+LOAD /tmp/ccyt0s0p.debug.temp.o
+LOAD /tmp/cc97VkUw.debug.temp.o
+LOAD /tmp/ccElHdOD.debug.temp.o
+LOAD /tmp/ccTwh7HK.debug.temp.o
+LOAD /tmp/ccYWF1BR.debug.temp.o
+LOAD /tmp/ccX3PWvY.debug.temp.o
+LOAD /tmp/ccmIOSp5.debug.temp.o
+LOAD /tmp/ccDuxPjc.debug.temp.o
+LOAD /tmp/cccMXMdj.debug.temp.o
+LOAD /tmp/cc3k6K7p.debug.temp.o
+LOAD /tmp/ccEB3J1w.debug.temp.o
+LOAD /tmp/ccBPNJVD.debug.temp.o
+LOAD /tmp/cccyhKPK.debug.temp.o
+LOAD /tmp/ccxmELJR.debug.temp.o
+LOAD /tmp/ccGoPNDY.debug.temp.o
+LOAD /tmp/ccVHLQx5.debug.temp.o
+LOAD /tmp/cc4ByUrc.debug.temp.o
+LOAD /tmp/ccBYh0lj.debug.temp.o
+LOAD /tmp/cceqO6fq.debug.temp.o
+LOAD /tmp/ccDobeax.debug.temp.o
+LOAD /tmp/ccaVjm4D.debug.temp.o
+LOAD /tmp/cczjcvYK.debug.temp.o
+LOAD /tmp/ccaMPESR.debug.temp.o
+LOAD /tmp/ccd7bPMY.debug.temp.o
+LOAD /tmp/ccmHi0G5.debug.temp.o
+LOAD /tmp/ccLVbcBc.debug.temp.o
+LOAD /tmp/ccAlQovj.debug.temp.o
+LOAD /tmp/ccpNhCpq.debug.temp.o
+LOAD /tmp/cc6swQjx.debug.temp.o
+LOAD /tmp/cc5Ft5dE.debug.temp.o
+LOAD /tmp/cceqjl8K.debug.temp.o
+LOAD /tmp/cc3zXB2R.debug.temp.o
+LOAD /tmp/ccqRiTWY.debug.temp.o
+LOAD /tmp/ccfPobR5.debug.temp.o
+LOAD /tmp/ccYpmuLc.debug.temp.o
+LOAD /tmp/cctDdOFj.debug.temp.o
+LOAD /tmp/ccCT58zq.debug.temp.o
+LOAD /tmp/ccd8Juux.debug.temp.o
+LOAD /tmp/ccGK8QoE.debug.temp.o
+LOAD /tmp/ccf8pejL.debug.temp.o
+LOAD /tmp/cc6iyCdS.debug.temp.o
+LOAD /tmp/ccfru17Y.debug.temp.o
+LOAD /tmp/ccCigr25.debug.temp.o
+LOAD /tmp/ccz2QRWc.debug.temp.o
+LOAD /tmp/cc8RejRj.debug.temp.o
+LOAD /tmp/ccbPsLLq.debug.temp.o
+LOAD /tmp/ccmQseGx.debug.temp.o
+LOAD /tmp/cctxdIAE.debug.temp.o
 LOAD ./build/obj/hal.o
 LOAD ./build/obj/hal_st.o
 LOAD ./build/obj/hal_buffered_serial.o
@@ -243,10 +277,12 @@ LOAD ./build/obj/hal_flash.o
 LOAD ./build/obj/hal_mmcsd.o
 LOAD ./build/obj/hal_pal.o
 LOAD ./build/obj/hal_serial.o
+LOAD ./build/obj/hal_usb.o
 LOAD ./build/obj/hal_lld.o
 LOAD ./build/obj/hal_st_lld.o
 LOAD ./build/obj/hal_pal_lld.o
 LOAD ./build/obj/hal_serial_lld.o
+LOAD ./build/obj/hal_usb_lld.o
 LOAD ./build/obj/nvic.o
 LOAD ./build/obj/sau.o
 LOAD ./build/obj/board.o
@@ -283,12 +319,17 @@ LOAD ./build/obj/gd32e50x_rcu.o
 LOAD ./build/obj/gd32e50x_timer.o
 LOAD ./build/obj/gd32e50x_usart.o
 LOAD ./build/obj/gd32e50x_gpio.o
+LOAD ./build/obj/drv_usb_core.o
+LOAD ./build/obj/drv_usb_dev.o
+LOAD ./build/obj/drv_usbd_int.o
 LOAD ./build/obj/chprintf.o
 LOAD ./build/obj/chscanf.o
 LOAD ./build/obj/memstreams.o
 LOAD ./build/obj/nullstreams.o
 LOAD ./build/obj/bufstreams.o
 LOAD ./build/obj/main.o
+LOAD ./build/obj/usb_user.o
+LOAD ./build/obj/usbcfg.o
 
 .mstack         0x0000000020000000      0x400
                 0x0000000020000000                . = ALIGN (0x8)
@@ -326,7 +367,7 @@ LOAD ./build/obj/main.o
  *(SORT_BY_NAME(.fini_array.*))
                 0x00000000080001a0                __fini_array_end__ = .
 
-.text           0x00000000080001a0     0x19f4
+.text           0x00000000080001a0     0x1ca4
                 0x00000000080001a0                __text_base__ = .
  *(.text)
  .text          0x00000000080001a0        0x8 ./build/obj/vectors.o
@@ -396,7 +437,6 @@ LOAD ./build/obj/main.o
                 0x00000000080001a2                Vector7C
                 0x00000000080001a2                Vector180
                 0x00000000080001a2                Vector90
-                0x00000000080001a2                Vector114
                 0x00000000080001a2                Vector164
                 0x00000000080001a2                Vector60
                 0x00000000080001a2                Vector17C
@@ -415,7 +455,6 @@ LOAD ./build/obj/main.o
                 0x00000000080001a2                Vector104
                 0x00000000080001a2                Vector184
                 0x00000000080001a2                Vector10C
-                0x00000000080001a2                Vector14C
                 0x00000000080001a2                BusFault_Handler
                 0x00000000080001a2                Vector50
                 0x00000000080001a2                Vector194
@@ -443,174 +482,193 @@ LOAD ./build/obj/main.o
                 0x00000000080002b8                memcpy
  *(.text.*)
  *fill*         0x00000000080003a4        0xc 
+ .text.sdObjectInit.constprop.0
+                0x00000000080003b0       0x58 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000408        0x8 
  .text.gpio_init.constprop.0
-                0x00000000080003b0       0x6c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x000000000800041c        0x4 
+                0x0000000008000410       0x6c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x000000000800047c        0x4 
  .text.__idle_thread
-                0x0000000008000420        0x4 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000424        0xc 
+                0x0000000008000480        0x4 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000484        0xc 
  .text.chCoreAllocFromTop
-                0x0000000008000430       0x3c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x000000000800046c        0x4 
- .text.notify3  0x0000000008000470       0x10 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .text.__port_irq_epilogue
-                0x0000000008000480       0x4c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000008000490       0x3c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  *fill*         0x00000000080004cc        0x4 
- .text.chCoreAllocAlignedI
-                0x00000000080004d0       0x28 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x00000000080004f8        0x8 
- .text.chTMStopMeasurementX
-                0x0000000008000500       0x44 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000544        0xc 
- .text.chTMStartMeasurementX
-                0x0000000008000550        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x000000000800055c        0x4 
- .text._ctl     0x0000000008000560        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x000000000800056c        0x4 
- .text.vt_insert_first.constprop.0
-                0x0000000008000570       0x74 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x00000000080005e4        0xc 
- .text.__sch_wakeup
-                0x00000000080005f0       0x70 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .text.chSchReadyI
-                0x0000000008000660       0x20 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .text.chEvtBroadcastFlagsI.constprop.0
-                0x0000000008000680       0x5c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+ .text.notify3  0x00000000080004d0       0x10 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .text.notify4  0x00000000080004e0       0x10 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .text.rcu_clock_freq_get
+                0x00000000080004f0      0x174 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000664        0xc 
+ .text.rcu_periph_clock_enable
+                0x0000000008000670       0x1c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x000000000800068c        0x4 
+ .text.__port_irq_epilogue
+                0x0000000008000690       0x4c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  *fill*         0x00000000080006dc        0x4 
+ .text.chCoreAllocAlignedI
+                0x00000000080006e0       0x28 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000708        0x8 
+ .text.chTMStopMeasurementX
+                0x0000000008000710       0x44 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000754        0xc 
+ .text.chTMStartMeasurementX
+                0x0000000008000760        0xc /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x000000000800076c        0x4 
+ .text._ctl     0x0000000008000770       0x18 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000788        0x8 
+ .text.vt_insert_first.constprop.0
+                0x0000000008000790       0x74 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000804        0xc 
+ .text.__sch_wakeup
+                0x0000000008000810       0x70 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .text.chSchReadyI
+                0x0000000008000880       0x20 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .text.chEvtBroadcastFlagsI
+                0x00000000080008a0       0x58 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x00000000080008f8        0x8 
+ .text.sd_lld_serve_interrupt
+                0x0000000008000900      0x114 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000a14        0xc 
  .text.vt_set_alarm
-                0x00000000080006e0       0x50 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000008000a20       0x50 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .text.chprintf.constprop.0
-                0x0000000008000730      0x4c0 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000008000a70      0x4a8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000f18        0x8 
  .text.chSchGoSleepS
-                0x0000000008000bf0       0x28 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000c18        0x8 
- .text.chSchGoSleepTimeoutS
-                0x0000000008000c20       0xfc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000d1c        0x4 
+                0x0000000008000f20       0x28 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008000f48        0x8 
  .text.chThdEnqueueTimeoutS
-                0x0000000008000d20       0x28 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000d48        0x8 
+                0x0000000008000f50      0x108 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001058        0x8 
  .text.oqPutTimeout
-                0x0000000008000d50       0x54 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000da4        0xc 
- .text._putt    0x0000000008000db0        0x8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000db8        0x8 
- .text._put     0x0000000008000dc0        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000dcc        0x4 
+                0x0000000008001060       0x54 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x00000000080010b4        0xc 
+ .text._putt    0x00000000080010c0        0x8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x00000000080010c8        0x8 
+ .text._put     0x00000000080010d0        0xc /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x00000000080010dc        0x4 
  .text.iqGetTimeout
-                0x0000000008000dd0       0x54 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000e24        0xc 
- .text._gett    0x0000000008000e30        0x8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000e38        0x8 
- .text._get     0x0000000008000e40        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000e4c        0x4 
+                0x00000000080010e0       0x54 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001134        0xc 
+ .text._gett    0x0000000008001140        0x8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001148        0x8 
+ .text._get     0x0000000008001150        0xc /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x000000000800115c        0x4 
  .text.oqWriteTimeout
-                0x0000000008000e50       0xd4 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000f24        0xc 
- .text._writet  0x0000000008000f30        0x8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000f38        0x8 
- .text._write   0x0000000008000f40        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008000f4c        0x4 
+                0x0000000008001160       0xd4 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001234        0xc 
+ .text._writet  0x0000000008001240        0x8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001248        0x8 
+ .text._write   0x0000000008001250        0xc /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x000000000800125c        0x4 
  .text.iqReadTimeout
-                0x0000000008000f50       0xd8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008001028        0x8 
- .text._readt   0x0000000008001030        0x8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008001038        0x8 
- .text._read    0x0000000008001040        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x000000000800104c        0x4 
+                0x0000000008001260       0xd8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001338        0x8 
+ .text._readt   0x0000000008001340        0x8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001348        0x8 
+ .text._read    0x0000000008001350        0xc /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x000000000800135c        0x4 
  .text.startup.main
-                0x0000000008001050      0x5b0 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001050                main
+                0x0000000008001360      0x618 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001360                main
+ *fill*         0x0000000008001978        0x8 
  .text.SVC_Handler
-                0x0000000008001600       0x14 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001600                SVC_Handler
- *fill*         0x0000000008001614        0xc 
+                0x0000000008001980       0x14 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001980                SVC_Handler
+ *fill*         0x0000000008001994        0xc 
  .text.chThdExit
-                0x0000000008001620       0x58 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001620                chThdExit
- *fill*         0x0000000008001678        0x8 
+                0x00000000080019a0       0x58 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x00000000080019a0                chThdExit
+ *fill*         0x00000000080019f8        0x8 
  .text.chSchDoPreemption
-                0x0000000008001680       0x3c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001680                chSchDoPreemption
- *fill*         0x00000000080016bc        0x4 
+                0x0000000008001a00       0x3c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001a00                chSchDoPreemption
+ *fill*         0x0000000008001a3c        0x4 
  .text.__early_init
-                0x00000000080016c0      0x1f4 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x00000000080016c0                __early_init
- *fill*         0x00000000080018b4        0xc 
+                0x0000000008001a40      0x1f0 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001a40                __early_init
+ .text.Vector14C
+                0x0000000008001c30       0x10 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001c30                Vector14C
+ .text.Vector114
+                0x0000000008001c40       0x44 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001c40                Vector114
+ *fill*         0x0000000008001c84        0xc 
  .text.Vector110
-                0x00000000080018c0      0x13c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x00000000080018c0                Vector110
- *fill*         0x00000000080019fc        0x4 
+                0x0000000008001c90       0x14 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001c90                Vector110
+ *fill*         0x0000000008001ca4        0xc 
  .text.VectorB0
-                0x0000000008001a00       0xf8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001a00                VectorB0
- *fill*         0x0000000008001af8        0x8 
+                0x0000000008001cb0       0xf8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001cb0                VectorB0
+ *fill*         0x0000000008001da8        0x8 
  .text.__init_ram_areas
-                0x0000000008001b00       0x68 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001b00                __init_ram_areas
- *fill*         0x0000000008001b68        0x8 
+                0x0000000008001db0       0x68 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001db0                __init_ram_areas
+ *fill*         0x0000000008001e18        0x8 
  .text.__default_exit
-                0x0000000008001b70        0x4 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001b70                __default_exit
- *fill*         0x0000000008001b74        0xc 
+                0x0000000008001e20        0x4 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001e20                __default_exit
+ *fill*         0x0000000008001e24        0xc 
  .text.__late_init
-                0x0000000008001b80        0x4 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001b80                __late_init
- *fill*         0x0000000008001b84        0xc 
+                0x0000000008001e30        0x4 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001e30                __late_init
+ *fill*         0x0000000008001e34        0xc 
  .text.__cpu_init
-                0x0000000008001b90        0x4 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001b90                __cpu_init
+                0x0000000008001e40        0x4 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001e40                __cpu_init
  *(.glue_7t)
- .glue_7t       0x0000000008001b94        0x0 linker stubs
+ .glue_7t       0x0000000008001e44        0x0 linker stubs
  *(.glue_7)
- .glue_7        0x0000000008001b94        0x0 linker stubs
+ .glue_7        0x0000000008001e44        0x0 linker stubs
  *(.gcc*)
-                0x0000000008001b94                __text_end__ = .
+                0x0000000008001e44                __text_end__ = .
 
-.vfp11_veneer   0x0000000008001b94        0x0
- .vfp11_veneer  0x0000000008001b94        0x0 linker stubs
+.vfp11_veneer   0x0000000008001e44        0x0
+ .vfp11_veneer  0x0000000008001e44        0x0 linker stubs
 
-.v4_bx          0x0000000008001b94        0x0
- .v4_bx         0x0000000008001b94        0x0 linker stubs
+.v4_bx          0x0000000008001e44        0x0
+ .v4_bx         0x0000000008001e44        0x0 linker stubs
 
-.iplt           0x0000000008001b94        0x0
- .iplt          0x0000000008001b94        0x0 ./build/obj/vectors.o
+.iplt           0x0000000008001e44        0x0
+ .iplt          0x0000000008001e44        0x0 ./build/obj/vectors.o
 
-.rodata         0x0000000008001b94      0x128
-                0x0000000008001b94                __rodata_base__ = .
+.rodata         0x0000000008001e44      0x12c
+                0x0000000008001e44                __rodata_base__ = .
  *(.rodata)
- .rodata        0x0000000008001b94       0x18 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+ .rodata        0x0000000008001e44       0x18 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  *(.rodata.*)
  .rodata.chprintf.constprop.0.str1.4
-                0x0000000008001bac        0x7 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008001bb3        0x1 
+                0x0000000008001e5c       0x1f /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001e7b        0x1 
  .rodata.main.str1.4
-                0x0000000008001bb4       0x1c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000008001e7c        0x5 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001e81        0x3 
  .rodata.str1.4
-                0x0000000008001bd0        0x3 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000008001bd3        0x1 
+                0x0000000008001e84        0x3 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000008001e87        0x1 
  .rodata.ch_core0_cfg
-                0x0000000008001bd4       0x14 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000008001e88       0x14 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .rodata.ch_debug
-                0x0000000008001be8       0x2c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000008001e9c       0x2c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .rodata.ram_areas
-                0x0000000008001c14       0x80 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .rodata.vmt    0x0000000008001c94       0x28 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                0x0000000008001cbc                . = ALIGN (0x4)
-                0x0000000008001cbc                __rodata_end__ = .
+                0x0000000008001ec8       0x80 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .rodata.vmt    0x0000000008001f48       0x28 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                0x0000000008001f70                . = ALIGN (0x4)
+                0x0000000008001f70                __rodata_end__ = .
 
-.rel.dyn        0x0000000008001cbc        0x0
- .rel.iplt      0x0000000008001cbc        0x0 ./build/obj/vectors.o
+.rel.dyn        0x0000000008001f70        0x0
+ .rel.iplt      0x0000000008001f70        0x0 ./build/obj/vectors.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
 
-.ARM.exidx      0x0000000008001cbc        0x0
-                0x0000000008001cbc                __exidx_base__ = .
-                0x0000000008001cbc                __exidx_start = .
+.ARM.exidx      0x0000000008001f70        0x0
+                0x0000000008001f70                __exidx_base__ = .
+                0x0000000008001f70                __exidx_start = .
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000008001cbc                __exidx_end__ = .
-                0x0000000008001cbc                __exidx_end = .
+                0x0000000008001f70                __exidx_end__ = .
+                0x0000000008001f70                __exidx_end = .
 
 .eh_frame_hdr
  *(.eh_frame_hdr)
@@ -618,10 +676,10 @@ LOAD ./build/obj/main.o
 .eh_frame
  *(.eh_frame)
 
-.data           0x0000000020000800        0x0 load address 0x0000000008001cbc
+.data           0x0000000020000800        0x0 load address 0x0000000008001f70
                 [!provide]                        PROVIDE (_textdata = LOADADDR (.data))
                 [!provide]                        PROVIDE (_data = .)
-                0x0000000008001cbc                __textdata_base__ = LOADADDR (.data)
+                0x0000000008001f70                __textdata_base__ = LOADADDR (.data)
                 0x0000000020000800                __data_base__ = .
  *(.data)
  *(.data.*)
@@ -630,29 +688,33 @@ LOAD ./build/obj/main.o
                 [!provide]                        PROVIDE (_edata = .)
                 0x0000000020000800                __data_end__ = .
 
-.igot.plt       0x0000000020000800        0x0 load address 0x0000000008001cbc
+.igot.plt       0x0000000020000800        0x0 load address 0x0000000008001f70
  .igot.plt      0x0000000020000800        0x0 ./build/obj/vectors.o
 
-.bss            0x0000000020000800      0x460 load address 0x0000000008001cbc
+.bss            0x0000000020000800      0x7a4 load address 0x0000000008001f70
                 0x0000000020000800                __bss_base__ = .
  *(.bss)
  *(.bss.*)
- .bss.SD3       0x0000000020000800      0x258 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .bss.ch0       0x0000000020000a58       0x90 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- *fill*         0x0000000020000ae8       0x18 
+ .bss.SD3       0x0000000020000800      0x258 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .bss.SD4       0x0000000020000a58      0x258 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .bss.USBD1     0x0000000020000cb0       0x68 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .bss.buff      0x0000000020000d18       0x80 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .bss.ch0       0x0000000020000d98       0x90 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ *fill*         0x0000000020000e28       0x18 
  .bss.ch_c0_idle_thread_wa
-                0x0000000020000b00       0xe0 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000020000e40       0xe0 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .bss.ch_factory
-                0x0000000020000be0       0x48 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000020000f20       0x48 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .bss.ch_memcore
-                0x0000000020000c28        0x8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000020000f68        0x8 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .bss.ch_system
-                0x0000000020000c30        0xc /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000020000f70        0xc /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .bss.default_heap
-                0x0000000020000c3c       0x24 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000020000f7c       0x24 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .bss.kkk       0x0000000020000fa0        0x4 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  *(COMMON)
-                0x0000000020000c60                . = ALIGN (0x4)
-                0x0000000020000c60                __bss_end__ = .
+                0x0000000020000fa4                . = ALIGN (0x4)
+                0x0000000020000fa4                __bss_end__ = .
                 [!provide]                        PROVIDE (end = .)
                 0x0000000020000000                __ram0_base__ = ORIGIN (ram0)
                 0x0000000000020000                __ram0_size__ = LENGTH (ram0)
@@ -703,32 +765,32 @@ LOAD ./build/obj/main.o
                 0x0000000000000000                __flash7_size__ = LENGTH (flash7)
                 0x0000000000000000                __flash7_end__ = (__flash7_base__ + __flash7_size__)
 
-.ram0_init      0x0000000020000c60        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram0_init_text__ = LOADADDR (.ram0_init)
-                0x0000000020000c60                __ram0_init__ = .
+.ram0_init      0x0000000020000fa4        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram0_init_text__ = LOADADDR (.ram0_init)
+                0x0000000020000fa4                __ram0_init__ = .
  *(.ram0_init)
  *(.ram0_init.*)
-                0x0000000020000c60                . = ALIGN (0x4)
+                0x0000000020000fa4                . = ALIGN (0x4)
 
-.ram0           0x0000000020000c60        0x0 load address 0x0000000008001cbc
-                0x0000000020000c60                __ram0_clear__ = .
+.ram0           0x0000000020000fa4        0x0 load address 0x0000000008001f70
+                0x0000000020000fa4                __ram0_clear__ = .
  *(.ram0_clear)
  *(.ram0_clear.*)
-                0x0000000020000c60                . = ALIGN (0x4)
-                0x0000000020000c60                __ram0_noinit__ = .
+                0x0000000020000fa4                . = ALIGN (0x4)
+                0x0000000020000fa4                __ram0_noinit__ = .
  *(.ram0)
  *(.ram0.*)
-                0x0000000020000c60                . = ALIGN (0x4)
-                0x0000000020000c60                __ram0_free__ = .
+                0x0000000020000fa4                . = ALIGN (0x4)
+                0x0000000020000fa4                __ram0_free__ = .
 
-.ram1_init      0x0000000020000000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram1_init_text__ = LOADADDR (.ram1_init)
+.ram1_init      0x0000000020000000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram1_init_text__ = LOADADDR (.ram1_init)
                 0x0000000020000000                __ram1_init__ = .
  *(.ram1_init)
  *(.ram1_init.*)
                 0x0000000020000000                . = ALIGN (0x4)
 
-.ram1           0x0000000020000000        0x0 load address 0x0000000008001cbc
+.ram1           0x0000000020000000        0x0 load address 0x0000000008001f70
                 0x0000000020000000                __ram1_clear__ = .
  *(.ram1_clear)
  *(.ram1_clear.*)
@@ -739,14 +801,14 @@ LOAD ./build/obj/main.o
                 0x0000000020000000                . = ALIGN (0x4)
                 0x0000000020000000                __ram1_free__ = .
 
-.ram2_init      0x0000000020030000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram2_init_text__ = LOADADDR (.ram2_init)
+.ram2_init      0x0000000020030000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram2_init_text__ = LOADADDR (.ram2_init)
                 0x0000000020030000                __ram2_init__ = .
  *(.ram2_init)
  *(.ram2_init.*)
                 0x0000000020030000                . = ALIGN (0x4)
 
-.ram2           0x0000000020030000        0x0 load address 0x0000000008001cbc
+.ram2           0x0000000020030000        0x0 load address 0x0000000008001f70
                 0x0000000020030000                __ram2_clear__ = .
  *(.ram2_clear)
  *(.ram2_clear.*)
@@ -757,14 +819,14 @@ LOAD ./build/obj/main.o
                 0x0000000020030000                . = ALIGN (0x4)
                 0x0000000020030000                __ram2_free__ = .
 
-.ram3_init      0x0000000030000000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram3_init_text__ = LOADADDR (.ram3_init)
+.ram3_init      0x0000000030000000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram3_init_text__ = LOADADDR (.ram3_init)
                 0x0000000030000000                __ram3_init__ = .
  *(.ram3_init)
  *(.ram3_init.*)
                 0x0000000030000000                . = ALIGN (0x4)
 
-.ram3           0x0000000030000000        0x0 load address 0x0000000008001cbc
+.ram3           0x0000000030000000        0x0 load address 0x0000000008001f70
                 0x0000000030000000                __ram3_clear__ = .
  *(.ram3_clear)
  *(.ram3_clear.*)
@@ -775,14 +837,14 @@ LOAD ./build/obj/main.o
                 0x0000000030000000                . = ALIGN (0x4)
                 0x0000000030000000                __ram3_free__ = .
 
-.ram4_init      0x0000000030000000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram4_init_text__ = LOADADDR (.ram4_init)
+.ram4_init      0x0000000030000000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram4_init_text__ = LOADADDR (.ram4_init)
                 0x0000000030000000                __ram4_init__ = .
  *(.ram4_init)
  *(.ram4_init.*)
                 0x0000000030000000                . = ALIGN (0x4)
 
-.ram4           0x0000000030000000        0x0 load address 0x0000000008001cbc
+.ram4           0x0000000030000000        0x0 load address 0x0000000008001f70
                 0x0000000030000000                __ram4_clear__ = .
  *(.ram4_clear)
  *(.ram4_clear.*)
@@ -793,14 +855,14 @@ LOAD ./build/obj/main.o
                 0x0000000030000000                . = ALIGN (0x4)
                 0x0000000030000000                __ram4_free__ = .
 
-.ram5_init      0x0000000030030000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram5_init_text__ = LOADADDR (.ram5_init)
+.ram5_init      0x0000000030030000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram5_init_text__ = LOADADDR (.ram5_init)
                 0x0000000030030000                __ram5_init__ = .
  *(.ram5_init)
  *(.ram5_init.*)
                 0x0000000030030000                . = ALIGN (0x4)
 
-.ram5           0x0000000030030000        0x0 load address 0x0000000008001cbc
+.ram5           0x0000000030030000        0x0 load address 0x0000000008001f70
                 0x0000000030030000                __ram5_clear__ = .
  *(.ram5_clear)
  *(.ram5_clear.*)
@@ -811,14 +873,14 @@ LOAD ./build/obj/main.o
                 0x0000000030030000                . = ALIGN (0x4)
                 0x0000000030030000                __ram5_free__ = .
 
-.ram6_init      0x0000000000000000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram6_init_text__ = LOADADDR (.ram6_init)
+.ram6_init      0x0000000000000000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram6_init_text__ = LOADADDR (.ram6_init)
                 0x0000000000000000                __ram6_init__ = .
  *(.ram6_init)
  *(.ram6_init.*)
                 0x0000000000000000                . = ALIGN (0x4)
 
-.ram6           0x0000000000000000        0x0 load address 0x0000000008001cbc
+.ram6           0x0000000000000000        0x0 load address 0x0000000008001f70
                 0x0000000000000000                __ram6_clear__ = .
  *(.ram6_clear)
  *(.ram6_clear.*)
@@ -829,14 +891,14 @@ LOAD ./build/obj/main.o
                 0x0000000000000000                . = ALIGN (0x4)
                 0x0000000000000000                __ram6_free__ = .
 
-.ram7_init      0x0000000000000000        0x0 load address 0x0000000008001cbc
-                0x0000000008001cbc                __ram7_init_text__ = LOADADDR (.ram7_init)
+.ram7_init      0x0000000000000000        0x0 load address 0x0000000008001f70
+                0x0000000008001f70                __ram7_init_text__ = LOADADDR (.ram7_init)
                 0x0000000000000000                __ram7_init__ = .
  *(.ram7_init)
  *(.ram7_init.*)
                 0x0000000000000000                . = ALIGN (0x4)
 
-.ram7           0x0000000000000000        0x0 load address 0x0000000008001cbc
+.ram7           0x0000000000000000        0x0 load address 0x0000000008001f70
                 0x0000000000000000                __ram7_clear__ = .
  *(.ram7_clear)
  *(.ram7_clear.*)
@@ -847,11 +909,11 @@ LOAD ./build/obj/main.o
                 0x0000000000000000                . = ALIGN (0x4)
                 0x0000000000000000                __ram7_free__ = .
 
-.flash0         0x0000000008001cbc        0x0
-                0x0000000008001cbc                __flash0_init__ = .
+.flash0         0x0000000008001f70        0x0
+                0x0000000008001f70                __flash0_init__ = .
  *(.flash0_init)
  *(.flash0_init.*)
-                0x0000000008001cbc                __flash0_free__ = .
+                0x0000000008001f70                __flash0_free__ = .
 
 .flash1         0x000000000c000000        0x0
                 0x000000000c000000                __flash1_init__ = .
@@ -895,11 +957,12 @@ LOAD ./build/obj/main.o
  *(.flash7_init.*)
                 0x0000000000000000                __flash7_free__ = .
 
-.heap           0x0000000020000c60    0x1f3a0
-                0x0000000020000c60                . = ALIGN (0x8)
-                0x0000000020000c60                __heap_base__ = .
+.heap           0x0000000020000fa4    0x1f05c
+                0x0000000020000fa8                . = ALIGN (0x8)
+ *fill*         0x0000000020000fa4        0x4 
+                0x0000000020000fa8                __heap_base__ = .
                 0x0000000020020000                . = (ORIGIN (HEAP_RAM) + LENGTH (HEAP_RAM))
- *fill*         0x0000000020000c60    0x1f3a0 
+ *fill*         0x0000000020000fa8    0x1f058 
                 0x0000000020020000                __heap_end__ = .
                 0x0000000000000400                __process_stack_size__ = 0x400
                 0x0000000000000400                __main_stack_size__ = 0x400
@@ -921,189 +984,197 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000000000000045       0x21 ./build/obj/chcoreasm.o
  .ARM.attributes
-                0x0000000000000066       0x32 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000000000066       0x32 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
  .ARM.attributes
                 0x0000000000000098       0x20 /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-memcpy.o)
 
 .comment        0x0000000000000000       0x4c
- .comment       0x0000000000000000       0x4c /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+ .comment       0x0000000000000000       0x4c /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                          0x4d (size before relaxing)
 
-.debug_line     0x0000000000000000     0xaddc
+.debug_line     0x0000000000000000     0xbdf7
  .debug_line    0x0000000000000000       0x69 ./build/obj/vectors.o
  .debug_line    0x0000000000000069       0xc5 ./build/obj/crt0_v8m-ml.o
  .debug_line    0x000000000000012e       0x7f ./build/obj/chcoreasm.o
- .debug_line    0x00000000000001ad     0x3708 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .debug_line    0x00000000000038b5      0x16e /tmp/ccjArmqD.debug.temp.o
- .debug_line    0x0000000000003a23      0x36a /tmp/ccKmQaoN.debug.temp.o
- .debug_line    0x0000000000003d8d      0x35f /tmp/ccXHm0lX.debug.temp.o
- .debug_line    0x00000000000040ec      0x393 /tmp/cceXYQj7.debug.temp.o
- .debug_line    0x000000000000447f      0x3b3 /tmp/ccJBEIhh.debug.temp.o
- .debug_line    0x0000000000004832      0x3a1 /tmp/cceAwBfr.debug.temp.o
- .debug_line    0x0000000000004bd3      0x37f /tmp/cc9nuvdB.debug.temp.o
- .debug_line    0x0000000000004f52      0x380 /tmp/ccC29j74.debug.temp.o
- .debug_line    0x00000000000052d2      0x344 /tmp/ccjxpi5e.debug.temp.o
- .debug_line    0x0000000000005616      0x3ce /tmp/cck8wh3o.debug.temp.o
- .debug_line    0x00000000000059e4      0x359 /tmp/ccxvwh1y.debug.temp.o
- .debug_line    0x0000000000005d3d      0x3d2 /tmp/ccGygiZI.debug.temp.o
- .debug_line    0x000000000000610f      0x35d /tmp/ccr5RjXS.debug.temp.o
- .debug_line    0x000000000000646c      0x38a /tmp/cctbqpTc.debug.temp.o
- .debug_line    0x00000000000067f6      0x2fe /tmp/ccL51xPw.debug.temp.o
- .debug_line    0x0000000000006af4      0x2e5 /tmp/ccgQyDNG.debug.temp.o
- .debug_line    0x0000000000006dd9      0x343 /tmp/cct8KYHa.debug.temp.o
- .debug_line    0x000000000000711c      0x2fe /tmp/ccIQG7Fk.debug.temp.o
- .debug_line    0x000000000000741a      0x329 /tmp/ccPkrhEu.debug.temp.o
- .debug_line    0x0000000000007743      0x357 /tmp/ccGsYrCE.debug.temp.o
- .debug_line    0x0000000000007a9a      0x304 /tmp/ccNktDAO.debug.temp.o
- .debug_line    0x0000000000007d9e      0x328 /tmp/ccYqQPyY.debug.temp.o
- .debug_line    0x00000000000080c6      0x32f /tmp/cc65khvi.debug.temp.o
- .debug_line    0x00000000000083f5      0x334 /tmp/ccWreMrC.debug.temp.o
- .debug_line    0x0000000000008729      0x316 /tmp/ccUrwkoW.debug.temp.o
- .debug_line    0x0000000000008a3f      0x2fa /tmp/cctbZfjq.debug.temp.o
- .debug_line    0x0000000000008d39      0x31d /tmp/cc6tJAhA.debug.temp.o
- .debug_line    0x0000000000009056      0x2fb /tmp/ccdmGWfK.debug.temp.o
- .debug_line    0x0000000000009351      0x332 /tmp/ccS2v5ae.debug.temp.o
- .debug_line    0x0000000000009683      0x337 /tmp/cczJHu9n.debug.temp.o
- .debug_line    0x00000000000099ba      0x318 /tmp/ccISMU7x.debug.temp.o
- .debug_line    0x0000000000009cd2      0x16f /tmp/ccLYLl6H.debug.temp.o
- .debug_line    0x0000000000009e41      0x191 /tmp/ccQdtN4R.debug.temp.o
- .debug_line    0x0000000000009fd2      0x1b9 /tmp/cczxWf31.debug.temp.o
- .debug_line    0x000000000000a18b      0x1cf /tmp/ccWpjJ1b.debug.temp.o
- .debug_line    0x000000000000a35a      0x1cf /tmp/cchFEd0l.debug.temp.o
- .debug_line    0x000000000000a529      0x1cd /tmp/ccyo2IYv.debug.temp.o
- .debug_line    0x000000000000a6f6      0x394 /tmp/ccHxbfXF.debug.temp.o
- .debug_line    0x000000000000aa8a      0x352 /tmp/cc2QB3Pt.debug.temp.o
+ .debug_line    0x00000000000001ad     0x3c37 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .debug_line    0x0000000000003de4      0x16e /tmp/ccXf3awK.debug.temp.o
+ .debug_line    0x0000000000003f52      0x39e /tmp/cc8cjPpR.debug.temp.o
+ .debug_line    0x00000000000042f0      0x393 /tmp/cc90yujY.debug.temp.o
+ .debug_line    0x0000000000004683      0x3c7 /tmp/ccCjJad5.debug.temp.o
+ .debug_line    0x0000000000004a4a      0x3e7 /tmp/ccTJMR6b.debug.temp.o
+ .debug_line    0x0000000000004e31      0x3d5 /tmp/ccOGQz0i.debug.temp.o
+ .debug_line    0x0000000000005206      0x3b3 /tmp/cc7xNiUp.debug.temp.o
+ .debug_line    0x00000000000055b9      0x3b4 /tmp/cc2hLyBK.debug.temp.o
+ .debug_line    0x000000000000596d      0x3d2 /tmp/ccjgglvR.debug.temp.o
+ .debug_line    0x0000000000005d3f      0x378 /tmp/ccqrG8oY.debug.temp.o
+ .debug_line    0x00000000000060b7      0x402 /tmp/ccntYWi5.debug.temp.o
+ .debug_line    0x00000000000064b9      0x38d /tmp/ccUn5Lcc.debug.temp.o
+ .debug_line    0x0000000000006846      0x406 /tmp/ccP61B6i.debug.temp.o
+ .debug_line    0x0000000000006c4c      0x3c2 /tmp/ccyt0s0p.debug.temp.o
+ .debug_line    0x000000000000700e      0x391 /tmp/cc97VkUw.debug.temp.o
+ .debug_line    0x000000000000739f      0x3be /tmp/ccTwh7HK.debug.temp.o
+ .debug_line    0x000000000000775d      0x2fe /tmp/ccX3PWvY.debug.temp.o
+ .debug_line    0x0000000000007a5b      0x2e5 /tmp/ccmIOSp5.debug.temp.o
+ .debug_line    0x0000000000007d40      0x343 /tmp/cc3k6K7p.debug.temp.o
+ .debug_line    0x0000000000008083      0x2fe /tmp/ccEB3J1w.debug.temp.o
+ .debug_line    0x0000000000008381      0x329 /tmp/ccBPNJVD.debug.temp.o
+ .debug_line    0x00000000000086aa      0x357 /tmp/cccyhKPK.debug.temp.o
+ .debug_line    0x0000000000008a01      0x304 /tmp/ccxmELJR.debug.temp.o
+ .debug_line    0x0000000000008d05      0x328 /tmp/ccGoPNDY.debug.temp.o
+ .debug_line    0x000000000000902d      0x32f /tmp/cc4ByUrc.debug.temp.o
+ .debug_line    0x000000000000935c      0x334 /tmp/cceqO6fq.debug.temp.o
+ .debug_line    0x0000000000009690      0x316 /tmp/ccaVjm4D.debug.temp.o
+ .debug_line    0x00000000000099a6      0x2fa /tmp/ccd7bPMY.debug.temp.o
+ .debug_line    0x0000000000009ca0      0x31d /tmp/ccmHi0G5.debug.temp.o
+ .debug_line    0x0000000000009fbd      0x2fb /tmp/ccLVbcBc.debug.temp.o
+ .debug_line    0x000000000000a2b8      0x332 /tmp/cc6swQjx.debug.temp.o
+ .debug_line    0x000000000000a5ea      0x337 /tmp/cc5Ft5dE.debug.temp.o
+ .debug_line    0x000000000000a921      0x318 /tmp/cceqjl8K.debug.temp.o
+ .debug_line    0x000000000000ac39      0x16f /tmp/cc3zXB2R.debug.temp.o
+ .debug_line    0x000000000000ada8      0x191 /tmp/ccqRiTWY.debug.temp.o
+ .debug_line    0x000000000000af39      0x1b9 /tmp/ccfPobR5.debug.temp.o
+ .debug_line    0x000000000000b0f2      0x1cf /tmp/ccYpmuLc.debug.temp.o
+ .debug_line    0x000000000000b2c1      0x1cf /tmp/cctDdOFj.debug.temp.o
+ .debug_line    0x000000000000b490      0x1cd /tmp/ccCT58zq.debug.temp.o
+ .debug_line    0x000000000000b65d      0x3c8 /tmp/cc6iyCdS.debug.temp.o
+ .debug_line    0x000000000000ba25      0x3d2 /tmp/ccbPsLLq.debug.temp.o
 
-.debug_info     0x0000000000000000    0x34f81
+.debug_info     0x0000000000000000    0x40cbf
  .debug_info    0x0000000000000000       0x26 ./build/obj/vectors.o
  .debug_info    0x0000000000000026       0x26 ./build/obj/crt0_v8m-ml.o
  .debug_info    0x000000000000004c       0x26 ./build/obj/chcoreasm.o
- .debug_info    0x0000000000000072     0x42ce /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .debug_info    0x0000000000004340      0x316 /tmp/ccjArmqD.debug.temp.o
-                0x0000000000004340                crt1.c.7c6b74cd
- .debug_info    0x0000000000004656     0x1129 /tmp/ccKmQaoN.debug.temp.o
-                0x0000000000004656                hal.c.ebcd00f5
- .debug_info    0x000000000000577f     0x1226 /tmp/ccXHm0lX.debug.temp.o
-                0x000000000000577f                hal_st.c.5be18b1a
- .debug_info    0x00000000000069a5     0x12f5 /tmp/cceXYQj7.debug.temp.o
-                0x00000000000069a5                hal_buffered_serial.c.c5ed82ef
- .debug_info    0x0000000000007c9a     0x2131 /tmp/ccJBEIhh.debug.temp.o
-                0x0000000000007c9a                hal_buffers.c.a3f9471b
- .debug_info    0x0000000000009dcb     0x1f4a /tmp/cceAwBfr.debug.temp.o
-                0x0000000000009dcb                hal_queues.c.e2aceee1
- .debug_info    0x000000000000bd15     0x1605 /tmp/cc9nuvdB.debug.temp.o
-                0x000000000000bd15                hal_flash.c.9822168d
- .debug_info    0x000000000000d31a     0x15cd /tmp/ccC29j74.debug.temp.o
-                0x000000000000d31a                hal_serial.c.0878b881
- .debug_info    0x000000000000e8e7     0x1188 /tmp/ccjxpi5e.debug.temp.o
-                0x000000000000e8e7                hal_lld.c.ac299d4a
- .debug_info    0x000000000000fa6f     0x160a /tmp/cck8wh3o.debug.temp.o
-                0x000000000000fa6f                hal_st_lld.c.39adc991
- .debug_info    0x0000000000011079     0x1175 /tmp/ccxvwh1y.debug.temp.o
-                0x0000000000011079                hal_pal_lld.c.2a47e90c
- .debug_info    0x00000000000121ee     0x16c6 /tmp/ccGygiZI.debug.temp.o
-                0x00000000000121ee                hal_serial_lld.c.b197af34
- .debug_info    0x00000000000138b4     0x1713 /tmp/ccr5RjXS.debug.temp.o
-                0x00000000000138b4                nvic.c.0791296d
- .debug_info    0x0000000000014fc7     0x12ce /tmp/cctbqpTc.debug.temp.o
-                0x0000000000014fc7                board.c.f2c406db
- .debug_info    0x0000000000016295     0x152b /tmp/ccL51xPw.debug.temp.o
-                0x0000000000016295                chsys.c.c2f28d5c
- .debug_info    0x00000000000177c0      0xd24 /tmp/ccgQyDNG.debug.temp.o
-                0x00000000000177c0                chrfcu.c.0029e1ef
- .debug_info    0x00000000000184e4     0x1c30 /tmp/cct8KYHa.debug.temp.o
-                0x00000000000184e4                chvt.c.d0137548
- .debug_info    0x000000000001a114     0x1212 /tmp/ccIQG7Fk.debug.temp.o
-                0x000000000001a114                chschd.c.3a813531
- .debug_info    0x000000000001b326      0xec9 /tmp/ccPkrhEu.debug.temp.o
-                0x000000000001b326                chinstances.c.6af0b0c8
- .debug_info    0x000000000001c1ef     0x1e99 /tmp/ccGsYrCE.debug.temp.o
-                0x000000000001c1ef                chthreads.c.b6e7da0d
- .debug_info    0x000000000001e088     0x1b1b /tmp/ccNktDAO.debug.temp.o
-                0x000000000001e088                chtm.c.2288d909
- .debug_info    0x000000000001fba3     0x16fd /tmp/ccYqQPyY.debug.temp.o
-                0x000000000001fba3                chregistry.c.d612110f
- .debug_info    0x00000000000212a0     0x18de /tmp/cc65khvi.debug.temp.o
-                0x00000000000212a0                chmtx.c.50e0dcf9
- .debug_info    0x0000000000022b7e     0x1bb4 /tmp/ccWreMrC.debug.temp.o
-                0x0000000000022b7e                chevents.c.a90ef016
- .debug_info    0x0000000000024732      0xfdd /tmp/ccUrwkoW.debug.temp.o
-                0x0000000000024732                chdynamic.c.471abc8c
- .debug_info    0x000000000002570f      0xee1 /tmp/cctbZfjq.debug.temp.o
-                0x000000000002570f                chmemcore.c.7f398102
- .debug_info    0x00000000000265f0     0x192d /tmp/cc6tJAhA.debug.temp.o
-                0x00000000000265f0                chmemheaps.c.b6e9b8f5
- .debug_info    0x0000000000027f1d     0x1079 /tmp/ccdmGWfK.debug.temp.o
-                0x0000000000027f1d                chmempools.c.b21e4b5e
- .debug_info    0x0000000000028f96     0x10f9 /tmp/ccS2v5ae.debug.temp.o
-                0x0000000000028f96                chdelegates.c.781b92cd
- .debug_info    0x000000000002a08f     0x1ef7 /tmp/cczJHu9n.debug.temp.o
-                0x000000000002a08f                chfactory.c.a320b067
- .debug_info    0x000000000002bf86     0x230d /tmp/ccISMU7x.debug.temp.o
-                0x000000000002bf86                chcore.c.70c2834f
- .debug_info    0x000000000002e293      0x1ee /tmp/ccLYLl6H.debug.temp.o
-                0x000000000002e293                system_gd32e50x.c.8279cd66
- .debug_info    0x000000000002e481      0x984 /tmp/ccQdtN4R.debug.temp.o
-                0x000000000002e481                gd32e50x_misc.c.f11e5aef
- .debug_info    0x000000000002ee05      0xea3 /tmp/cczxWf31.debug.temp.o
-                0x000000000002ee05                gd32e50x_rcu.c.bb7fa4d2
- .debug_info    0x000000000002fca8      0xff3 /tmp/ccWpjJ1b.debug.temp.o
-                0x000000000002fca8                gd32e50x_timer.c.b1bdad22
- .debug_info    0x0000000000030c9b     0x11e9 /tmp/cchFEd0l.debug.temp.o
-                0x0000000000030c9b                gd32e50x_usart.c.7be3ed2a
- .debug_info    0x0000000000031e84      0x61d /tmp/ccyo2IYv.debug.temp.o
-                0x0000000000031e84                gd32e50x_gpio.c.a21337b0
- .debug_info    0x00000000000324a1     0x1513 /tmp/ccHxbfXF.debug.temp.o
-                0x00000000000324a1                chprintf.c.99087572
- .debug_info    0x00000000000339b4     0x15cd /tmp/cc2QB3Pt.debug.temp.o
-                0x00000000000339b4                main.c.4628d9bb
+ .debug_info    0x0000000000000072     0x48a7 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .debug_info    0x0000000000004919      0x316 /tmp/ccXf3awK.debug.temp.o
+                0x0000000000004919                crt1.c.7c6b74cd
+ .debug_info    0x0000000000004c2f     0x18d3 /tmp/cc8cjPpR.debug.temp.o
+                0x0000000000004c2f                hal.c.e28758df
+ .debug_info    0x0000000000006502     0x19d0 /tmp/cc90yujY.debug.temp.o
+                0x0000000000006502                hal_st.c.eb18eb90
+ .debug_info    0x0000000000007ed2     0x1a9f /tmp/ccCjJad5.debug.temp.o
+                0x0000000000007ed2                hal_buffered_serial.c.c4f8d895
+ .debug_info    0x0000000000009971     0x28db /tmp/ccTJMR6b.debug.temp.o
+                0x0000000000009971                hal_buffers.c.d45142e7
+ .debug_info    0x000000000000c24c     0x26f4 /tmp/ccOGQz0i.debug.temp.o
+                0x000000000000c24c                hal_queues.c.5fcd825a
+ .debug_info    0x000000000000e940     0x1daf /tmp/cc7xNiUp.debug.temp.o
+                0x000000000000e940                hal_flash.c.1bd0ab59
+ .debug_info    0x00000000000106ef     0x1d7a /tmp/cc2hLyBK.debug.temp.o
+                0x00000000000106ef                hal_serial.c.22d694b4
+ .debug_info    0x0000000000012469     0x2670 /tmp/ccjgglvR.debug.temp.o
+                0x0000000000012469                hal_usb.c.bd6cb64d
+ .debug_info    0x0000000000014ad9     0x1932 /tmp/ccqrG8oY.debug.temp.o
+                0x0000000000014ad9                hal_lld.c.b9f80a32
+ .debug_info    0x000000000001640b     0x1db4 /tmp/ccntYWi5.debug.temp.o
+                0x000000000001640b                hal_st_lld.c.f0faf9b3
+ .debug_info    0x00000000000181bf     0x191f /tmp/ccUn5Lcc.debug.temp.o
+                0x00000000000181bf                hal_pal_lld.c.2a79ffb4
+ .debug_info    0x0000000000019ade     0x1fcd /tmp/ccP61B6i.debug.temp.o
+                0x0000000000019ade                hal_serial_lld.c.b2aef9ba
+ .debug_info    0x000000000001baab     0x2090 /tmp/ccyt0s0p.debug.temp.o
+                0x000000000001baab                hal_usb_lld.c.54fe51b5
+ .debug_info    0x000000000001db3b     0x1ea8 /tmp/cc97VkUw.debug.temp.o
+                0x000000000001db3b                nvic.c.99ddbd36
+ .debug_info    0x000000000001f9e3     0x1a78 /tmp/ccTwh7HK.debug.temp.o
+                0x000000000001f9e3                board.c.7910e92e
+ .debug_info    0x000000000002145b     0x152b /tmp/ccX3PWvY.debug.temp.o
+                0x000000000002145b                chsys.c.c2f28d5c
+ .debug_info    0x0000000000022986      0xd24 /tmp/ccmIOSp5.debug.temp.o
+                0x0000000000022986                chrfcu.c.0029e1ef
+ .debug_info    0x00000000000236aa     0x1c30 /tmp/cc3k6K7p.debug.temp.o
+                0x00000000000236aa                chvt.c.d0137548
+ .debug_info    0x00000000000252da     0x1212 /tmp/ccEB3J1w.debug.temp.o
+                0x00000000000252da                chschd.c.3a813531
+ .debug_info    0x00000000000264ec      0xec9 /tmp/ccBPNJVD.debug.temp.o
+                0x00000000000264ec                chinstances.c.6af0b0c8
+ .debug_info    0x00000000000273b5     0x1e99 /tmp/cccyhKPK.debug.temp.o
+                0x00000000000273b5                chthreads.c.b6e7da0d
+ .debug_info    0x000000000002924e     0x1b1b /tmp/ccxmELJR.debug.temp.o
+                0x000000000002924e                chtm.c.2288d909
+ .debug_info    0x000000000002ad69     0x16fd /tmp/ccGoPNDY.debug.temp.o
+                0x000000000002ad69                chregistry.c.d612110f
+ .debug_info    0x000000000002c466     0x18de /tmp/cc4ByUrc.debug.temp.o
+                0x000000000002c466                chmtx.c.50e0dcf9
+ .debug_info    0x000000000002dd44     0x1bb4 /tmp/cceqO6fq.debug.temp.o
+                0x000000000002dd44                chevents.c.82024e83
+ .debug_info    0x000000000002f8f8      0xfdd /tmp/ccaVjm4D.debug.temp.o
+                0x000000000002f8f8                chdynamic.c.471abc8c
+ .debug_info    0x00000000000308d5      0xee1 /tmp/ccd7bPMY.debug.temp.o
+                0x00000000000308d5                chmemcore.c.7f398102
+ .debug_info    0x00000000000317b6     0x192d /tmp/ccmHi0G5.debug.temp.o
+                0x00000000000317b6                chmemheaps.c.b6e9b8f5
+ .debug_info    0x00000000000330e3     0x1079 /tmp/ccLVbcBc.debug.temp.o
+                0x00000000000330e3                chmempools.c.b21e4b5e
+ .debug_info    0x000000000003415c     0x10f9 /tmp/cc6swQjx.debug.temp.o
+                0x000000000003415c                chdelegates.c.781b92cd
+ .debug_info    0x0000000000035255     0x1ef7 /tmp/cc5Ft5dE.debug.temp.o
+                0x0000000000035255                chfactory.c.a320b067
+ .debug_info    0x000000000003714c     0x230d /tmp/cceqjl8K.debug.temp.o
+                0x000000000003714c                chcore.c.70c2834f
+ .debug_info    0x0000000000039459      0x1ee /tmp/cc3zXB2R.debug.temp.o
+                0x0000000000039459                system_gd32e50x.c.16438e2e
+ .debug_info    0x0000000000039647      0x984 /tmp/ccqRiTWY.debug.temp.o
+                0x0000000000039647                gd32e50x_misc.c.f11e5aef
+ .debug_info    0x0000000000039fcb      0xea3 /tmp/ccfPobR5.debug.temp.o
+                0x0000000000039fcb                gd32e50x_rcu.c.bb7fa4d2
+ .debug_info    0x000000000003ae6e      0xff3 /tmp/ccYpmuLc.debug.temp.o
+                0x000000000003ae6e                gd32e50x_timer.c.b1bdad22
+ .debug_info    0x000000000003be61     0x11e9 /tmp/cctDdOFj.debug.temp.o
+                0x000000000003be61                gd32e50x_usart.c.7be3ed2a
+ .debug_info    0x000000000003d04a      0x61d /tmp/ccCT58zq.debug.temp.o
+                0x000000000003d04a                gd32e50x_gpio.c.a21337b0
+ .debug_info    0x000000000003d667     0x1cbd /tmp/cc6iyCdS.debug.temp.o
+                0x000000000003d667                chprintf.c.1867cefe
+ .debug_info    0x000000000003f324     0x199b /tmp/ccbPsLLq.debug.temp.o
+                0x000000000003f324                main.c.668a7463
 
-.debug_abbrev   0x0000000000000000     0x5ffa
+.debug_abbrev   0x0000000000000000     0x6915
  .debug_abbrev  0x0000000000000000       0x14 ./build/obj/vectors.o
  .debug_abbrev  0x0000000000000014       0x14 ./build/obj/crt0_v8m-ml.o
  .debug_abbrev  0x0000000000000028       0x14 ./build/obj/chcoreasm.o
- .debug_abbrev  0x000000000000003c      0x304 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
- .debug_abbrev  0x0000000000000340       0xff /tmp/ccjArmqD.debug.temp.o
- .debug_abbrev  0x000000000000043f      0x1f1 /tmp/ccKmQaoN.debug.temp.o
- .debug_abbrev  0x0000000000000630      0x268 /tmp/ccXHm0lX.debug.temp.o
- .debug_abbrev  0x0000000000000898      0x251 /tmp/cceXYQj7.debug.temp.o
- .debug_abbrev  0x0000000000000ae9      0x32c /tmp/ccJBEIhh.debug.temp.o
- .debug_abbrev  0x0000000000000e15      0x33f /tmp/cceAwBfr.debug.temp.o
- .debug_abbrev  0x0000000000001154      0x241 /tmp/cc9nuvdB.debug.temp.o
- .debug_abbrev  0x0000000000001395      0x2c6 /tmp/ccC29j74.debug.temp.o
- .debug_abbrev  0x000000000000165b      0x222 /tmp/ccjxpi5e.debug.temp.o
- .debug_abbrev  0x000000000000187d      0x278 /tmp/cck8wh3o.debug.temp.o
- .debug_abbrev  0x0000000000001af5      0x204 /tmp/ccxvwh1y.debug.temp.o
- .debug_abbrev  0x0000000000001cf9      0x2db /tmp/ccGygiZI.debug.temp.o
- .debug_abbrev  0x0000000000001fd4      0x27b /tmp/ccr5RjXS.debug.temp.o
- .debug_abbrev  0x000000000000224f      0x1fe /tmp/cctbqpTc.debug.temp.o
- .debug_abbrev  0x000000000000244d      0x342 /tmp/ccL51xPw.debug.temp.o
- .debug_abbrev  0x000000000000278f      0x1c6 /tmp/ccgQyDNG.debug.temp.o
- .debug_abbrev  0x0000000000002955      0x333 /tmp/cct8KYHa.debug.temp.o
- .debug_abbrev  0x0000000000002c88      0x276 /tmp/ccIQG7Fk.debug.temp.o
- .debug_abbrev  0x0000000000002efe      0x23b /tmp/ccPkrhEu.debug.temp.o
- .debug_abbrev  0x0000000000003139      0x34e /tmp/ccGsYrCE.debug.temp.o
- .debug_abbrev  0x0000000000003487      0x284 /tmp/ccNktDAO.debug.temp.o
- .debug_abbrev  0x000000000000370b      0x2f3 /tmp/ccYqQPyY.debug.temp.o
- .debug_abbrev  0x00000000000039fe      0x339 /tmp/cc65khvi.debug.temp.o
- .debug_abbrev  0x0000000000003d37      0x323 /tmp/ccWreMrC.debug.temp.o
- .debug_abbrev  0x000000000000405a      0x236 /tmp/ccUrwkoW.debug.temp.o
- .debug_abbrev  0x0000000000004290      0x23c /tmp/cctbZfjq.debug.temp.o
- .debug_abbrev  0x00000000000044cc      0x316 /tmp/cc6tJAhA.debug.temp.o
- .debug_abbrev  0x00000000000047e2      0x286 /tmp/ccdmGWfK.debug.temp.o
- .debug_abbrev  0x0000000000004a68      0x26c /tmp/ccS2v5ae.debug.temp.o
- .debug_abbrev  0x0000000000004cd4      0x300 /tmp/cczJHu9n.debug.temp.o
- .debug_abbrev  0x0000000000004fd4      0x2e9 /tmp/ccISMU7x.debug.temp.o
- .debug_abbrev  0x00000000000052bd       0xf7 /tmp/ccLYLl6H.debug.temp.o
- .debug_abbrev  0x00000000000053b4      0x19f /tmp/ccQdtN4R.debug.temp.o
- .debug_abbrev  0x0000000000005553      0x15d /tmp/cczxWf31.debug.temp.o
- .debug_abbrev  0x00000000000056b0      0x15f /tmp/ccWpjJ1b.debug.temp.o
- .debug_abbrev  0x000000000000580f      0x14e /tmp/cchFEd0l.debug.temp.o
- .debug_abbrev  0x000000000000595d      0x198 /tmp/ccyo2IYv.debug.temp.o
- .debug_abbrev  0x0000000000005af5      0x2c5 /tmp/ccHxbfXF.debug.temp.o
- .debug_abbrev  0x0000000000005dba      0x240 /tmp/cc2QB3Pt.debug.temp.o
+ .debug_abbrev  0x000000000000003c      0x349 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+ .debug_abbrev  0x0000000000000385       0xff /tmp/ccXf3awK.debug.temp.o
+ .debug_abbrev  0x0000000000000484      0x222 /tmp/cc8cjPpR.debug.temp.o
+ .debug_abbrev  0x00000000000006a6      0x299 /tmp/cc90yujY.debug.temp.o
+ .debug_abbrev  0x000000000000093f      0x282 /tmp/ccCjJad5.debug.temp.o
+ .debug_abbrev  0x0000000000000bc1      0x34e /tmp/ccTJMR6b.debug.temp.o
+ .debug_abbrev  0x0000000000000f0f      0x361 /tmp/ccOGQz0i.debug.temp.o
+ .debug_abbrev  0x0000000000001270      0x272 /tmp/cc7xNiUp.debug.temp.o
+ .debug_abbrev  0x00000000000014e2      0x30a /tmp/cc2hLyBK.debug.temp.o
+ .debug_abbrev  0x00000000000017ec      0x343 /tmp/ccjgglvR.debug.temp.o
+ .debug_abbrev  0x0000000000001b2f      0x253 /tmp/ccqrG8oY.debug.temp.o
+ .debug_abbrev  0x0000000000001d82      0x287 /tmp/ccntYWi5.debug.temp.o
+ .debug_abbrev  0x0000000000002009      0x235 /tmp/ccUn5Lcc.debug.temp.o
+ .debug_abbrev  0x000000000000223e      0x30b /tmp/ccP61B6i.debug.temp.o
+ .debug_abbrev  0x0000000000002549      0x323 /tmp/ccyt0s0p.debug.temp.o
+ .debug_abbrev  0x000000000000286c      0x29d /tmp/cc97VkUw.debug.temp.o
+ .debug_abbrev  0x0000000000002b09      0x21c /tmp/ccTwh7HK.debug.temp.o
+ .debug_abbrev  0x0000000000002d25      0x342 /tmp/ccX3PWvY.debug.temp.o
+ .debug_abbrev  0x0000000000003067      0x1c6 /tmp/ccmIOSp5.debug.temp.o
+ .debug_abbrev  0x000000000000322d      0x333 /tmp/cc3k6K7p.debug.temp.o
+ .debug_abbrev  0x0000000000003560      0x276 /tmp/ccEB3J1w.debug.temp.o
+ .debug_abbrev  0x00000000000037d6      0x23b /tmp/ccBPNJVD.debug.temp.o
+ .debug_abbrev  0x0000000000003a11      0x34e /tmp/cccyhKPK.debug.temp.o
+ .debug_abbrev  0x0000000000003d5f      0x284 /tmp/ccxmELJR.debug.temp.o
+ .debug_abbrev  0x0000000000003fe3      0x2f3 /tmp/ccGoPNDY.debug.temp.o
+ .debug_abbrev  0x00000000000042d6      0x339 /tmp/cc4ByUrc.debug.temp.o
+ .debug_abbrev  0x000000000000460f      0x323 /tmp/cceqO6fq.debug.temp.o
+ .debug_abbrev  0x0000000000004932      0x236 /tmp/ccaVjm4D.debug.temp.o
+ .debug_abbrev  0x0000000000004b68      0x23c /tmp/ccd7bPMY.debug.temp.o
+ .debug_abbrev  0x0000000000004da4      0x316 /tmp/ccmHi0G5.debug.temp.o
+ .debug_abbrev  0x00000000000050ba      0x286 /tmp/ccLVbcBc.debug.temp.o
+ .debug_abbrev  0x0000000000005340      0x26c /tmp/cc6swQjx.debug.temp.o
+ .debug_abbrev  0x00000000000055ac      0x300 /tmp/cc5Ft5dE.debug.temp.o
+ .debug_abbrev  0x00000000000058ac      0x2e9 /tmp/cceqjl8K.debug.temp.o
+ .debug_abbrev  0x0000000000005b95       0xf7 /tmp/cc3zXB2R.debug.temp.o
+ .debug_abbrev  0x0000000000005c8c      0x19f /tmp/ccqRiTWY.debug.temp.o
+ .debug_abbrev  0x0000000000005e2b      0x15d /tmp/ccfPobR5.debug.temp.o
+ .debug_abbrev  0x0000000000005f88      0x15f /tmp/ccYpmuLc.debug.temp.o
+ .debug_abbrev  0x00000000000060e7      0x14e /tmp/cctDdOFj.debug.temp.o
+ .debug_abbrev  0x0000000000006235      0x198 /tmp/ccCT58zq.debug.temp.o
+ .debug_abbrev  0x00000000000063cd      0x2f6 /tmp/cc6iyCdS.debug.temp.o
+ .debug_abbrev  0x00000000000066c3      0x252 /tmp/ccbPsLLq.debug.temp.o
 
-.debug_aranges  0x0000000000000000      0x1b8
+.debug_aranges  0x0000000000000000      0x1e8
  .debug_aranges
                 0x0000000000000000       0x20 ./build/obj/vectors.o
  .debug_aranges
@@ -1111,103 +1182,107 @@ LOAD linker stubs
  .debug_aranges
                 0x0000000000000040       0x20 ./build/obj/chcoreasm.o
  .debug_aranges
-                0x0000000000000060      0x158 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                0x0000000000000060      0x188 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 
-.debug_str      0x0000000000000000     0x7282
+.debug_str      0x0000000000000000     0x7af8
  .debug_str     0x0000000000000000       0x6d ./build/obj/vectors.o
  .debug_str     0x000000000000006d       0x38 ./build/obj/crt0_v8m-ml.o
                                          0x71 (size before relaxing)
  .debug_str     0x00000000000000a5       0x38 ./build/obj/chcoreasm.o
                                          0x71 (size before relaxing)
- .debug_str     0x00000000000000dd      0x136 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-                                        0x168 (size before relaxing)
- .debug_str     0x0000000000000213      0x405 /tmp/ccjArmqD.debug.temp.o
+ .debug_str     0x00000000000000dd      0x136 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                                        0x175 (size before relaxing)
+ .debug_str     0x0000000000000213      0x405 /tmp/ccXf3awK.debug.temp.o
                                         0x491 (size before relaxing)
- .debug_str     0x0000000000000618      0x883 /tmp/ccKmQaoN.debug.temp.o
-                                        0xb57 (size before relaxing)
- .debug_str     0x0000000000000e9b       0xec /tmp/ccXHm0lX.debug.temp.o
-                                        0xc1e (size before relaxing)
- .debug_str     0x0000000000000f87       0xb6 /tmp/cceXYQj7.debug.temp.o
-                                        0xbf1 (size before relaxing)
- .debug_str     0x000000000000103d      0x698 /tmp/ccJBEIhh.debug.temp.o
-                                       0x1234 (size before relaxing)
- .debug_str     0x00000000000016d5       0xc1 /tmp/cceAwBfr.debug.temp.o
-                                       0x10ac (size before relaxing)
- .debug_str     0x0000000000001796      0x2ed /tmp/cc9nuvdB.debug.temp.o
-                                        0xe3f (size before relaxing)
- .debug_str     0x0000000000001a83      0x111 /tmp/ccC29j74.debug.temp.o
-                                        0xcdb (size before relaxing)
- .debug_str     0x0000000000001b94       0x70 /tmp/ccjxpi5e.debug.temp.o
-                                        0xba2 (size before relaxing)
- .debug_str     0x0000000000001c04      0x8fe /tmp/cck8wh3o.debug.temp.o
-                                       0x146b (size before relaxing)
- .debug_str     0x0000000000002502       0x5f /tmp/ccxvwh1y.debug.temp.o
-                                        0xb9b (size before relaxing)
- .debug_str     0x0000000000002561      0x113 /tmp/ccGygiZI.debug.temp.o
-                                       0x1506 (size before relaxing)
- .debug_str     0x0000000000002674      0x23b /tmp/ccr5RjXS.debug.temp.o
-                                        0xd7f (size before relaxing)
- .debug_str     0x00000000000028af       0x24 /tmp/cctbqpTc.debug.temp.o
-                                        0xd9f (size before relaxing)
- .debug_str     0x00000000000028d3      0x48f /tmp/ccL51xPw.debug.temp.o
+ .debug_str     0x0000000000000618      0xd54 /tmp/cc8cjPpR.debug.temp.o
+                                       0x104a (size before relaxing)
+ .debug_str     0x000000000000136c       0xec /tmp/cc90yujY.debug.temp.o
+                                       0x1111 (size before relaxing)
+ .debug_str     0x0000000000001458       0xb6 /tmp/ccCjJad5.debug.temp.o
+                                       0x10e4 (size before relaxing)
+ .debug_str     0x000000000000150e      0x698 /tmp/ccTJMR6b.debug.temp.o
+                                       0x1727 (size before relaxing)
+ .debug_str     0x0000000000001ba6       0xc1 /tmp/ccOGQz0i.debug.temp.o
+                                       0x159f (size before relaxing)
+ .debug_str     0x0000000000001c67      0x2e5 /tmp/cc7xNiUp.debug.temp.o
+                                       0x132a (size before relaxing)
+ .debug_str     0x0000000000001f4c      0x111 /tmp/cc2hLyBK.debug.temp.o
+                                       0x11ce (size before relaxing)
+ .debug_str     0x000000000000205d      0x1f8 /tmp/ccjgglvR.debug.temp.o
+                                       0x167c (size before relaxing)
+ .debug_str     0x0000000000002255       0x70 /tmp/ccqrG8oY.debug.temp.o
+                                       0x1095 (size before relaxing)
+ .debug_str     0x00000000000022c5      0x88a /tmp/ccntYWi5.debug.temp.o
+                                       0x195e (size before relaxing)
+ .debug_str     0x0000000000002b4f       0x5f /tmp/ccUn5Lcc.debug.temp.o
+                                       0x108e (size before relaxing)
+ .debug_str     0x0000000000002bae      0x332 /tmp/ccP61B6i.debug.temp.o
+                                       0x1c1e (size before relaxing)
+ .debug_str     0x0000000000002ee0      0x203 /tmp/ccyt0s0p.debug.temp.o
+                                       0x1a57 (size before relaxing)
+ .debug_str     0x00000000000030e3      0x233 /tmp/cc97VkUw.debug.temp.o
+                                       0x1272 (size before relaxing)
+ .debug_str     0x0000000000003316       0x24 /tmp/ccTwh7HK.debug.temp.o
+                                       0x1292 (size before relaxing)
+ .debug_str     0x000000000000333a      0x48f /tmp/ccX3PWvY.debug.temp.o
                                         0xeed (size before relaxing)
- .debug_str     0x0000000000002d62       0x44 /tmp/ccgQyDNG.debug.temp.o
+ .debug_str     0x00000000000037c9       0x44 /tmp/ccmIOSp5.debug.temp.o
                                         0x99c (size before relaxing)
- .debug_str     0x0000000000002da6      0x256 /tmp/cct8KYHa.debug.temp.o
+ .debug_str     0x000000000000380d      0x256 /tmp/cc3k6K7p.debug.temp.o
                                        0x1033 (size before relaxing)
- .debug_str     0x0000000000002ffc      0x19f /tmp/ccIQG7Fk.debug.temp.o
+ .debug_str     0x0000000000003a63      0x19f /tmp/ccEB3J1w.debug.temp.o
                                         0xbc2 (size before relaxing)
- .debug_str     0x000000000000319b      0x109 /tmp/ccPkrhEu.debug.temp.o
+ .debug_str     0x0000000000003c02      0x109 /tmp/ccBPNJVD.debug.temp.o
                                         0xab2 (size before relaxing)
- .debug_str     0x00000000000032a4      0x2b2 /tmp/ccGsYrCE.debug.temp.o
+ .debug_str     0x0000000000003d0b      0x2b2 /tmp/cccyhKPK.debug.temp.o
                                        0x10ed (size before relaxing)
- .debug_str     0x0000000000003556       0x8a /tmp/ccNktDAO.debug.temp.o
+ .debug_str     0x0000000000003fbd       0x8a /tmp/ccxmELJR.debug.temp.o
                                        0x10dc (size before relaxing)
- .debug_str     0x00000000000035e0       0x9b /tmp/ccYqQPyY.debug.temp.o
+ .debug_str     0x0000000000004047       0x9b /tmp/ccGoPNDY.debug.temp.o
                                         0xe2f (size before relaxing)
- .debug_str     0x000000000000367b       0xc7 /tmp/cc65khvi.debug.temp.o
+ .debug_str     0x00000000000040e2       0xc7 /tmp/cc4ByUrc.debug.temp.o
                                         0xea9 (size before relaxing)
- .debug_str     0x0000000000003742      0x1d6 /tmp/ccWreMrC.debug.temp.o
+ .debug_str     0x00000000000041a9      0x1d6 /tmp/cceqO6fq.debug.temp.o
                                         0xfd2 (size before relaxing)
- .debug_str     0x0000000000003918       0x94 /tmp/ccUrwkoW.debug.temp.o
+ .debug_str     0x000000000000437f       0x94 /tmp/ccaVjm4D.debug.temp.o
                                         0xa80 (size before relaxing)
- .debug_str     0x00000000000039ac       0xa4 /tmp/cctbZfjq.debug.temp.o
+ .debug_str     0x0000000000004413       0xa4 /tmp/ccd7bPMY.debug.temp.o
                                         0xa47 (size before relaxing)
- .debug_str     0x0000000000003a50       0xd8 /tmp/cc6tJAhA.debug.temp.o
+ .debug_str     0x00000000000044b7       0xd8 /tmp/ccmHi0G5.debug.temp.o
                                         0xe85 (size before relaxing)
- .debug_str     0x0000000000003b28      0x136 /tmp/ccdmGWfK.debug.temp.o
+ .debug_str     0x000000000000458f      0x136 /tmp/ccLVbcBc.debug.temp.o
                                         0xaf7 (size before relaxing)
- .debug_str     0x0000000000003c5e      0x175 /tmp/ccS2v5ae.debug.temp.o
+ .debug_str     0x00000000000046c5      0x175 /tmp/cc6swQjx.debug.temp.o
                                         0xb2d (size before relaxing)
- .debug_str     0x0000000000003dd3      0x3e1 /tmp/cczJHu9n.debug.temp.o
+ .debug_str     0x000000000000483a      0x3e1 /tmp/cc5Ft5dE.debug.temp.o
                                        0x11bb (size before relaxing)
- .debug_str     0x00000000000041b4      0x13d /tmp/ccISMU7x.debug.temp.o
+ .debug_str     0x0000000000004c1b      0x13d /tmp/cceqjl8K.debug.temp.o
                                        0x187d (size before relaxing)
- .debug_str     0x00000000000042f1       0xd6 /tmp/ccLYLl6H.debug.temp.o
+ .debug_str     0x0000000000004d58       0xd6 /tmp/cc3zXB2R.debug.temp.o
                                         0x2c3 (size before relaxing)
- .debug_str     0x00000000000043c7      0x1b2 /tmp/ccQdtN4R.debug.temp.o
+ .debug_str     0x0000000000004e2e      0x1b2 /tmp/ccqRiTWY.debug.temp.o
                                         0xad1 (size before relaxing)
- .debug_str     0x0000000000004579      0xe2a /tmp/cczxWf31.debug.temp.o
+ .debug_str     0x0000000000004fe0      0xe24 /tmp/ccfPobR5.debug.temp.o
                                        0x12b4 (size before relaxing)
- .debug_str     0x00000000000053a3      0xb14 /tmp/ccWpjJ1b.debug.temp.o
+ .debug_str     0x0000000000005e04      0xb14 /tmp/ccYpmuLc.debug.temp.o
                                        0x103b (size before relaxing)
- .debug_str     0x0000000000005eb7     0x1027 /tmp/cchFEd0l.debug.temp.o
+ .debug_str     0x0000000000006918      0xe32 /tmp/cctDdOFj.debug.temp.o
                                        0x1587 (size before relaxing)
- .debug_str     0x0000000000006ede      0x261 /tmp/ccyo2IYv.debug.temp.o
+ .debug_str     0x000000000000774a      0x261 /tmp/ccCT58zq.debug.temp.o
                                         0x721 (size before relaxing)
- .debug_str     0x000000000000713f      0x12e /tmp/ccHxbfXF.debug.temp.o
-                                        0xc95 (size before relaxing)
- .debug_str     0x000000000000726d       0x15 /tmp/cc2QB3Pt.debug.temp.o
-                                        0xe23 (size before relaxing)
+ .debug_str     0x00000000000079ab      0x12e /tmp/cc6iyCdS.debug.temp.o
+                                       0x1188 (size before relaxing)
+ .debug_str     0x0000000000007ad9       0x1f /tmp/ccbPsLLq.debug.temp.o
+                                       0x1104 (size before relaxing)
 
-.debug_loc      0x0000000000000000     0x44a6
- .debug_loc     0x0000000000000000     0x44a6 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+.debug_loc      0x0000000000000000     0x4875
+ .debug_loc     0x0000000000000000     0x4875 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 
-.debug_ranges   0x0000000000000000     0x29c8
- .debug_ranges  0x0000000000000000     0x29c8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+.debug_ranges   0x0000000000000000     0x2ae0
+ .debug_ranges  0x0000000000000000     0x2ae0 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 
-.debug_frame    0x0000000000000000      0x4a8
- .debug_frame   0x0000000000000000      0x4a8 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+.debug_frame    0x0000000000000000      0x534
+ .debug_frame   0x0000000000000000      0x534 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 
 Cross Reference Table
 
@@ -1221,7 +1296,9 @@ PendSV_Handler                                    ./build/obj/vectors.o
 Reset_Handler                                     ./build/obj/vectors.o
 SD3                                               ./build/obj/hal_serial_lld.o (symbol from plugin)
                                                   ./build/obj/main.o (symbol from plugin)
-SVC_Handler                                       /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+SD4                                               ./build/obj/hal_serial_lld.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
+SVC_Handler                                       /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chcore.o (symbol from plugin)
                                                   ./build/obj/vectors.o
 SecureFault_Handler                               ./build/obj/vectors.o
@@ -1231,15 +1308,20 @@ SystemCoreClock                                   ./build/obj/system_gd32e50x.o 
 SystemCoreClockUpdate                             ./build/obj/system_gd32e50x.o (symbol from plugin)
 SystemInit                                        ./build/obj/system_gd32e50x.o (symbol from plugin)
                                                   ./build/obj/board.o (symbol from plugin)
+USBD1                                             ./build/obj/hal_usb_lld.o (symbol from plugin)
+USBHS_TX_FIFO_SIZE                                ./build/obj/drv_usb_dev.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
 UsageFault_Handler                                ./build/obj/vectors.o
 Vector100                                         ./build/obj/vectors.o
 Vector104                                         ./build/obj/vectors.o
 Vector108                                         ./build/obj/vectors.o
 Vector10C                                         ./build/obj/vectors.o
-Vector110                                         /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+Vector110                                         /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
                                                   ./build/obj/vectors.o
-Vector114                                         ./build/obj/vectors.o
+Vector114                                         /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                                                  ./build/obj/hal_serial_lld.o (symbol from plugin)
+                                                  ./build/obj/vectors.o
 Vector118                                         ./build/obj/vectors.o
 Vector11C                                         ./build/obj/vectors.o
 Vector120                                         ./build/obj/vectors.o
@@ -1253,7 +1335,9 @@ Vector13C                                         ./build/obj/vectors.o
 Vector140                                         ./build/obj/vectors.o
 Vector144                                         ./build/obj/vectors.o
 Vector148                                         ./build/obj/vectors.o
-Vector14C                                         ./build/obj/vectors.o
+Vector14C                                         /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/vectors.o
 Vector150                                         ./build/obj/vectors.o
 Vector154                                         ./build/obj/vectors.o
 Vector158                                         ./build/obj/vectors.o
@@ -1306,7 +1390,7 @@ VectorA0                                          ./build/obj/vectors.o
 VectorA4                                          ./build/obj/vectors.o
 VectorA8                                          ./build/obj/vectors.o
 VectorAC                                          ./build/obj/vectors.o
-VectorB0                                          /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+VectorB0                                          /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/hal_st_lld.o (symbol from plugin)
                                                   ./build/obj/vectors.o
 VectorB4                                          ./build/obj/vectors.o
@@ -1340,15 +1424,15 @@ __ch_mem_readable_areas                           ./build/obj/chmemchecks.o (sym
 __ch_mem_writable_areas                           ./build/obj/chmemchecks.o (symbol from plugin)
 __core_init                                       ./build/obj/chmemcore.o (symbol from plugin)
                                                   ./build/obj/chsys.o (symbol from plugin)
-__cpu_init                                        /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__cpu_init                                        /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
                                                   ./build/obj/crt0_v8m-ml.o
 __data_base__                                     ./build/obj/crt0_v8m-ml.o
 __data_end__                                      ./build/obj/crt0_v8m-ml.o
-__default_exit                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__default_exit                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
                                                   ./build/obj/crt0_v8m-ml.o
-__early_init                                      /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__early_init                                      /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/board.o (symbol from plugin)
                                                   ./build/obj/crt1.o (symbol from plugin)
                                                   ./build/obj/crt0_v8m-ml.o
@@ -1356,107 +1440,108 @@ __factory_init                                    ./build/obj/chfactory.o (symbo
                                                   ./build/obj/chsys.o (symbol from plugin)
 __fini_array_base__                               ./build/obj/crt0_v8m-ml.o
 __fini_array_end__                                ./build/obj/crt0_v8m-ml.o
-__heap_base__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__heap_base__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chmemcore.o (symbol from plugin)
-__heap_end__                                      /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__heap_end__                                      /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chmemcore.o (symbol from plugin)
 __heap_init                                       ./build/obj/chmemheaps.o (symbol from plugin)
                                                   ./build/obj/chsys.o (symbol from plugin)
 __init_array_base__                               ./build/obj/crt0_v8m-ml.o
 __init_array_end__                                ./build/obj/crt0_v8m-ml.o
-__init_ram_areas                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__init_ram_areas                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
                                                   ./build/obj/crt0_v8m-ml.o
-__late_init                                       /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__late_init                                       /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
                                                   ./build/obj/crt0_v8m-ml.o
 __main_stack_base__                               ./build/obj/crt0_v8m-ml.o
 __main_stack_end__                                ./build/obj/crt0_v8m-ml.o
                                                   ./build/obj/vectors.o
-__main_thread_stack_base__                        /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__main_thread_stack_base__                        /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chsys.o (symbol from plugin)
-__main_thread_stack_end__                         /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__main_thread_stack_end__                         /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chsys.o (symbol from plugin)
 __port_exit_from_isr                              ./build/obj/chcoreasm.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chcore.o (symbol from plugin)
 __port_irq_epilogue                               ./build/obj/chcore.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
                                                   ./build/obj/hal_st_lld.o (symbol from plugin)
 __port_switch                                     ./build/obj/chcoreasm.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chschd.o (symbol from plugin)
 __port_switch_from_isr                            ./build/obj/chcoreasm.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chcore.o (symbol from plugin)
 __port_thread_start                               ./build/obj/chcoreasm.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chthreads.o (symbol from plugin)
 __process_stack_base__                            ./build/obj/crt0_v8m-ml.o
 __process_stack_end__                             ./build/obj/crt0_v8m-ml.o
-__ram0_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram0_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram0_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram0_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram0_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram0_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram0_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram0_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram1_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram1_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram1_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram1_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram1_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram1_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram1_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram1_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram2_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram2_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram2_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram2_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram2_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram2_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram2_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram2_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram3_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram3_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram3_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram3_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram3_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram3_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram3_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram3_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram4_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram4_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram4_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram4_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram4_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram4_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram4_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram4_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram5_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram5_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram5_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram5_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram5_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram5_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram5_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram5_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram6_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram6_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram6_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram6_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram6_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram6_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram6_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram6_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram7_clear__                                    /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram7_clear__                                    /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram7_init__                                     /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram7_init__                                     /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram7_init_text__                                /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram7_init_text__                                /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
-__ram7_noinit__                                   /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+__ram7_noinit__                                   /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/crt1.o (symbol from plugin)
 __textdata_base__                                 ./build/obj/crt0_v8m-ml.o
 __thd_object_init                                 ./build/obj/chthreads.o (symbol from plugin)
@@ -1470,16 +1555,26 @@ _pal_lld_init                                     ./build/obj/hal_pal_lld.o (sym
 _pal_lld_setgroupmode                             ./build/obj/hal_pal_lld.o (symbol from plugin)
                                                   ./build/obj/hal_pal.o (symbol from plugin)
 _unhandled_exception                              ./build/obj/vectors.o
+_usb_ep0in                                        ./build/obj/hal_usb.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+_usb_ep0out                                       ./build/obj/hal_usb.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+_usb_ep0setup                                     ./build/obj/hal_usb.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+_usb_reset                                        ./build/obj/hal_usb.o (symbol from plugin)
+_usb_suspend                                      ./build/obj/hal_usb.o (symbol from plugin)
+_usb_wakeup                                       ./build/obj/hal_usb.o (symbol from plugin)
 _vectors                                          ./build/obj/vectors.o
                                                   ./build/obj/crt0_v8m-ml.o
-board.c.f2c406db                                  /tmp/cctbqpTc.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+board.c.7910e92e                                  /tmp/ccTwh7HK.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 boardInit                                         ./build/obj/board.o (symbol from plugin)
                                                   ./build/obj/hal.o (symbol from plugin)
 bsIncomingDataI                                   ./build/obj/hal_buffered_serial.o (symbol from plugin)
 bsRequestDataI                                    ./build/obj/hal_buffered_serial.o (symbol from plugin)
 bsaObjectInit                                     ./build/obj/bufstreams.o (symbol from plugin)
-bufstreams.c.ec259d27                             /tmp/ccPLRsRj.debug.temp.o
+buff                                              ./build/obj/main.o (symbol from plugin)
+bufstreams.c.2d61fa47                             /tmp/cc8RejRj.debug.temp.o
 ch0                                               ./build/obj/chsys.o (symbol from plugin)
                                                   ./build/obj/chmsg.o (symbol from plugin)
                                                   ./build/obj/chevents.o (symbol from plugin)
@@ -1532,6 +1627,7 @@ chEvtObjectDispose                                ./build/obj/chevents.o (symbol
 chEvtObjectInit                                   ./build/obj/chevents.o (symbol from plugin)
                                                   ./build/obj/hal_serial.o (symbol from plugin)
 chEvtRegisterMaskWithFlags                        ./build/obj/chevents.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
 chEvtRegisterMaskWithFlagsI                       ./build/obj/chevents.o (symbol from plugin)
 chEvtSignal                                       ./build/obj/chevents.o (symbol from plugin)
 chEvtSignalI                                      ./build/obj/chevents.o (symbol from plugin)
@@ -1541,6 +1637,7 @@ chEvtWaitAllTimeout                               ./build/obj/chevents.o (symbol
 chEvtWaitAny                                      ./build/obj/chevents.o (symbol from plugin)
 chEvtWaitAnyTimeout                               ./build/obj/chevents.o (symbol from plugin)
 chEvtWaitOne                                      ./build/obj/chevents.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
 chEvtWaitOneTimeout                               ./build/obj/chevents.o (symbol from plugin)
 chFactoryCreateBuffer                             ./build/obj/chfactory.o (symbol from plugin)
 chFactoryCreateMailbox                            ./build/obj/chfactory.o (symbol from plugin)
@@ -1653,7 +1750,7 @@ chRegFindThreadByPointer                          ./build/obj/chregistry.o (symb
 chRegFindThreadByWorkingArea                      ./build/obj/chregistry.o (symbol from plugin)
 chRegFirstThread                                  ./build/obj/chregistry.o (symbol from plugin)
 chRegNextThread                                   ./build/obj/chregistry.o (symbol from plugin)
-chSchDoPreemption                                 /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+chSchDoPreemption                                 /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chschd.o (symbol from plugin)
                                                   ./build/obj/chcoreasm.o
 chSchDoYieldS                                     ./build/obj/chschd.o (symbol from plugin)
@@ -1691,6 +1788,7 @@ chSchRescheduleS                                  ./build/obj/chschd.o (symbol f
                                                   ./build/obj/chsem.o (symbol from plugin)
                                                   ./build/obj/chthreads.o (symbol from plugin)
                                                   ./build/obj/chsys.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
                                                   ./build/obj/hal_serial.o (symbol from plugin)
 chSchSelectFirst                                  ./build/obj/chschd.o (symbol from plugin)
 chSchWakeupS                                      ./build/obj/chschd.o (symbol from plugin)
@@ -1760,7 +1858,7 @@ chThdEnqueueTimeoutS                              ./build/obj/chthreads.o (symbo
                                                   ./build/obj/chmboxes.o (symbol from plugin)
                                                   ./build/obj/hal_queues.o (symbol from plugin)
                                                   ./build/obj/hal_buffers.o (symbol from plugin)
-chThdExit                                         /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+chThdExit                                         /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/chthreads.o (symbol from plugin)
                                                   ./build/obj/chcoreasm.o
 chThdExitS                                        ./build/obj/chthreads.o (symbol from plugin)
@@ -1778,7 +1876,8 @@ chThdResumeI                                      ./build/obj/chthreads.o (symbo
 chThdResumeS                                      ./build/obj/chthreads.o (symbol from plugin)
 chThdSetPriority                                  ./build/obj/chthreads.o (symbol from plugin)
 chThdSleep                                        ./build/obj/chthreads.o (symbol from plugin)
-                                                  ./build/obj/main.o (symbol from plugin)
+                                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
                                                   ./build/obj/hal_flash.o (symbol from plugin)
 chThdSleepUntil                                   ./build/obj/chthreads.o (symbol from plugin)
 chThdSleepUntilWindowed                           ./build/obj/chthreads.o (symbol from plugin)
@@ -1809,135 +1908,145 @@ ch_memcore                                        ./build/obj/chmemcore.o (symbo
 ch_system                                         ./build/obj/chsys.o (symbol from plugin)
                                                   ./build/obj/chtm.o (symbol from plugin)
                                                   ./build/obj/chinstances.o (symbol from plugin)
-chcond.c.07b016a4                                 /tmp/ccbPnwts.debug.temp.o
-chcore.c.70c2834f                                 /tmp/ccISMU7x.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chdebug.c.2c604f42                                /tmp/ccVPOJLQ.debug.temp.o
-chdelegates.c.781b92cd                            /tmp/ccS2v5ae.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chdynamic.c.471abc8c                              /tmp/ccUrwkoW.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chevents.c.a90ef016                               /tmp/ccWreMrC.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chfactory.c.a320b067                              /tmp/cczJHu9n.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chinstances.c.6af0b0c8                            /tmp/ccPkrhEu.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chmboxes.c.46538523                               /tmp/cc4v1Vkg.debug.temp.o
-chmemchecks.c.d2980cd2                            /tmp/ccr1QCm6.debug.temp.o
-chmemcore.c.7f398102                              /tmp/cctbZfjq.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chmemheaps.c.b6e9b8f5                             /tmp/cc6tJAhA.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chmempools.c.b21e4b5e                             /tmp/ccdmGWfK.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chmsg.c.14252ccb                                  /tmp/ccj8Y2pM.debug.temp.o
-chmtx.c.50e0dcf9                                  /tmp/cc65khvi.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chobjcaches.c.ce539030                            /tmp/ccxj7Gc4.debug.temp.o
-chpipes.c.7fc54b6d                                /tmp/cc8xujeU.debug.temp.o
+chcond.c.07b016a4                                 /tmp/ccBYh0lj.debug.temp.o
+chcore.c.70c2834f                                 /tmp/cceqjl8K.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chdebug.c.2c604f42                                /tmp/ccDuxPjc.debug.temp.o
+chdelegates.c.781b92cd                            /tmp/cc6swQjx.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chdynamic.c.471abc8c                              /tmp/ccaVjm4D.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chevents.c.82024e83                               /tmp/cceqO6fq.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chfactory.c.a320b067                              /tmp/cc5Ft5dE.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chinstances.c.6af0b0c8                            /tmp/ccBPNJVD.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chmboxes.c.46538523                               /tmp/ccaMPESR.debug.temp.o
+chmemchecks.c.d2980cd2                            /tmp/cczjcvYK.debug.temp.o
+chmemcore.c.7f398102                              /tmp/ccd7bPMY.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chmemheaps.c.b6e9b8f5                             /tmp/ccmHi0G5.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chmempools.c.b21e4b5e                             /tmp/ccLVbcBc.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chmsg.c.14252ccb                                  /tmp/ccDobeax.debug.temp.o
+chmtx.c.50e0dcf9                                  /tmp/cc4ByUrc.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chobjcaches.c.ce539030                            /tmp/ccpNhCpq.debug.temp.o
+chpipes.c.7fc54b6d                                /tmp/ccAlQovj.debug.temp.o
 chprintf                                          ./build/obj/chprintf.o (symbol from plugin)
                                                   ./build/obj/main.o (symbol from plugin)
-chprintf.c.99087572                               /tmp/ccHxbfXF.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chregistry.c.d612110f                             /tmp/ccYqQPyY.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chrfcu.c.0029e1ef                                 /tmp/ccgQyDNG.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+chprintf.c.1867cefe                               /tmp/cc6iyCdS.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chregistry.c.d612110f                             /tmp/ccGoPNDY.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chrfcu.c.0029e1ef                                 /tmp/ccmIOSp5.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 chscanf                                           ./build/obj/chscanf.o (symbol from plugin)
-chscanf.c.e4afc053                                /tmp/ccQiaMVP.debug.temp.o
-chschd.c.3a813531                                 /tmp/ccIQG7Fk.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chsem.c.31ee7f21                                  /tmp/cc1Ab3w8.debug.temp.o
+chscanf.c.9b2a10af                                /tmp/ccfru17Y.debug.temp.o
+chschd.c.3a813531                                 /tmp/ccEB3J1w.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chsem.c.31ee7f21                                  /tmp/ccVHLQx5.debug.temp.o
 chsnprintf                                        ./build/obj/chprintf.o (symbol from plugin)
 chsnscanf                                         ./build/obj/chscanf.o (symbol from plugin)
-chsys.c.c2f28d5c                                  /tmp/ccL51xPw.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chthreads.c.b6e7da0d                              /tmp/ccGsYrCE.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chtm.c.2288d909                                   /tmp/ccNktDAO.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-chtrace.c.0f7fa4c6                                /tmp/ccAvOQJ0.debug.temp.o
+chsys.c.c2f28d5c                                  /tmp/ccX3PWvY.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chthreads.c.b6e7da0d                              /tmp/cccyhKPK.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chtm.c.2288d909                                   /tmp/ccxmELJR.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+chtrace.c.0f7fa4c6                                /tmp/cccMXMdj.debug.temp.o
 chvprintf                                         ./build/obj/chprintf.o (symbol from plugin)
 chvscanf                                          ./build/obj/chscanf.o (symbol from plugin)
 chvsnprintf                                       ./build/obj/chprintf.o (symbol from plugin)
 chvsnscanf                                        ./build/obj/chscanf.o (symbol from plugin)
-chvt.c.d0137548                                   /tmp/cct8KYHa.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-crt1.c.7c6b74cd                                   /tmp/ccjArmqD.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+chvt.c.d0137548                                   /tmp/cc3k6K7p.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+crt1.c.7c6b74cd                                   /tmp/ccXf3awK.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+drv_usb_core.c.99309c70                           /tmp/ccd8Juux.debug.temp.o
+drv_usb_dev.c.e49cb5ec                            /tmp/ccGK8QoE.debug.temp.o
+drv_usbd_int.c.89c09c35                           /tmp/ccf8pejL.debug.temp.o
 flashGetAddressOffset                             ./build/obj/hal_flash.o (symbol from plugin)
 flashGetOffsetAddress                             ./build/obj/hal_flash.o (symbol from plugin)
 flashGetOffsetSector                              ./build/obj/hal_flash.o (symbol from plugin)
 flashGetSectorOffset                              ./build/obj/hal_flash.o (symbol from plugin)
 flashGetSectorSize                                ./build/obj/hal_flash.o (symbol from plugin)
 flashWaitErase                                    ./build/obj/hal_flash.o (symbol from plugin)
-gd32e50x_gpio.c.a21337b0                          /tmp/ccyo2IYv.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-gd32e50x_misc.c.f11e5aef                          /tmp/ccQdtN4R.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-gd32e50x_rcu.c.bb7fa4d2                           /tmp/cczxWf31.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-gd32e50x_timer.c.b1bdad22                         /tmp/ccWpjJ1b.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-gd32e50x_usart.c.7be3ed2a                         /tmp/cchFEd0l.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-gnu_lto_v1                                        /tmp/cc2QB3Pt.debug.temp.o
-                                                  /tmp/ccPLRsRj.debug.temp.o
-                                                  /tmp/ccCOXSS9.debug.temp.o
-                                                  /tmp/cczmVjUZ.debug.temp.o
-                                                  /tmp/ccQiaMVP.debug.temp.o
-                                                  /tmp/ccHxbfXF.debug.temp.o
-                                                  /tmp/ccyo2IYv.debug.temp.o
-                                                  /tmp/cchFEd0l.debug.temp.o
-                                                  /tmp/ccWpjJ1b.debug.temp.o
-                                                  /tmp/cczxWf31.debug.temp.o
-                                                  /tmp/ccQdtN4R.debug.temp.o
-                                                  /tmp/ccLYLl6H.debug.temp.o
-                                                  /tmp/ccISMU7x.debug.temp.o
-                                                  /tmp/cczJHu9n.debug.temp.o
-                                                  /tmp/ccS2v5ae.debug.temp.o
-                                                  /tmp/ccxj7Gc4.debug.temp.o
-                                                  /tmp/cc8xujeU.debug.temp.o
-                                                  /tmp/ccdmGWfK.debug.temp.o
-                                                  /tmp/cc6tJAhA.debug.temp.o
-                                                  /tmp/cctbZfjq.debug.temp.o
-                                                  /tmp/cc4v1Vkg.debug.temp.o
-                                                  /tmp/ccr1QCm6.debug.temp.o
-                                                  /tmp/ccUrwkoW.debug.temp.o
-                                                  /tmp/ccj8Y2pM.debug.temp.o
-                                                  /tmp/ccWreMrC.debug.temp.o
-                                                  /tmp/ccbPnwts.debug.temp.o
-                                                  /tmp/cc65khvi.debug.temp.o
-                                                  /tmp/cc1Ab3w8.debug.temp.o
-                                                  /tmp/ccYqQPyY.debug.temp.o
-                                                  /tmp/ccNktDAO.debug.temp.o
-                                                  /tmp/ccGsYrCE.debug.temp.o
-                                                  /tmp/ccPkrhEu.debug.temp.o
-                                                  /tmp/ccIQG7Fk.debug.temp.o
-                                                  /tmp/cct8KYHa.debug.temp.o
-                                                  /tmp/ccAvOQJ0.debug.temp.o
-                                                  /tmp/ccVPOJLQ.debug.temp.o
-                                                  /tmp/ccgQyDNG.debug.temp.o
-                                                  /tmp/ccL51xPw.debug.temp.o
-                                                  /tmp/ccacmtRm.debug.temp.o
-                                                  /tmp/cctbqpTc.debug.temp.o
-                                                  /tmp/ccAQgmV2.debug.temp.o
-                                                  /tmp/ccr5RjXS.debug.temp.o
-                                                  /tmp/ccGygiZI.debug.temp.o
-                                                  /tmp/ccxvwh1y.debug.temp.o
-                                                  /tmp/cck8wh3o.debug.temp.o
-                                                  /tmp/ccjxpi5e.debug.temp.o
-                                                  /tmp/ccC29j74.debug.temp.o
-                                                  /tmp/ccHeYm9U.debug.temp.o
-                                                  /tmp/cc2aKqbL.debug.temp.o
-                                                  /tmp/cc9nuvdB.debug.temp.o
-                                                  /tmp/cceAwBfr.debug.temp.o
-                                                  /tmp/ccJBEIhh.debug.temp.o
-                                                  /tmp/cceXYQj7.debug.temp.o
-                                                  /tmp/ccXHm0lX.debug.temp.o
-                                                  /tmp/ccKmQaoN.debug.temp.o
-                                                  /tmp/ccjArmqD.debug.temp.o
+gd32e50x_gpio.c.a21337b0                          /tmp/ccCT58zq.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+gd32e50x_misc.c.f11e5aef                          /tmp/ccqRiTWY.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+gd32e50x_rcu.c.bb7fa4d2                           /tmp/ccfPobR5.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+gd32e50x_timer.c.b1bdad22                         /tmp/ccYpmuLc.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+gd32e50x_usart.c.7be3ed2a                         /tmp/cctDdOFj.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+gnu_lto_v1                                        /tmp/cctxdIAE.debug.temp.o
+                                                  /tmp/ccmQseGx.debug.temp.o
+                                                  /tmp/ccbPsLLq.debug.temp.o
+                                                  /tmp/cc8RejRj.debug.temp.o
+                                                  /tmp/ccz2QRWc.debug.temp.o
+                                                  /tmp/ccCigr25.debug.temp.o
+                                                  /tmp/ccfru17Y.debug.temp.o
+                                                  /tmp/cc6iyCdS.debug.temp.o
+                                                  /tmp/ccf8pejL.debug.temp.o
+                                                  /tmp/ccGK8QoE.debug.temp.o
+                                                  /tmp/ccd8Juux.debug.temp.o
+                                                  /tmp/ccCT58zq.debug.temp.o
+                                                  /tmp/cctDdOFj.debug.temp.o
+                                                  /tmp/ccYpmuLc.debug.temp.o
+                                                  /tmp/ccfPobR5.debug.temp.o
+                                                  /tmp/ccqRiTWY.debug.temp.o
+                                                  /tmp/cc3zXB2R.debug.temp.o
+                                                  /tmp/cceqjl8K.debug.temp.o
+                                                  /tmp/cc5Ft5dE.debug.temp.o
+                                                  /tmp/cc6swQjx.debug.temp.o
+                                                  /tmp/ccpNhCpq.debug.temp.o
+                                                  /tmp/ccAlQovj.debug.temp.o
+                                                  /tmp/ccLVbcBc.debug.temp.o
+                                                  /tmp/ccmHi0G5.debug.temp.o
+                                                  /tmp/ccd7bPMY.debug.temp.o
+                                                  /tmp/ccaMPESR.debug.temp.o
+                                                  /tmp/cczjcvYK.debug.temp.o
+                                                  /tmp/ccaVjm4D.debug.temp.o
+                                                  /tmp/ccDobeax.debug.temp.o
+                                                  /tmp/cceqO6fq.debug.temp.o
+                                                  /tmp/ccBYh0lj.debug.temp.o
+                                                  /tmp/cc4ByUrc.debug.temp.o
+                                                  /tmp/ccVHLQx5.debug.temp.o
+                                                  /tmp/ccGoPNDY.debug.temp.o
+                                                  /tmp/ccxmELJR.debug.temp.o
+                                                  /tmp/cccyhKPK.debug.temp.o
+                                                  /tmp/ccBPNJVD.debug.temp.o
+                                                  /tmp/ccEB3J1w.debug.temp.o
+                                                  /tmp/cc3k6K7p.debug.temp.o
+                                                  /tmp/cccMXMdj.debug.temp.o
+                                                  /tmp/ccDuxPjc.debug.temp.o
+                                                  /tmp/ccmIOSp5.debug.temp.o
+                                                  /tmp/ccX3PWvY.debug.temp.o
+                                                  /tmp/ccYWF1BR.debug.temp.o
+                                                  /tmp/ccTwh7HK.debug.temp.o
+                                                  /tmp/ccElHdOD.debug.temp.o
+                                                  /tmp/cc97VkUw.debug.temp.o
+                                                  /tmp/ccyt0s0p.debug.temp.o
+                                                  /tmp/ccP61B6i.debug.temp.o
+                                                  /tmp/ccUn5Lcc.debug.temp.o
+                                                  /tmp/ccntYWi5.debug.temp.o
+                                                  /tmp/ccqrG8oY.debug.temp.o
+                                                  /tmp/ccjgglvR.debug.temp.o
+                                                  /tmp/cc2hLyBK.debug.temp.o
+                                                  /tmp/ccRMfNHD.debug.temp.o
+                                                  /tmp/ccQ2B2Nw.debug.temp.o
+                                                  /tmp/cc7xNiUp.debug.temp.o
+                                                  /tmp/ccOGQz0i.debug.temp.o
+                                                  /tmp/ccTJMR6b.debug.temp.o
+                                                  /tmp/ccCjJad5.debug.temp.o
+                                                  /tmp/cc90yujY.debug.temp.o
+                                                  /tmp/cc8cjPpR.debug.temp.o
+                                                  /tmp/ccXf3awK.debug.temp.o
 gpio_afio_deinit                                  ./build/obj/gd32e50x_gpio.o (symbol from plugin)
 gpio_afio_port_config                             ./build/obj/gd32e50x_gpio.o (symbol from plugin)
 gpio_bit_reset                                    ./build/obj/gd32e50x_gpio.o (symbol from plugin)
@@ -1961,38 +2070,42 @@ gpio_output_port_get                              ./build/obj/gd32e50x_gpio.o (s
 gpio_pin_lock                                     ./build/obj/gd32e50x_gpio.o (symbol from plugin)
 gpio_pin_remap_config                             ./build/obj/gd32e50x_gpio.o (symbol from plugin)
 gpio_port_write                                   ./build/obj/gd32e50x_gpio.o (symbol from plugin)
-hal.c.ebcd00f5                                    /tmp/ccKmQaoN.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+hal.c.e28758df                                    /tmp/cc8cjPpR.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 halInit                                           ./build/obj/hal.o (symbol from plugin)
                                                   ./build/obj/main.o (symbol from plugin)
-hal_buffered_serial.c.c5ed82ef                    /tmp/cceXYQj7.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_buffers.c.a3f9471b                            /tmp/ccJBEIhh.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+hal_buffered_serial.c.c4f8d895                    /tmp/ccCjJad5.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_buffers.c.d45142e7                            /tmp/ccTJMR6b.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 hal_clkcfg_default                                ./build/obj/hal_lld.o (symbol from plugin)
 hal_clkcfg_reset                                  ./build/obj/hal_lld.o (symbol from plugin)
-hal_flash.c.9822168d                              /tmp/cc9nuvdB.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_lld.c.ac299d4a                                /tmp/ccjxpi5e.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+hal_flash.c.1bd0ab59                              /tmp/cc7xNiUp.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_lld.c.b9f80a32                                /tmp/ccqrG8oY.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 hal_lld_clock_switch_mode                         ./build/obj/hal_lld.o (symbol from plugin)
 hal_lld_get_clock_point                           ./build/obj/hal_lld.o (symbol from plugin)
 hal_lld_init                                      ./build/obj/hal_lld.o (symbol from plugin)
                                                   ./build/obj/hal.o (symbol from plugin)
-hal_mmcsd.c.f3a66572                              /tmp/cc2aKqbL.debug.temp.o
-hal_pal.c.48271a76                                /tmp/ccHeYm9U.debug.temp.o
-hal_pal_lld.c.2a47e90c                            /tmp/ccxvwh1y.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_queues.c.e2aceee1                             /tmp/cceAwBfr.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_serial.c.0878b881                             /tmp/ccC29j74.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_serial_lld.c.b197af34                         /tmp/ccGygiZI.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_st.c.5be18b1a                                 /tmp/ccXHm0lX.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-hal_st_lld.c.39adc991                             /tmp/cck8wh3o.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+hal_mmcsd.c.75f43965                              /tmp/ccQ2B2Nw.debug.temp.o
+hal_pal.c.d6d97816                                /tmp/ccRMfNHD.debug.temp.o
+hal_pal_lld.c.2a79ffb4                            /tmp/ccUn5Lcc.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_queues.c.5fcd825a                             /tmp/ccOGQz0i.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_serial.c.22d694b4                             /tmp/cc2hLyBK.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_serial_lld.c.b2aef9ba                         /tmp/ccP61B6i.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_st.c.eb18eb90                                 /tmp/cc90yujY.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_st_lld.c.f0faf9b3                             /tmp/ccntYWi5.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_usb.c.bd6cb64d                                /tmp/ccjgglvR.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+hal_usb_lld.c.54fe51b5                            /tmp/ccyt0s0p.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 ibqGetEmptyBufferI                                ./build/obj/hal_buffers.o (symbol from plugin)
 ibqGetFullBufferTimeout                           ./build/obj/hal_buffers.o (symbol from plugin)
 ibqGetFullBufferTimeoutS                          ./build/obj/hal_buffers.o (symbol from plugin)
@@ -2016,21 +2129,21 @@ iqReadTimeout                                     ./build/obj/hal_queues.o (symb
                                                   ./build/obj/hal_serial.o (symbol from plugin)
 iqResetI                                          ./build/obj/hal_queues.o (symbol from plugin)
                                                   ./build/obj/hal_serial.o (symbol from plugin)
-main                                              /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+main                                              /tmp/ch.elf.M99srx.ltrans0.ltrans.o
                                                   ./build/obj/main.o (symbol from plugin)
                                                   ./build/obj/crt0_v8m-ml.o
-main.c.4628d9bb                                   /tmp/cc2QB3Pt.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+main.c.668a7463                                   /tmp/ccbPsLLq.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 memcpy                                            /opt/gcc-arm-none-eabi-9-2020-q2-update/bin/../lib/gcc/arm-none-eabi/9.3.1/../../../../arm-none-eabi/lib/thumb/v8-m.main/nofp/libg.a(lib_a-memcpy.o)
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
-memstreams.c.9fa6efb5                             /tmp/cczmVjUZ.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
+memstreams.c.9be07353                             /tmp/ccCigr25.debug.temp.o
 msObjectInit                                      ./build/obj/memstreams.o (symbol from plugin)
                                                   ./build/obj/chscanf.o (symbol from plugin)
                                                   ./build/obj/chprintf.o (symbol from plugin)
 nullObjectInit                                    ./build/obj/nullstreams.o (symbol from plugin)
-nullstreams.c.b9752319                            /tmp/ccCOXSS9.debug.temp.o
-nvic.c.0791296d                                   /tmp/ccr5RjXS.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+nullstreams.c.792bf439                            /tmp/ccz2QRWc.debug.temp.o
+nvic.c.99ddbd36                                   /tmp/cc97VkUw.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 nvicClearPending                                  ./build/obj/nvic.o (symbol from plugin)
 nvicDisableVector                                 ./build/obj/nvic.o (symbol from plugin)
 nvicEnableVector                                  ./build/obj/nvic.o (symbol from plugin)
@@ -2042,6 +2155,7 @@ nvicSetPending                                    ./build/obj/nvic.o (symbol fro
 nvicSetSystemHandlerPriority                      ./build/obj/nvic.o (symbol from plugin)
 nvic_irq_disable                                  ./build/obj/gd32e50x_misc.o (symbol from plugin)
 nvic_irq_enable                                   ./build/obj/gd32e50x_misc.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
 nvic_priority_group_set                           ./build/obj/gd32e50x_misc.o (symbol from plugin)
 nvic_system_reset                                 ./build/obj/gd32e50x_misc.o (symbol from plugin)
 nvic_vector_table_set                             ./build/obj/gd32e50x_misc.o (symbol from plugin)
@@ -2072,10 +2186,12 @@ oqResetI                                          ./build/obj/hal_queues.o (symb
 oqWriteI                                          ./build/obj/hal_queues.o (symbol from plugin)
 oqWriteTimeout                                    ./build/obj/hal_queues.o (symbol from plugin)
                                                   ./build/obj/hal_serial.o (symbol from plugin)
-osal.c.0ba04db9                                   /tmp/ccacmtRm.debug.temp.o
+osal.c.0ba04db9                                   /tmp/ccYWF1BR.debug.temp.o
 palReadBus                                        ./build/obj/hal_pal.o (symbol from plugin)
 palSetBusMode                                     ./build/obj/hal_pal.o (symbol from plugin)
 palWriteBus                                       ./build/obj/hal_pal.o (symbol from plugin)
+pmu_to_deepsleepmode                              ./build/obj/drv_usbd_int.o (symbol from plugin)
+                                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
 port_init                                         ./build/obj/chcore.o (symbol from plugin)
                                                   ./build/obj/chinstances.o (symbol from plugin)
 rcu_adc_clock_config                              ./build/obj/gd32e50x_rcu.o (symbol from plugin)
@@ -2088,6 +2204,7 @@ rcu_bkp_reset_enable                              ./build/obj/gd32e50x_rcu.o (sy
 rcu_ck48m_clock_config                            ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_ckout0_config                                 ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_clock_freq_get                                ./build/obj/gd32e50x_rcu.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
                                                   ./build/obj/gd32e50x_usart.o (symbol from plugin)
 rcu_deepsleep_voltage_set                         ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_deinit                                        ./build/obj/gd32e50x_rcu.o (symbol from plugin)
@@ -2111,6 +2228,7 @@ rcu_osci_stab_wait                                ./build/obj/gd32e50x_rcu.o (sy
 rcu_periph_clock_disable                          ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_periph_clock_enable                           ./build/obj/gd32e50x_rcu.o (symbol from plugin)
                                                   ./build/obj/board.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
                                                   ./build/obj/hal_st_lld.o (symbol from plugin)
 rcu_periph_clock_sleep_disable                    ./build/obj/gd32e50x_rcu.o (symbol from plugin)
@@ -2138,9 +2256,11 @@ rcu_system_clock_source_config                    ./build/obj/gd32e50x_rcu.o (sy
 rcu_system_clock_source_get                       ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_usart5_clock_config                           ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_usb_clock_config                              ./build/obj/gd32e50x_rcu.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
 rcu_usbdv_config                                  ./build/obj/gd32e50x_rcu.o (symbol from plugin)
 rcu_usbhssel_config                               ./build/obj/gd32e50x_rcu.o (symbol from plugin)
-sau.c.b8f30b53                                    /tmp/ccAQgmV2.debug.temp.o
+sau.c.86ca1a78                                    /tmp/ccElHdOD.debug.temp.o
+sd5_lld_serve_interrupt                           ./build/obj/hal_serial_lld.o (symbol from plugin)
 sdControl                                         ./build/obj/hal_serial.o (symbol from plugin)
 sdGetWouldBlock                                   ./build/obj/hal_serial.o (symbol from plugin)
 sdIncomingDataI                                   ./build/obj/hal_serial.o (symbol from plugin)
@@ -2177,8 +2297,8 @@ stStopAlarm                                       ./build/obj/hal_st.o (symbol f
                                                   ./build/obj/chvt.o (symbol from plugin)
 st_lld_init                                       ./build/obj/hal_st_lld.o (symbol from plugin)
                                                   ./build/obj/hal_st.o (symbol from plugin)
-system_gd32e50x.c.8279cd66                        /tmp/ccLYLl6H.debug.temp.o
-                                                  /tmp/ch.elf.QfZDgk.ltrans0.ltrans.o
+system_gd32e50x.c.16438e2e                        /tmp/cc3zXB2R.debug.temp.o
+                                                  /tmp/ch.elf.M99srx.ltrans0.ltrans.o
 system_lowpower_reset                             ./build/obj/gd32e50x_misc.o (symbol from plugin)
 system_lowpower_set                               ./build/obj/gd32e50x_misc.o (symbol from plugin)
 systick_clksource_set                             ./build/obj/gd32e50x_misc.o (symbol from plugin)
@@ -2290,9 +2410,7 @@ usart_collision_detection_disable                 ./build/obj/gd32e50x_usart.o (
 usart_collision_detection_enable                  ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_data_first_config                           ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_data_receive                                ./build/obj/gd32e50x_usart.o (symbol from plugin)
-                                                  ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_data_transmit                               ./build/obj/gd32e50x_usart.o (symbol from plugin)
-                                                  ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_deinit                                      ./build/obj/gd32e50x_usart.o (symbol from plugin)
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_disable                                     ./build/obj/gd32e50x_usart.o (symbol from plugin)
@@ -2301,6 +2419,7 @@ usart_dma_transmit_config                         ./build/obj/gd32e50x_usart.o (
 usart_enable                                      ./build/obj/gd32e50x_usart.o (symbol from plugin)
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_flag_clear                                  ./build/obj/gd32e50x_usart.o (symbol from plugin)
+                                                  ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_flag_get                                    ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_guard_time_config                           ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_halfduplex_disable                          ./build/obj/gd32e50x_usart.o (symbol from plugin)
@@ -2309,9 +2428,11 @@ usart_hardware_flow_cts_config                    ./build/obj/gd32e50x_usart.o (
 usart_hardware_flow_rts_config                    ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_interrupt_disable                           ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_interrupt_enable                            ./build/obj/gd32e50x_usart.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_interrupt_flag_clear                        ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_interrupt_flag_get                          ./build/obj/gd32e50x_usart.o (symbol from plugin)
+                                                  ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_invert_config                               ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_irda_lowpower_config                        ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_irda_mode_disable                           ./build/obj/gd32e50x_usart.o (symbol from plugin)
@@ -2330,7 +2451,9 @@ usart_receive_config                              ./build/obj/gd32e50x_usart.o (
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_receiver_timeout_disable                    ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_receiver_timeout_enable                     ./build/obj/gd32e50x_usart.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
 usart_receiver_timeout_threshold_config           ./build/obj/gd32e50x_usart.o (symbol from plugin)
+                                                  ./build/obj/main.o (symbol from plugin)
 usart_sample_bit_config                           ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_send_break                                  ./build/obj/gd32e50x_usart.o (symbol from plugin)
 usart_smartcard_autoretry_config                  ./build/obj/gd32e50x_usart.o (symbol from plugin)
@@ -2347,3 +2470,92 @@ usart_transmit_config                             ./build/obj/gd32e50x_usart.o (
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
 usart_word_length_set                             ./build/obj/gd32e50x_usart.o (symbol from plugin)
                                                   ./build/obj/hal_serial_lld.o (symbol from plugin)
+usbDisableEndpointsI                              ./build/obj/hal_usb.o (symbol from plugin)
+usbInit                                           ./build/obj/hal_usb.o (symbol from plugin)
+                                                  ./build/obj/hal.o (symbol from plugin)
+usbInitEndpointI                                  ./build/obj/hal_usb.o (symbol from plugin)
+usbObjectInit                                     ./build/obj/hal_usb.o (symbol from plugin)
+                                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+usbStallReceiveI                                  ./build/obj/hal_usb.o (symbol from plugin)
+usbStallTransmitI                                 ./build/obj/hal_usb.o (symbol from plugin)
+usbStart                                          ./build/obj/hal_usb.o (symbol from plugin)
+usbStartReceiveI                                  ./build/obj/hal_usb.o (symbol from plugin)
+usbStartTransmitI                                 ./build/obj/hal_usb.o (symbol from plugin)
+usbStop                                           ./build/obj/hal_usb.o (symbol from plugin)
+usbWakeupHost                                     ./build/obj/hal_usb.o (symbol from plugin)
+usb_basic_init                                    ./build/obj/drv_usb_core.o (symbol from plugin)
+usb_clock_active                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+usb_core_init                                     ./build/obj/drv_usb_core.o (symbol from plugin)
+usb_ctlep_startout                                ./build/obj/drv_usb_dev.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+usb_curmode_set                                   ./build/obj/drv_usb_core.o (symbol from plugin)
+usb_dev_stop                                      ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_dev_suspend                                   ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_devcore_init                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_devint_enable                                 ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_iepintr_read                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+usb_lld_clear_in                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_clear_out                                 ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_disable_endpoints                         ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_get_status_in                             ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_get_status_out                            ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_init                                      ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_init_endpoint                             ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_prepare_receive                           ./build/obj/hal_usb_lld.o (symbol from plugin)
+usb_lld_prepare_transmit                          ./build/obj/hal_usb_lld.o (symbol from plugin)
+usb_lld_read_setup                                ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_reset                                     ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_set_address                               ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_stall_in                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_stall_out                                 ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_start                                     ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_start_in                                  ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_start_out                                 ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_lld_stop                                      ./build/obj/hal_usb_lld.o (symbol from plugin)
+                                                  ./build/obj/hal_usb.o (symbol from plugin)
+usb_mdelay                                        ./build/obj/drv_usb_core.o (symbol from plugin)
+usb_rwkup_active                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_rxfifo_flush                                  ./build/obj/drv_usb_core.o (symbol from plugin)
+                                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_rxfifo_read                                   ./build/obj/drv_usb_core.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+usb_set_txfifo                                    ./build/obj/drv_usb_core.o (symbol from plugin)
+                                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_transc0_active                                ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_transc_active                                 ./build/obj/drv_usb_dev.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+usb_transc_clrstall                               ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_transc_deactivate                             ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_transc_inxfer                                 ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_transc_outxfer                                ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_transc_stall                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_txfifo_flush                                  ./build/obj/drv_usb_core.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+                                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_txfifo_write                                  ./build/obj/drv_usb_core.o (symbol from plugin)
+                                                  ./build/obj/drv_usbd_int.o (symbol from plugin)
+                                                  ./build/obj/drv_usb_dev.o (symbol from plugin)
+usb_udelay                                        ./build/obj/drv_usb_core.o (symbol from plugin)
+usb_user.c.e759e642                               /tmp/ccmQseGx.debug.temp.o
+usbcfg.c.653295be                                 /tmp/cctxdIAE.debug.temp.o
+usbd_bcd_detect                                   ./build/obj/drv_usb_dev.o (symbol from plugin)
+usbd_int_dedicated_ep1in                          ./build/obj/drv_usbd_int.o (symbol from plugin)
+usbd_int_dedicated_ep1out                         ./build/obj/drv_usbd_int.o (symbol from plugin)
+usbd_isr                                          ./build/obj/drv_usbd_int.o (symbol from plugin)

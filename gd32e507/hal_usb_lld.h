@@ -25,6 +25,8 @@
 #ifndef HAL_USB_LLD_H
 #define HAL_USB_LLD_H
 
+#include "drv_usb_regs.h"
+
 #if (HAL_USE_USB == TRUE) || defined(__DOXYGEN__)
 
 /*===========================================================================*/
@@ -289,6 +291,9 @@ struct USBDriver {
   USB_DRIVER_EXT_FIELDS
 #endif
   /* End of the mandatory fields.*/
+
+  usb_gr                      *dev_gr;
+  usb_dr                      *dev_dr;
 };
 
 /*===========================================================================*/

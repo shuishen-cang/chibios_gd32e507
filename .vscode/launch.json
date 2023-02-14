@@ -13,7 +13,7 @@
             "servertype": "external",
             "runToMain": true,
             "svdFile": "GD32E50x_CL.svd",
-            "gdbTarget": "172.28.208.1:3333",
+            "gdbTarget": "172.23.112.1:3333",
         }
     ]
 }

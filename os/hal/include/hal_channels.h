@@ -43,6 +43,7 @@
 #define CHN_CTL_INVALID         0   /**< @brief Invalid operation code.     */
 #define CHN_CTL_NOP             1   /**< @brief Does nothing.               */
 #define CHN_CTL_TX_WAIT         2   /**< @brief Wait for TX completion.     */
+#define CHN_CTL_GET_ISIZE       6
 /** @} */
 
 /**
@@ -205,6 +206,8 @@ typedef struct {
  * @api
  */
 #define chnReadTimeout(ip, bp, n, time) ((ip)->vmt->readt(ip, bp, n, time))
+
+#define chnGetInSize(ip)                ((ip)->vmt->ctl(ip, CHN_CTL_GET_ISIZE, NULL))    
 
 /**
  * @brief   Control operation on a channel.

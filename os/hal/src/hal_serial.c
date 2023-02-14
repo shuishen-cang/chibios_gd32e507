@@ -102,6 +102,8 @@ static msg_t _ctl(void *ip, unsigned int operation, void *arg) {
     break;
   case CHN_CTL_INVALID:
     return HAL_RET_UNKNOWN_CTL;
+  case CHN_CTL_GET_ISIZE:
+    return sdp->iqueue.q_counter;
   default:
 #if defined(SD_LLD_IMPLEMENTS_CTL)
     /* Delegating to the LLD if supported.*/

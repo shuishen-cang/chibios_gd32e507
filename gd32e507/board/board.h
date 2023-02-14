@@ -28,6 +28,10 @@
 
 #define LINE_UART3_TX               PAL_LINE(GPIOC, 10U)  
 #define LINE_UART3_RX               PAL_LINE(GPIOC, 11U)  
+
+#define LINE_UART4_TX               PAL_LINE(GPIOC, 12U)  
+#define LINE_UART4_RX               PAL_LINE(GPIOD, 2U)  
+
 /*
  * Board identifier.
  */

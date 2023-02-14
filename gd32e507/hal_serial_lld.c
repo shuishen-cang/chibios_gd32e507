@@ -42,6 +42,9 @@ SerialDriver SD1;
 #if (STM32_SERIAL_USE_USART3 == TRUE)
 SerialDriver SD3;
 #endif
+#if (STM32_SERIAL_USE_UART4 == TRUE)
+SerialDriver SD4;
+#endif
 
 /*===========================================================================*/
 /* Driver local variables and types.                                         */
@@ -72,7 +75,7 @@ static const SerialConfig default_config = {
  * @notapi
  */
 
-// #if STM32_SERIAL_USE_USART3 || defined(__DOXYGEN__)
+#if STM32_SERIAL_USE_USART3 || defined(__DOXYGEN__)
 OSAL_IRQ_HANDLER(Vector110) {
 
   OSAL_IRQ_PROLOGUE();
@@ -81,7 +84,25 @@ OSAL_IRQ_HANDLER(Vector110) {
 
   OSAL_IRQ_EPILOGUE();
 }
-// #endif
+#endif
+
+#if STM32_SERIAL_USE_UART4 || defined(__DOXYGEN__)
+OSAL_IRQ_HANDLER(Vector114) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  sd_lld_serve_interrupt(&SD4);
+#if 1
+  if(RESET != usart_interrupt_flag_get(UART4,USART_INT_FLAG_RT)){
+    chnAddFlagsI(&SD4, CHN_BREAK_DETECTED);
+
+    usart_flag_clear(UART4,USART_FLAG_RT);
+  }
+#endif
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif
 
 
 #if STM32_SERIAL_USE_USART3 || defined(__DOXYGEN__)
@@ -89,6 +110,14 @@ static void notify3(io_queue_t *qp) {
 
   (void)qp;
   USART_CTL0(UART3) |= 0x80;
+}
+#endif
+
+#if STM32_SERIAL_USE_UART4 || defined(__DOXYGEN__)
+static void notify4(io_queue_t *qp) {
+
+  (void)qp;
+  USART_CTL0(UART4) |= 0x80;
 }
 #endif
 
@@ -102,6 +131,10 @@ void sd_lld_init(void) {
 #if STM32_SERIAL_USE_USART3
   sdObjectInit(&SD3, NULL, notify3);
   SD3.uart_basic = UART3;
+#endif
+#if STM32_SERIAL_USE_UART4
+  sdObjectInit(&SD4, NULL, notify4);
+  SD4.uart_basic = UART4;
 #endif
 }
 
@@ -129,17 +162,6 @@ void sd_lld_start(SerialDriver *sdp, const SerialConfig *config) {
 #endif
 
 #if STM32_SERIAL_USE_USART3
-    // rcu_periph_clock_enable(RCU_UART4);
-    // usart_deinit(UART4);
-    // usart_word_length_set(UART4, USART_WL_8BIT);
-    // usart_stop_bit_set(UART4, USART_STB_1BIT);
-    // usart_parity_config(UART4, USART_PM_NONE);
-    // usart_baudrate_set(UART4, SERIAL_DEFAULT_BITRATE);
-    // usart_receive_config(UART4, USART_RECEIVE_ENABLE);
-    // usart_transmit_config(UART4, USART_TRANSMIT_ENABLE);
-    // usart_enable(UART4);
-    // nvicEnableVector(UART4_IRQn, STM32_IRQ_USART3_PRIORITY);
-
     rcu_periph_clock_enable(RCU_UART3);
     usart_deinit(UART3);
     usart_word_length_set(UART3, USART_WL_8BIT);
@@ -151,8 +173,23 @@ void sd_lld_start(SerialDriver *sdp, const SerialConfig *config) {
     usart_enable(UART3);
     nvicEnableVector(UART3_IRQn, STM32_IRQ_USART3_PRIORITY);
     usart_interrupt_enable(UART3, USART_INT_RBNE);
-
 #endif
+#if STM32_SERIAL_USE_UART4
+    rcu_periph_clock_enable(RCU_UART4);
+    usart_deinit(UART4);
+    usart_word_length_set(UART4, USART_WL_8BIT);
+    usart_stop_bit_set(UART4, USART_STB_1BIT);
+    usart_parity_config(UART4, USART_PM_NONE);
+    usart_baudrate_set(UART4, SERIAL_DEFAULT_BITRATE);
+    usart_receive_config(UART4, USART_RECEIVE_ENABLE);
+    usart_transmit_config(UART4, USART_TRANSMIT_ENABLE);
+    usart_enable(UART4);
+    nvicEnableVector(UART4_IRQn, STM32_IRQ_USART3_PRIORITY);
+    usart_interrupt_enable(UART4, USART_INT_RBNE);
+#endif
+
+
+
   }
   /* Configures the peripheral.*/
   (void)config; /* Warning suppression, remove this.*/
@@ -181,23 +218,50 @@ void sd_lld_stop(SerialDriver *sdp) {
 void sd_lld_serve_interrupt(SerialDriver *sdp){
     while(USART_STAT0(sdp->uart_basic) & 0x20){
       osalSysLockFromISR();
-      sdIncomingDataI(sdp, usart_data_receive(sdp->uart_basic) & 0xFF);
+      sdIncomingDataI(sdp, USART_DATA(sdp->uart_basic) & 0xFF);
       osalSysUnlockFromISR();
     }
 
     if(USART_CTL0(sdp->uart_basic) & 0x80){           //trans buff empty
-      while(USART_STAT0(sdp->uart_basic) & 0x80){
+      while(USART_STAT0(sdp->uart_basic) & 0x80){   
         msg_t b;
         osalSysLockFromISR();
         b = oqGetI(&sdp->oqueue);
         if (b < MSG_OK) {
-          chnAddFlagsI(sdp, CHN_OUTPUT_EMPTY);
-          // usart_interrupt_disable(UART3, USART_INT_TBE);
+          // chnAddFlagsI(sdp, CHN_OUTPUT_EMPTY);
           USART_CTL0(sdp->uart_basic) &= ~ 0x80;
           osalSysUnlockFromISR();
           break;
         }
-        usart_data_transmit(UART3, b);
+
+        USART_DATA(sdp->uart_basic) = b;            //发送数据
+
+        osalSysUnlockFromISR();
+      }
+    }
+}
+
+void sd5_lld_serve_interrupt(SerialDriver *sdp){
+    while(USART5_STAT(sdp->uart_basic) & 0x20){
+      osalSysLockFromISR();
+      sdIncomingDataI(sdp, USART5_RDATA(sdp->uart_basic) & 0xFF);
+      osalSysUnlockFromISR();
+    }
+
+    if(USART5_CTL0(sdp->uart_basic) & 0x80){           //trans buff empty
+      while(USART5_STAT(sdp->uart_basic) & 0x80){
+        msg_t b;
+        osalSysLockFromISR();
+        b = oqGetI(&sdp->oqueue);
+        if (b < MSG_OK) {
+          // chnAddFlagsI(sdp, CHN_OUTPUT_EMPTY);
+          USART5_CTL0(sdp->uart_basic) &= ~ 0x80;
+          osalSysUnlockFromISR();
+          break;
+        }
+
+        USART5_TDATA(sdp->uart_basic) = b;
+
         osalSysUnlockFromISR();
       }
     }

@@ -54,8 +54,8 @@
 //#define __SYSTEM_CLOCK_HXTAL                    (uint32_t)(__HXTAL)
 //#define __SYSTEM_CLOCK_72M_PLL_HXTAL            (uint32_t)(72000000)
 //#define __SYSTEM_CLOCK_120M_PLL_HXTAL           (uint32_t)(120000000)
-//#define __SYSTEM_CLOCK_168M_PLL_HXTAL           (uint32_t)(168000000)
-#define __SYSTEM_CLOCK_180M_PLL_HXTAL           (uint32_t)(180000000)
+#define __SYSTEM_CLOCK_168M_PLL_HXTAL           (uint32_t)(168000000)
+// #define __SYSTEM_CLOCK_180M_PLL_HXTAL           (uint32_t)(180000000)
 
 #define RCU_MODIFY(__delay)     do{                                     \
                                     volatile uint32_t i;                \
