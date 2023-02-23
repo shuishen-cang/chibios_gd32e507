@@ -233,12 +233,13 @@ typedef struct _usb_regs
 /* global reset control register bits definitions */
 #define GRSTCTL_DMAIDL            BIT(31)             /*!< DMA idle state */
 #define GRSTCTL_DMABSY            BIT(30)             /*!< DMA busy */
-#define GRSTCTL_TXFNUM            BITS(6, 10)         /*!< tx FIFO number */
+// #define GRSTCTL_TXFNUM            BITS(6, 10)         /*!< tx FIFO number */
 #define GRSTCTL_TXFF              BIT(5)              /*!< tx FIFO flush */
 #define GRSTCTL_RXFF              BIT(4)              /*!< rx FIFO flush */
 #define GRSTCTL_HFCRST            BIT(2)              /*!< host frame counter reset */
 #define GRSTCTL_HCSRST            BIT(1)              /*!< HCLK soft reset */
-#define GRSTCTL_CSRST             BIT(0)              /*!< core soft reset */
+// #define GRSTCTL_CSRST             BIT(0)              /*!< core soft reset */
+
 
 /* global interrupt flag register bits definitions */
 #define GINTF_WKUPIF              BIT(31)             /*!< wakeup interrupt flag */
@@ -528,10 +529,10 @@ extern const uint32_t PIPE_DPID[2];
 /* device control registers bits definitions */
 #define DCTL_L1RJCT               BIT(18)             /*!< deep sleep reject */
 #define DCTL_POIF                 BIT(11)             /*!< power-on initialization finished */
-#define DCTL_CGONAK               BIT(10)             /*!< clear global OUT NAK */
-#define DCTL_SGONAK               BIT(9)              /*!< set global OUT NAK */
-#define DCTL_CGINAK               BIT(8)              /*!< clear global IN NAK */
-#define DCTL_SGINAK               BIT(7)              /*!< set global IN NAK */
+// #define DCTL_CGONAK               BIT(10)             /*!< clear global OUT NAK */
+// #define DCTL_SGONAK               BIT(9)              /*!< set global OUT NAK */
+#define DCTL_CGINAK2               BIT(8)              /*!< clear global IN NAK */
+#define DCTL_SGINAK2               BIT(7)              /*!< set global IN NAK */
 #define DCTL_DTEST                BITS(4, 6)          /*!< device test control */
 #define DCTL_GONS                 BIT(3)              /*!< global OUT NAK status */
 #define DCTL_GINS                 BIT(2)              /*!< global IN NAK status */
@@ -599,7 +600,7 @@ extern const uint32_t PIPE_DPID[2];
 #define DEPCTL_SD0PID             BIT(28)             /*!< set DATA0 PID */
 #define DEPCTL_SNAK               BIT(27)             /*!< set NAK */
 #define DEPCTL_CNAK               BIT(26)             /*!< clear NAK */
-#define DIEPCTL_TXFNUM            BITS(22, 25)        /*!< tx FIFO number */
+#define DIEPCTL_TXFNUM2            BITS(22, 25)        /*!< tx FIFO number */
 #define DEPCTL_STALL              BIT(21)             /*!< STALL handshake */
 #define DOEPCTL_SNOOP             BIT(20)             /*!< snoop mode */
 #define DEPCTL_EPTYPE             BITS(18, 19)        /*!< endpoint type */

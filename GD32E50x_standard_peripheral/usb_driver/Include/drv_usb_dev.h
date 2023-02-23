@@ -40,6 +40,7 @@ OF SUCH DAMAGE.
 
 #include "usbd_conf.h"
 #include "drv_usb_core.h"
+#include "stm32_otg.h"
 
 #define EP_IN(x)                            ((uint8_t)(0x80U | (x)))    /*!< device IN endpoint */
 #define EP_OUT(x)                           ((uint8_t)(x))              /*!< device OUT endpoint */
@@ -52,21 +53,6 @@ enum usb_ctl_status {
     USB_CTL_LAST_DATA_OUT,                                              /*!< USB control transfer last data out state */
     USB_CTL_STATUS_IN,                                                  /*!< USB control transfer status in state*/
     USB_CTL_STATUS_OUT                                                  /*!< USB control transfer status out state */
-};
-
-typedef enum
-{
-    USBD_OK = 0U,                            /*!< status OK */
-    USBD_BUSY,                               /*!< status busy */
-    USBD_FAIL,                               /*!< status fail */
-} usbd_status;
-
-enum _usbd_status
-{
-    USBD_DEFAULT    = 1U,                    /*!< default status */
-    USBD_ADDRESSED  = 2U,                    /*!< address send status */
-    USBD_CONFIGURED = 3U,                    /*!< configured status */
-    USBD_SUSPENDED  = 4U                     /*!< suspended status */
 };
 
 typedef enum {

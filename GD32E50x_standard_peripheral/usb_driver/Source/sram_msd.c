@@ -1,6 +1,6 @@
 /*!
-    \file    usbd_conf.h
-    \brief   the header file of USB device configuration
+    \file    sram_msd.c
+    \brief   internal flash functions
 
     \version 2020-08-14, V1.0.0, demo for GD32E50x
     \version 2020-08-26, V1.1.0, demo for GD32E50x
@@ -35,32 +35,61 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __USBD_CONF_H
-#define __USBD_CONF_H
-
 #include "usb_conf.h"
-#include "ch.h"
+#include "sram_msd.h"
 
-#define USBD_CFG_MAX_NUM                1U
-#define USBD_ITF_MAX_NUM                1U
-#define USB_STR_DESC_MAX_SIZE           64U
+extern unsigned char SRAM[40 * 1024];
 
-#define USBD_MSC_INTERFACE              0U
+/*!
+    \brief      read data from multiple blocks of SRAM
+    \param[in]  pBuf: pointer to user buffer
+    \param[in]  ReadAddr: address to be read
+    \param[in]  BlkSize: size of block
+    \param[in]  BlkNum: number of block
+    \param[out] none
+    \retval     status
+*/
+uint32_t SRAM_ReadMultiBlocks (uint8_t *pBuf, uint32_t ReadAddr, uint16_t BlkSize, uint32_t BlkNum)
+{
+    uint32_t i = 0U, Offset = 0U;
 
-/* Class Layer Parameter */
-#define MSC_IN_EP                       EP1_IN
-#define MSC_OUT_EP                      EP1_OUT
+    while (BlkNum--)
+    {
+        for (i = 0U; i < BlkSize; i++)
+        {
+            *pBuf = SRAM[ReadAddr + Offset + i];
+            pBuf++;
+        }
 
-#ifdef USE_USB_HS  
-    #define MSC_DATA_PACKET_SIZE        512U
-#else  /*USE_USB_FS*/
-    #define MSC_DATA_PACKET_SIZE        64U
-#endif
+        Offset += BlkSize;
+    }
 
-#define MSC_MEDIA_PACKET_SIZE           8192U
+    return 0U;
+}
 
-#define MEM_LUN_NUM                     1
+/*!
+    \brief      write data to multiple blocks of SRAM
+    \param[in]  pBuf: pointer to user buffer
+    \param[in]  WriteAddr: address to be write
+    \param[in]  BlkSize: size of block
+    \param[in]  BlkNum: number of block
+    \param[out] none
+    \retval     status
+*/
+uint32_t SRAM_WriteMultiBlocks(uint8_t *pBuf, uint32_t WriteAddr, uint16_t BlkSize, uint32_t BlkNum)
+{
+    uint32_t i = 0U, Offset = 0U;
 
-#define USB_STRING_COUNT                4U
+    while (BlkNum--)
+    {
+        for (i = 0U; i < BlkSize; i++)
+        {
+            SRAM[WriteAddr + Offset + i] = *pBuf;
+            pBuf++;
+        }
 
-#endif /* __USBD_CONF_H */
+        Offset += BlkSize;
+    }
+
+    return 0U;
+}

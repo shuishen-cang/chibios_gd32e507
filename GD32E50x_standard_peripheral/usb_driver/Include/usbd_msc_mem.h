@@ -1,6 +1,6 @@
 /*!
-    \file    drv_usbd_int.h
-    \brief   USB device mode interrupt header file
+    \file    usbd_msc_mem.h
+    \brief   header file for storage memory
 
     \version 2020-03-10, V1.0.0, firmware for GD32E50x
     \version 2020-08-26, V1.1.0, firmware for GD32E50x
@@ -34,29 +34,28 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __DRV_USBD_INT_H
-#define __DRV_USBD_INT_H
+#ifndef __USBD_MSC_MEM_H
+#define __USBD_MSC_MEM_H
 
-#include "drv_usb_core.h"
-#include "drv_usb_dev.h"
+#include "usbd_conf.h"
 
-/* function declarations */
-#ifdef USB_DEDICATED_EP1_ENABLED
-/* USB dedicated OUT endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1out (usb_core_driver *udev);
-/* USB dedicated IN endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
-#endif
+#define USBD_STD_INQUIRY_LENGTH          36U
 
-/* USB device-mode interrupts global service routine handler */
-void usbd_isr (usb_core_driver *udev);
+typedef struct
+{
+    int8_t (*mem_init)         (uint8_t lun);
+    int8_t (*mem_ready)        (uint8_t lun);
+    int8_t (*mem_protected)    (uint8_t lun);
+    int8_t (*mem_read)         (uint8_t lun, uint8_t *buf, uint32_t block_addr, uint16_t block_len);
+    int8_t (*mem_write)        (uint8_t lun, uint8_t *buf, uint32_t block_addr, uint16_t block_len);
+    int8_t (*mem_maxlun)       (void);
 
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
+    uint8_t *mem_toc_data;
+    uint8_t *mem_inquiry_data[MEM_LUN_NUM];
+    uint32_t mem_block_size[MEM_LUN_NUM];
+    uint32_t mem_block_len[MEM_LUN_NUM];
+}usbd_mem_cb;
 
-#endif /* __DRV_USBD_INT_H */
+extern usbd_mem_cb *usbd_mem_fops;
+
+#endif /* __USBD_MSC_MEM_H */

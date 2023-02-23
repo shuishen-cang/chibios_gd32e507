@@ -20,18 +20,34 @@ limitations under the License.
 #include "ch.h"
 #include "hal.h"
 #include "chprintf.h"
+#include "usbcfg.h"
+#include "usbd_core.h"
+#include "usbd_msc_core.h"
 // #include "rt_test_root.h"
 // #include "oslib_test_root.h"
 
 uint8_t buff[128];
 
+
+// const USBConfig usbcfg = {
+//   NULL,
+//   NULL,
+//   NULL,
+//   NULL
+// };
+
 /*
 * Application entry point.
 */
 
+
+// usb_core_driver msc_udisk;
+
+unsigned char SRAM[40 * 1024];
+
 int main(void) {
     // rtcnt_t x1, x2;
-    event_listener_t el;
+    // event_listener_t el;
 
     /*
     * System initializations.
@@ -43,33 +59,61 @@ int main(void) {
     halInit();
     chSysInit();
 
-    palSetLineMode(LINE_UART3_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
-    palSetLineMode(LINE_UART3_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
+    // palSetLineMode(LINE_UART3_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
+    // palSetLineMode(LINE_UART3_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
 
-    palSetLineMode(LINE_UART4_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
-    palSetLineMode(LINE_UART4_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
+    // palSetLineMode(LINE_UART4_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
+    // palSetLineMode(LINE_UART4_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
 
-    sdStart(&SD4, NULL);
-    usart_receiver_timeout_threshold_config(UART4,30);                                          //帧尾检测
-    usart_receiver_timeout_enable(UART4);
-    usart_interrupt_enable(UART4, USART_INT_RT);
+    // sdStart(&SD4, NULL);
+    // usart_receiver_timeout_threshold_config(UART4,30);                                          //帧尾检测
+    // usart_receiver_timeout_enable(UART4);
+    // usart_interrupt_enable(UART4, USART_INT_RT);
 
-    // usbStart(&USBD1, NULL);
+    // usbStart(&USBD1, &usbcfg);
+
+    rcu_usb_clock_config(RCU_CKUSB_CKPLL_DIV3_5);   
+    rcu_periph_clock_enable(RCU_USBHS);
+
+
+    usbd_init(&USBD1.udev, &msc_desc, &msc_class);
+
+    pllusb_rcu_config();
+
+    nvicEnableVector(STM32_OTG1_NUMBER, STM32_USB_OTG1_IRQ_PRIORITY);
+
+    usbStart(&USBD1, &usbcfg);
+
+
+    while(1){
+        chThdSleepMicroseconds(1000000);
+    }
 
     // x1 = chSysGetRealtimeCounterX();
     // x2 = chSysGetRealtimeCounterX();
 
     // uint32_t system_clock = ;
-    chprintf((void*)&SD3, "hello, chibios, %dMHz\n", rcu_clock_freq_get(CK_SYS) / 1000000);  
+    // chprintf((void*)&SD3, "hello, chibios, %dMHz\n", rcu_clock_freq_get(CK_SYS) / 1000000);  
 
-    chEvtRegisterMaskWithFlags(&SD4.event, &el, EVENT_MASK(1), CHN_BREAK_DETECTED);
-    while (true) {
-        chEvtWaitOne(EVENT_MASK(1));
+    // chEvtRegisterMaskWithFlags(&SD4.event, &el, EVENT_MASK(1), CHN_BREAK_DETECTED);
+    // while (true) {
+    //     chEvtWaitOne(EVENT_MASK(1));
 
-        size_t xlen = chnReadTimeout(&SD4, buff, 128, TIME_IMMEDIATE);
-        // chprintf((void*)&SD4, "system size:%d\n", xlen); 
-        chnWrite(&SD4, buff, xlen);  
-    }
+    //     size_t xlen = chnReadTimeout(&SD4, buff, 128, TIME_IMMEDIATE);
+    //     // chprintf((void*)&SD4, "system size:%d\n", xlen); 
+    //     chnWrite(&SD4, buff, xlen);  
+    // }
 
-    chEvtUnregister(&SD4.event, &el);
+    // chEvtUnregister(&SD4.event, &el);
 }
+
+// OSAL_IRQ_HANDLER(STM32_OTG1_HANDLER) {
+
+//   OSAL_IRQ_PROLOGUE();
+
+//   // usb_lld_serve_interrupt(&USBD1);
+
+//   usbd_isr (&msc_udisk);
+
+//   OSAL_IRQ_EPILOGUE();
+// }

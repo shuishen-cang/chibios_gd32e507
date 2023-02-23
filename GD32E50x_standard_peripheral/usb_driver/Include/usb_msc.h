@@ -1,6 +1,6 @@
 /*!
-    \file    drv_usbd_int.h
-    \brief   USB device mode interrupt header file
+    \file    usb_msc.h
+    \brief   definitions for the USB MSC class
 
     \version 2020-03-10, V1.0.0, firmware for GD32E50x
     \version 2020-08-26, V1.1.0, firmware for GD32E50x
@@ -34,29 +34,37 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __DRV_USBD_INT_H
-#define __DRV_USBD_INT_H
+#ifndef __USB_MSC_H
+#define __USB_MSC_H
 
-#include "drv_usb_core.h"
-#include "drv_usb_dev.h"
+#include "usb_ch9_std.h"
 
-/* function declarations */
-#ifdef USB_DEDICATED_EP1_ENABLED
-/* USB dedicated OUT endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1out (usb_core_driver *udev);
-/* USB dedicated IN endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
-#endif
+/* mass storage device class code */
+#define USB_CLASS_MSC                     0x08U
 
-/* USB device-mode interrupts global service routine handler */
-void usbd_isr (usb_core_driver *udev);
+/* mass storage subclass code */
+#define USB_MSC_SUBCLASS_RBC              0x01U
+#define USB_MSC_SUBCLASS_ATAPI            0x02U
+#define USB_MSC_SUBCLASS_UFI              0x04U
+#define USB_MSC_SUBCLASS_SCSI             0x06U
+#define USB_MSC_SUBCLASS_LOCKABLE         0x07U
+#define USB_MSC_SUBCLASS_IEEE1667         0x08U
 
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
+/* mass storage interface class control protocol codes */
+#define USB_MSC_PROTOCOL_CBI              0x00U
+#define USB_MSC_PROTOCOL_CBI_ALT          0x01U
+#define USB_MSC_PROTOCOL_BBB              0x50U
 
-#endif /* __DRV_USBD_INT_H */
+/* mass storage request codes */
+#define USB_MSC_REQ_CODES_ADSC            0x00U
+#define USB_MSC_REQ_CODES_GET             0xFCU
+#define USB_MSC_REQ_CODES_PUT             0xFDU
+#define USB_MSC_REQ_CODES_GML             0xFEU
+#define USB_MSC_REQ_CODES_BOMSR           0xFFU
+
+#define BBB_GET_MAX_LUN                   0xFEU
+#define BBB_RESET                         0xFFU
+
+#define SCSI_CMD_LENGTH                   16U
+
+#endif /* __USB_MSC_H */

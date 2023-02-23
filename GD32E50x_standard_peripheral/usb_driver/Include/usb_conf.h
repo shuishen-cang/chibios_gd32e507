@@ -42,6 +42,10 @@ OF SUCH DAMAGE.
 #include "gd32e50x.h"
 // #include "gd32e507r_start.h"
 
+
+#define USE_USB_HS
+#define LPM_ENABLED                     0
+
 /* USB Core and PHY interface configuration */
 
 /****************** USB HS PHY CONFIGURATION *******************************
@@ -121,8 +125,8 @@ OF SUCH DAMAGE.
     #endif
 #endif
 
-#define USB_INTERNAL_DMA_ENABLED
-#define USB_DEDICATED_EP1_ENABLED
+// #define USB_INTERNAL_DMA_ENABLED
+// #define USB_DEDICATED_EP1_ENABLED
 
 #define USB_SOF_OUTPUT              1U
 #define USB_LOW_POWER               0U

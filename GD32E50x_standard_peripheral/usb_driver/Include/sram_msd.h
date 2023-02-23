@@ -1,14 +1,15 @@
 /*!
-    \file    drv_usbd_int.h
-    \brief   USB device mode interrupt header file
+    \file    sram_msd.h
+    \brief   the header file of sram_msd.c
 
-    \version 2020-03-10, V1.0.0, firmware for GD32E50x
-    \version 2020-08-26, V1.1.0, firmware for GD32E50x
-    \version 2021-03-23, V1.2.0, firmware for GD32E50x
+    \version 2020-08-14, V1.0.0, demo for GD32E50x
+    \version 2020-08-26, V1.1.0, demo for GD32E50x
+    \version 2021-03-31, V1.2.0, demo for GD32E50x
+    \version 2022-07-12, V1.2.1, demo for GD32E50x
 */
 
 /*
-    Copyright (c) 2021, GigaDevice Semiconductor Inc.
+    Copyright (c) 2022, GigaDevice Semiconductor Inc.
 
     Redistribution and use in source and binary forms, with or without modification, 
 are permitted provided that the following conditions are met:
@@ -34,29 +35,18 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __DRV_USBD_INT_H
-#define __DRV_USBD_INT_H
+#ifndef __SRAM_MSD_H
+#define __SRAM_MSD_H
 
-#include "drv_usb_core.h"
-#include "drv_usb_dev.h"
+#include "stdlib.h"
+
+#define ISRAM_BLOCK_SIZE         512U
+#define ISRAM_BLOCK_NUM          80U
 
 /* function declarations */
-#ifdef USB_DEDICATED_EP1_ENABLED
-/* USB dedicated OUT endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1out (usb_core_driver *udev);
-/* USB dedicated IN endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
-#endif
+/* read data from multiple blocks of SRAM */
+uint32_t SRAM_ReadMultiBlocks  (uint8_t* pBuf, uint32_t ReadAddr, uint16_t BlkSize, uint32_t BlkNum);
+/* write data to multiple blocks of SRAM */
+uint32_t SRAM_WriteMultiBlocks (uint8_t* pBuf, uint32_t WriteAddr, uint16_t BlkSize, uint32_t BlkNum);
 
-/* USB device-mode interrupts global service routine handler */
-void usbd_isr (usb_core_driver *udev);
-
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
-
-#endif /* __DRV_USBD_INT_H */
+#endif /* __SRAM_MSD_H */

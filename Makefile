@@ -5,7 +5,7 @@
 
 # Compiler options here.
 ifeq ($(USE_OPT),)
-  USE_OPT = -O2 -ggdb -fomit-frame-pointer -falign-functions=16
+  USE_OPT = -O0 -ggdb -fomit-frame-pointer -falign-functions=16
 endif
 
 # C specific options here (added to USE_OPT).
@@ -155,7 +155,7 @@ CPPWARN = -Wall -Wextra -Wundef
 #
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = -DGD32E50X -DGD32E50X_CL -DUSE_STDPERIPH_DRIVER -DCORTEX_USE_FPU=FALSE -DUSE_USB_HS
+UDEFS = -DGD32E50X -DGD32E50X_CL -DUSE_STDPERIPH_DRIVER -DCORTEX_USE_FPU=FALSE 
 
 # Define ASM defines here
 UADEFS =

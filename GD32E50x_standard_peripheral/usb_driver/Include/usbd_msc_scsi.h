@@ -1,6 +1,6 @@
 /*!
-    \file    drv_usbd_int.h
-    \brief   USB device mode interrupt header file
+    \file    usbd_msc_scsi.h
+    \brief   the header file of the usbd_msc_scsi.c file
 
     \version 2020-03-10, V1.0.0, firmware for GD32E50x
     \version 2020-08-26, V1.1.0, firmware for GD32E50x
@@ -34,29 +34,27 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __DRV_USBD_INT_H
-#define __DRV_USBD_INT_H
+#ifndef __USBD_MSC_SCSI_H
+#define __USBD_MSC_SCSI_H
 
-#include "drv_usb_core.h"
-#include "drv_usb_dev.h"
+#include "usbd_msc_bbb.h"
+#include "msc_scsi.h"
+
+#define SENSE_LIST_DEEPTH                           4U
+
+#define MODE_SENSE6_LENGTH                          8U
+#define MODE_SENSE10_LENGTH                         8U
+#define INQUIRY_PAGE00_LENGTH                       96U
+#define FORMAT_CAPACITIES_LENGTH                    20U
+
+extern const uint8_t msc_page00_inquiry_data[];
+extern const uint8_t msc_mode_sense6_data[];
+extern const uint8_t msc_mode_sense10_data[];
 
 /* function declarations */
-#ifdef USB_DEDICATED_EP1_ENABLED
-/* USB dedicated OUT endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1out (usb_core_driver *udev);
-/* USB dedicated IN endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
-#endif
+/* process SCSI commands */
+int8_t scsi_process_cmd (usb_core_driver *udev, uint8_t lun, uint8_t *cmd);
+/* load the last error code in the error list */
+void scsi_sense_code (usb_core_driver *udev, uint8_t lun, uint8_t skey, uint8_t asc);
 
-/* USB device-mode interrupts global service routine handler */
-void usbd_isr (usb_core_driver *udev);
-
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
-
-#endif /* __DRV_USBD_INT_H */
+#endif /* __USBD_MSC_SCSI_H */

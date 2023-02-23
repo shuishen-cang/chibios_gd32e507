@@ -1,6 +1,6 @@
 /*!
-    \file    drv_usbd_int.h
-    \brief   USB device mode interrupt header file
+    \file    usbd_msc_core.h
+    \brief   the header file of USB MSC device class core functions
 
     \version 2020-03-10, V1.0.0, firmware for GD32E50x
     \version 2020-08-26, V1.1.0, firmware for GD32E50x
@@ -34,29 +34,27 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __DRV_USBD_INT_H
-#define __DRV_USBD_INT_H
+#ifndef __USBD_MSC_CORE_H
+#define __USBD_MSC_CORE_H
 
-#include "drv_usb_core.h"
-#include "drv_usb_dev.h"
+#include "usbd_core.h"
+#include "usb_msc.h"
 
-/* function declarations */
-#ifdef USB_DEDICATED_EP1_ENABLED
-/* USB dedicated OUT endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1out (usb_core_driver *udev);
-/* USB dedicated IN endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
-#endif
+#define USB_MSC_CONFIG_DESC_SIZE          32U
 
-/* USB device-mode interrupts global service routine handler */
-void usbd_isr (usb_core_driver *udev);
+#define MSC_EPIN_SIZE                     MSC_DATA_PACKET_SIZE
+#define MSC_EPOUT_SIZE                    MSC_DATA_PACKET_SIZE
 
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
+/* USB configuration descriptor structure */
+typedef struct
+{
+    usb_desc_config         config;
+    usb_desc_itf            msc_itf;
+    usb_desc_ep             msc_epin;
+    usb_desc_ep             msc_epout;
+} usb_desc_config_set;
 
-#endif /* __DRV_USBD_INT_H */
+extern usb_desc msc_desc;
+extern usb_class_core msc_class;
+
+#endif /* __USBD_MSC_CORE_H */

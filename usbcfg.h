@@ -21,7 +21,7 @@
 #define USBD2_DATA_AVAILABLE_EP         1
 #define USBD2_INTERRUPT_REQUEST_EP      2
 
-// extern const USBConfig usbcfg;
+extern const USBConfig usbcfg;
 
 #endif  /* USBCFG_H */
 

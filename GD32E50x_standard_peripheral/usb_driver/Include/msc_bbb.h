@@ -1,6 +1,6 @@
 /*!
-    \file    drv_usbd_int.h
-    \brief   USB device mode interrupt header file
+    \file    msc_bbb.h
+    \brief   definitions for the USB MSC BBB(bulk/bulk/bulk) protocol
 
     \version 2020-03-10, V1.0.0, firmware for GD32E50x
     \version 2020-08-26, V1.1.0, firmware for GD32E50x
@@ -34,29 +34,41 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSI
 OF SUCH DAMAGE.
 */
 
-#ifndef __DRV_USBD_INT_H
-#define __DRV_USBD_INT_H
+#ifndef __MSC_BBB_H
+#define __MSC_BBB_H
 
-#include "drv_usb_core.h"
-#include "drv_usb_dev.h"
+#include "usb_ch9_std.h"
 
-/* function declarations */
-#ifdef USB_DEDICATED_EP1_ENABLED
-/* USB dedicated OUT endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1out (usb_core_driver *udev);
-/* USB dedicated IN endpoint 1 interrupt service routine handler */
-uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
-#endif
+#define BBB_CBW_SIGNATURE                 0x43425355U
+#define BBB_CSW_SIGNATURE                 0x53425355U
+#define BBB_CBW_LENGTH                    31U
+#define BBB_CSW_LENGTH                    13U
 
-/* USB device-mode interrupts global service routine handler */
-void usbd_isr (usb_core_driver *udev);
+typedef struct 
+{
+    uint32_t dCBWSignature;
+    uint32_t dCBWTag;
+    uint32_t dCBWDataTransferLength;
+    uint8_t  bmCBWFlags;
+    uint8_t  bCBWLUN;
+    uint8_t  bCBWCBLength;
+    uint8_t  CBWCB[16];
+}msc_bbb_cbw;
 
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
+typedef struct 
+{
+    uint32_t dCSWSignature;
+    uint32_t dCSWTag;
+    uint32_t dCSWDataResidue;
+    uint8_t  bCSWStatus;
+}msc_bbb_csw;
 
-#endif /* __DRV_USBD_INT_H */
+/* CSW command status */
+enum msc_csw_status 
+{
+    CSW_CMD_PASSED = 0,
+    CSW_CMD_FAILED,
+    CSW_PHASE_ERROR
+};
+
+#endif /* __MSC_BBB_H */
