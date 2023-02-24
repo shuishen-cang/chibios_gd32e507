@@ -531,11 +531,6 @@ void usbStartTransmitI(USBDriver *usbp, usbep_t ep,
   isp->txbuf  = buf;
   isp->txsize = n;
   isp->txcnt  = 0;
-
-
-
-
-
 #if USB_USE_WAIT == TRUE
   isp->thread = NULL;
 #endif
@@ -879,30 +874,72 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
     usbp->ep0n = max;
   }
 
-  if ((usbp->setup[0] & USB_RTYPE_DIR_MASK) == USB_RTYPE_DIR_DEV2HOST) {    //需要回复
+  if ((usbp->setup[0] & USB_RTYPE_DIR_MASK) == USB_RTYPE_DIR_DEV2HOST) {    //如果是IN 事件
     /* IN phase.*/
     if (usbp->ep0n != 0U) {
       /* Starts the transmit phase.*/
-      usbp->ep0state = USB_EP0_IN_TX;
+      usbp->ep0state = USB_EP0_IN_TX;                                       //转入TX状态
       osalSysLockFromISR();
       // usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);
+      // transc->xfer_buf = usbp->ep0next;
+      // transc->remain_len = usbp->ep0n;
+      // (void)usbd_ctl_send (udev);                                           //回复数据
+
+
+    // usb_transc *transc = &udev->dev.transc_in[0];
+
+
+      udev->dev.control.ctl_state = (uint8_t)USB_CTL_LAST_DATA_IN;
+      // usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);
+
+
       transc->xfer_buf = usbp->ep0next;
-      transc->remain_len = usbp->ep0n;
-      (void)usbd_ctl_send (udev);                                           //80的话需要回复,长度不为0，直接回复
+      transc->remain_len = usbp->ep0n;     
+      /* setup the transfer */
+
+      transc->xfer_len = usbp->ep0n;
+      transc->xfer_count = 0U;
+
+      usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);      //这里会请求一个中断
+
+
+
+
+      // (void)usbd_ep_send(udev, 0U, transc->xfer_buf, transc->remain_len);
+
+
+
+    // if (transc->remain_len > transc->max_len) {
+    //     udev->dev.control.ctl_state = (uint8_t)USB_CTL_DATA_IN;
+    // } else {
+    //     udev->dev.control.ctl_state = (uint8_t)USB_CTL_LAST_DATA_IN;
+    // }
+
+
+
 
       osalSysUnlockFromISR();
     }
-    else {
+    else {                                                                  //如果长度为0
       /* No transmission phase, directly receiving the zero sized status
          packet.*/
-      usbp->ep0state = USB_EP0_OUT_WAITING_STS;
-#if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)                   
+      usbp->ep0state = USB_EP0_OUT_WAITING_STS;                             //状态转入等待状态
+#if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)                          
       // osalSysLockFromISR();
       // usbStartReceiveI(usbp, 0, NULL, 0);                              //st的直接读取0个长度的一个包
       // osalSysUnlockFromISR();
-      transc->xfer_buf = usbp->ep0next;                                   //GD的先发送0个长度的，然后接收24个byte的包，用mdata包
-      transc->remain_len = usbp->ep0n;                                    
-      (void)usbd_ctl_status_send (udev);                                  //发送一个长度为0的控制包，并且开始接收,,好吧，这里高云和ST的有差别
+
+      // transc->xfer_buf = usbp->ep0next;                                   //GD的先发送0个长度的，然后接收24个byte的包，用mdata包
+      // transc->remain_len = usbp->ep0n;                                    
+      // (void)usbd_ctl_status_send (udev);                                  //发送状态
+
+    udev->dev.control.ctl_state = (uint8_t)USB_CTL_STATUS_IN;
+    usbStartTransmitI(usbp, 0, NULL, 0);
+    usbp->udev.regs.er_out[0]->DOEPLEN = DOEP0_TLEN(8U * 3U) | DOEP0_PCNT(1U) | DOEP0_STPCNT(3U);
+
+    // usb_ctlep_startout(udev);
+
+
 #else
       usb_lld_end_setup(usbp, ep);
 #endif
@@ -916,10 +953,18 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
       osalSysLockFromISR();
       // usbStartReceiveI(usbp, 0, (uint8_t *)usbp->ep0next, usbp->ep0n);
 
-      transc->xfer_buf = usbp->ep0next;
-      transc->remain_len = usbp->ep0n;
+      // transc->xfer_buf = usbp->ep0next;
+      // transc->remain_len = usbp->ep0n;
 
-      (void)usbd_ctl_recev (udev);                                        //如果是数据就直接接收，remain_len
+      // (void)usbd_ctl_recev (udev);                                        //如果是数据就直接接收，remain_len
+
+
+    // (void)usbd_ep_recev (udev, 0U, transc->xfer_buf, transc->remain_len);
+
+      usbStartReceiveI(usbp, 0, (uint8_t *)usbp->ep0next, usbp->ep0n);
+
+      udev->dev.control.ctl_state = (uint8_t)USB_CTL_LAST_DATA_OUT;
+
       osalSysUnlockFromISR();
     }
     else {
@@ -929,11 +974,13 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
 #if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)
       osalSysLockFromISR();
 
-      transc->xfer_buf = usbp->ep0next;
-      transc->remain_len = usbp->ep0n;
-      (void)usbd_ctl_status_send (udev);                                //发送一个长度为0的控制包，并且开始接收,,好吧，这里高云和ST的有差别
+      // transc->xfer_buf = usbp->ep0next;
+      // transc->remain_len = usbp->ep0n;
+      // (void)usbd_ctl_status_send (udev);                                //发送一个长度为0的控制包，并且开始接收,,好吧，这里高云和ST的有差别
 
-      // usbStartTransmitI(usbp, 0, NULL, 0);
+      udev->dev.control.ctl_state = (uint8_t)USB_CTL_STATUS_IN;
+      usbStartTransmitI(usbp, 0, NULL, 0);
+      usbp->udev.regs.er_out[0]->DOEPLEN = DOEP0_TLEN(8U * 3U) | DOEP0_PCNT(1U) | DOEP0_STPCNT(3U);
 
       osalSysUnlockFromISR();
 #else
@@ -1011,11 +1058,12 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
     //     }
     // }
 
+    // USBInEndpointState *isp = usbp->epc[0]->in_state;    
+    // isp->txsize = transc->remain_len;
+    // isp->txcnt = 0;
+    // isp->txbuf = transc->xfer_buf;
 
-
-
-
-
+    // usb_lld_start_in(usbp, ep);
 
 }
 
@@ -1031,6 +1079,8 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
  */
 void _usb_ep0in(USBDriver *usbp, usbep_t ep) {
   size_t max;
+
+  usb_transc *transc = &usbp->udev.dev.transc_in[0];
 
   (void)ep;
   switch (usbp->ep0state) {
@@ -1053,7 +1103,15 @@ void _usb_ep0in(USBDriver *usbp, usbep_t ep) {
     usbp->ep0state = USB_EP0_OUT_WAITING_STS;
 #if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)
     osalSysLockFromISR();
-    usbStartReceiveI(usbp, 0, NULL, 0);
+    // usbStartReceiveI(usbp, 0, NULL, 0);
+
+
+      transc->remain_len = 0U;
+
+                (void)usbd_ctl_status_recev (&usbp->udev);
+
+
+
     osalSysUnlockFromISR();
 #else
     usb_lld_end_setup(usbp, ep);

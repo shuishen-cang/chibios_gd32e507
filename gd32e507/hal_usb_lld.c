@@ -558,11 +558,37 @@ static void otg_epin_handler(USBDriver *usbp, usbep_t ep) {
 
   otgp->ie[ep].DIEPINT = epint;
 
-  if (epint & DIEPINT_TOC) {                                        //超时
+
+  usb_transc *transc = &usbp->udev.dev.transc_in[0];
+
+  if (epint & DIEPINT_TOC) {                                          //超时
     /* Timeouts not handled yet, not sure how to handle.*/
   }
-  if ((epint & DIEPINT_XFRC) && (otgp->DIEPMSK & DIEPMSK_XFRCM)) {
-    (void)usbd_in_transc (&usbp->udev, (uint32_t)ep);
+  if ((epint & DIEPINT_XFRC) && (otgp->DIEPMSK & DIEPMSK_XFRCM)) {    //传输完成，需要回复状态
+
+      // transc->remain_len = 0U;
+
+      //           (void)usbd_ctl_status_recev (&usbp->udev);
+
+
+
+      _usb_isr_invoke_in_cb(usbp, ep);
+
+
+
+
+
+
+
+
+
+
+
+    // (void)usbd_in_transc (&usbp->udev, (uint32_t)ep);
+
+
+
+
 
     /* Transmit transfer complete.*/
     // USBInEndpointState *isp = usbp->epc[ep]->in_state;
@@ -1483,7 +1509,7 @@ void usb_lld_start_in(USBDriver *usbp, usbep_t ep) {
                     usbp->epc[ep]->in_maxsize;
     /* CHTODO: Support more than one packet per frame for isochronous transfers.*/
     usbp->otg->ie[ep].DIEPTSIZ = DIEPTSIZ_MCNT(1) | DIEPTSIZ_PKTCNT(pcnt) |         //数据包以及长度
-                                 DIEPTSIZ_XFRSIZ(isp->txsize);
+                                 DIEPTSIZ_XFRSIZ(isp->txsize);                      //DIEPTSIZ_MCNT(1):非周期传输无效
   }
 
   /* Special case of isochronous endpoint.*/

@@ -13,7 +13,7 @@
             "servertype": "external",
             "runToMain": true,
             "svdFile": "GD32E50x_CL.svd",
-            "gdbTarget": "172.22.160.1:3333",
+            "gdbTarget": "${env:winip}:3333",
         }
     ]
 }

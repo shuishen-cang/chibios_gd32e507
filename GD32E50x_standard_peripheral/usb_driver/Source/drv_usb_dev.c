@@ -384,7 +384,8 @@ usb_status usb_transc_inxfer (usb_core_driver *udev, usb_transc *transc)
             if (transc->xfer_len > 0U) {
                 udev->regs.dr->DIEPFEINTEN |= 1U << ep_num;
             }
-        } else {
+        } 
+        else {
             (void)usb_txfifo_write (&udev->regs, transc->xfer_buf, ep_num, (uint16_t)transc->xfer_len);
         }
     }
