@@ -24,40 +24,24 @@
  */
 static const uint8_t vcom_device_descriptor_data[18] = {
   USB_DESC_DEVICE       (0x0200,        /* bcdUSB (2.0).                    */
-                         0x00,          /* bDeviceClass (CDC).              */
+                         0x02,          /* bDeviceClass (CDC).              */
                          0x00,          /* bDeviceSubClass.                 */
                          0x00,          /* bDeviceProtocol.                 */
                          0x40,          /* bMaxPacketSize.                  */
-                         0x28E9,        /* idVendor (ST).                   */
-                         0x028F,        /* idProduct.                       */
-                         0x0100,        /* bcdDevice.                       */
+                         0x0483,        /* idVendor (ST).                   */
+                         0x5740,        /* idProduct.                       */
+                         0x0200,        /* bcdDevice.                       */
                          1,             /* iManufacturer.                   */
                          2,             /* iProduct.                        */
                          3,             /* iSerialNumber.                   */
                          1)             /* bNumConfigurations.              */
 };
 
-// static const uint8_t vcom_device_descriptor_data[18] = {
-//   USB_DESC_DEVICE       (0x0200,        /* bcdUSB (2.0).                    */
-//                          0x02,          /* bDeviceClass (CDC).              */
-//                          0x00,          /* bDeviceSubClass.                 */
-//                          0x00,          /* bDeviceProtocol.                 */
-//                          0x40,          /* bMaxPacketSize.                  */
-//                          0x0483,        /* idVendor (ST).                   */
-//                          0x5740,        /* idProduct.                       */
-//                          0x0200,        /* bcdDevice.                       */
-//                          1,             /* iManufacturer.                   */
-//                          2,             /* iProduct.                        */
-//                          3,             /* iSerialNumber.                   */
-//                          1)             /* bNumConfigurations.              */
-// };
-
 /*
  * Device Descriptor wrapper.
  */
 static const USBDescriptor vcom_device_descriptor = {
   sizeof vcom_device_descriptor_data,
-  // 8,
   vcom_device_descriptor_data
 };
 
@@ -146,18 +130,6 @@ static const USBDescriptor vcom_configuration_descriptor = {
   vcom_configuration_descriptor_data
 };
 
-const uint8_t lll2[32] = {
-0x09 ,0x02 ,0x20 ,0x00 ,0x01 ,0x01 ,0x00 ,0xC0 ,0x32 ,0x09 ,0x04 ,0x00 ,0x00 ,0x02 ,0x08 ,0x06,
-0x50 ,0x00 ,0x07 ,0x05 ,0x81 ,0x02 ,0x00 ,0x02 ,0x00 ,0x07 ,0x05 ,0x01 ,0x02 ,0x00 ,0x02 ,0x00, 
-};
-
-
-
-static const USBDescriptor vcom_configuration_descriptor2 = {
-  sizeof lll2,
-  lll2
-};
-
 /*
  * U.S. English language identifier.
  */
@@ -219,29 +191,19 @@ static const USBDescriptor *get_descriptor(USBDriver *usbp,
                                            uint8_t dtype,
                                            uint8_t dindex,
                                            uint16_t lang) {
-
   (void)usbp;
   (void)lang;
   switch (dtype) {
   case USB_DESCRIPTOR_DEVICE:
     return &vcom_device_descriptor;
   case USB_DESCRIPTOR_CONFIGURATION:
-    return &vcom_configuration_descriptor2;
+    return &vcom_configuration_descriptor;
   case USB_DESCRIPTOR_STRING:
     if (dindex < 4)
       return &vcom_strings[dindex];
   }
   return NULL;
 }
-
-
-
-
-
-
-
-
-
 
 /**
  * @brief   IN EP1 state.

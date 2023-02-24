@@ -134,14 +134,7 @@ static bool default_handler(USBDriver *usbp) {
       return false;
     }
     /*lint -save -e9005 [11.8] Removing const is fine.*/
-
-    if(usbp->setup[6] == 0x40 && usbp->setup[7] == 0x00){
-      usbSetupTransfer(usbp, (uint8_t *)dp->ud_string, 8, NULL);
-    }
-    else{
-      usbSetupTransfer(usbp, (uint8_t *)dp->ud_string, dp->ud_size, NULL);
-    }
-    
+    usbSetupTransfer(usbp, (uint8_t *)dp->ud_string, dp->ud_size, NULL);
     /*lint -restore*/
     return true;
   case (uint32_t)USB_RTYPE_RECIPIENT_DEVICE | ((uint32_t)USB_REQ_GET_CONFIGURATION << 8):
@@ -808,45 +801,31 @@ uint16_t my_len_index = 0;
 struct kjkj my_len[32];
 
 void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
-
-
-
-
-  // usbd_setup_transc (&usbp->udev);
-  usb_core_driver *udev = &usbp->udev;
-
-
-
-
-  usb_transc *transc = &udev->dev.transc_in[0];
-  usb_req req = udev->dev.control.req;
-
-
   size_t max;
 
   /* Is the EP0 state machine in the correct state for handling setup
      packets?*/
-  if (usbp->ep0state != USB_EP0_STP_WAITING) {
+  if (usbp->ep0state != USB_EP0_STP_WAITING) {                      //应该是在等待setup状态，否则可能是错误
     /* This is unexpected could require handling with a warning event.*/
     /* CHTODO: handling here.*/
 
     /* Resetting the EP0 state machine and going ahead.*/
-    usbp->ep0state = USB_EP0_STP_WAITING;
+    usbp->ep0state = USB_EP0_STP_WAITING;                           //不是等待setup状态就切换到该状态
   }
 
   /* Reading the setup data into the driver buffer.*/
-  usbReadSetup(usbp, ep, usbp->setup);
+  usbReadSetup(usbp, ep, usbp->setup);                              //将端口中的setup信息复制到usbp的setupbuffer中
 
   /* First verify if the application has an handler installed for this
      request.*/
   /*lint -save -e9007 [13.5] No side effects, it is intentional.*/
-  if ((usbp->config->requests_hook_cb == NULL) ||
+  if ((usbp->config->requests_hook_cb == NULL) ||                   //如果是配置class中的，调用对应的hook
       !(usbp->config->requests_hook_cb(usbp))) {
   /*lint -restore*/
     /* Invoking the default handler, if this fails then stalls the
        endpoint zero as error.*/
     /*lint -save -e9007 [13.5] No side effects, it is intentional.*/
-    if (((usbp->setup[0] & USB_RTYPE_TYPE_MASK) != USB_RTYPE_TYPE_STD) ||
+    if (((usbp->setup[0] & USB_RTYPE_TYPE_MASK) != USB_RTYPE_TYPE_STD) ||   //如果不是标准请求或者标准请求返回错误，报错
         !default_handler(usbp)) {
     /*lint -restore*/
       /* Error response, the state machine goes into an error state, the low
@@ -873,73 +852,23 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
   if (usbp->ep0n > max) {
     usbp->ep0n = max;
   }
-
-  if ((usbp->setup[0] & USB_RTYPE_DIR_MASK) == USB_RTYPE_DIR_DEV2HOST) {    //如果是IN 事件
+  if ((usbp->setup[0] & USB_RTYPE_DIR_MASK) == USB_RTYPE_DIR_DEV2HOST) {
     /* IN phase.*/
     if (usbp->ep0n != 0U) {
       /* Starts the transmit phase.*/
-      usbp->ep0state = USB_EP0_IN_TX;                                       //转入TX状态
+      usbp->ep0state = USB_EP0_IN_TX;
       osalSysLockFromISR();
-      // usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);
-      // transc->xfer_buf = usbp->ep0next;
-      // transc->remain_len = usbp->ep0n;
-      // (void)usbd_ctl_send (udev);                                           //回复数据
-
-
-    // usb_transc *transc = &udev->dev.transc_in[0];
-
-
-      udev->dev.control.ctl_state = (uint8_t)USB_CTL_LAST_DATA_IN;
-      // usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);
-
-
-      transc->xfer_buf = usbp->ep0next;
-      transc->remain_len = usbp->ep0n;     
-      /* setup the transfer */
-
-      transc->xfer_len = usbp->ep0n;
-      transc->xfer_count = 0U;
-
-      usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);      //这里会请求一个中断
-
-
-
-
-      // (void)usbd_ep_send(udev, 0U, transc->xfer_buf, transc->remain_len);
-
-
-
-    // if (transc->remain_len > transc->max_len) {
-    //     udev->dev.control.ctl_state = (uint8_t)USB_CTL_DATA_IN;
-    // } else {
-    //     udev->dev.control.ctl_state = (uint8_t)USB_CTL_LAST_DATA_IN;
-    // }
-
-
-
-
+      usbStartTransmitI(usbp, 0, usbp->ep0next, usbp->ep0n);
       osalSysUnlockFromISR();
     }
-    else {                                                                  //如果长度为0
+    else {
       /* No transmission phase, directly receiving the zero sized status
          packet.*/
-      usbp->ep0state = USB_EP0_OUT_WAITING_STS;                             //状态转入等待状态
-#if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)                          
-      // osalSysLockFromISR();
-      // usbStartReceiveI(usbp, 0, NULL, 0);                              //st的直接读取0个长度的一个包
-      // osalSysUnlockFromISR();
-
-      // transc->xfer_buf = usbp->ep0next;                                   //GD的先发送0个长度的，然后接收24个byte的包，用mdata包
-      // transc->remain_len = usbp->ep0n;                                    
-      // (void)usbd_ctl_status_send (udev);                                  //发送状态
-
-    udev->dev.control.ctl_state = (uint8_t)USB_CTL_STATUS_IN;
-    usbStartTransmitI(usbp, 0, NULL, 0);
-    usbp->udev.regs.er_out[0]->DOEPLEN = DOEP0_TLEN(8U * 3U) | DOEP0_PCNT(1U) | DOEP0_STPCNT(3U);
-
-    // usb_ctlep_startout(udev);
-
-
+      usbp->ep0state = USB_EP0_OUT_WAITING_STS;
+#if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)
+      osalSysLockFromISR();
+      usbStartReceiveI(usbp, 0, usbp->epc[0]->setup_buf, 24);
+      osalSysUnlockFromISR();
 #else
       usb_lld_end_setup(usbp, ep);
 #endif
@@ -951,20 +880,7 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
       /* Starts the receive phase.*/
       usbp->ep0state = USB_EP0_OUT_RX;
       osalSysLockFromISR();
-      // usbStartReceiveI(usbp, 0, (uint8_t *)usbp->ep0next, usbp->ep0n);
-
-      // transc->xfer_buf = usbp->ep0next;
-      // transc->remain_len = usbp->ep0n;
-
-      // (void)usbd_ctl_recev (udev);                                        //如果是数据就直接接收，remain_len
-
-
-    // (void)usbd_ep_recev (udev, 0U, transc->xfer_buf, transc->remain_len);
-
       usbStartReceiveI(usbp, 0, (uint8_t *)usbp->ep0next, usbp->ep0n);
-
-      udev->dev.control.ctl_state = (uint8_t)USB_CTL_LAST_DATA_OUT;
-
       osalSysUnlockFromISR();
     }
     else {
@@ -973,98 +889,13 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
       usbp->ep0state = USB_EP0_IN_SENDING_STS;
 #if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)
       osalSysLockFromISR();
-
-      // transc->xfer_buf = usbp->ep0next;
-      // transc->remain_len = usbp->ep0n;
-      // (void)usbd_ctl_status_send (udev);                                //发送一个长度为0的控制包，并且开始接收,,好吧，这里高云和ST的有差别
-
-      udev->dev.control.ctl_state = (uint8_t)USB_CTL_STATUS_IN;
       usbStartTransmitI(usbp, 0, NULL, 0);
-      usbp->udev.regs.er_out[0]->DOEPLEN = DOEP0_TLEN(8U * 3U) | DOEP0_PCNT(1U) | DOEP0_STPCNT(3U);
-
       osalSysUnlockFromISR();
 #else
       usb_lld_end_setup(usbp, ep);
 #endif
     }
   }
-
-
-
-
-
-
-
-
-
-
-    // usb_reqsta reqstat = REQ_SUPP;
-
-    // 
-
-    // switch (req.bmRequestType & USB_REQTYPE_MASK) {
-    // /* standard device request */
-    // case USB_REQTYPE_STRD:
-    //     reqstat = usbd_standard_request (udev, &req);			//标准请求，枚举
-    //     break;
-
-    // /* device class request */
-    // case USB_REQTYPE_CLASS:
-    //     reqstat = usbd_class_request (udev, &req);
-    //     break;
-
-    // /* vendor defined request */
-    // case USB_REQTYPE_VENDOR:
-    //     reqstat = usbd_vendor_request (udev, &req);
-    //     break;
-
-    // default:
-    //     break;
-    // }
-
-
-
-    
-    // transc->xfer_buf = usbp->ep0next;
-    // transc->remain_len = usbp->ep0n;
-
-
-
-    // // if (REQ_SUPP == reqstat) {
-    //     if (0U == req.wLength) {
-    //         (void)usbd_ctl_status_send (udev);      //发送一个长度为0的控制包，并且开始接收
-    //     } else {
-    //         if (req.bmRequestType & 0x80U) {
-    //             (void)usbd_ctl_send (udev);         //80的话需要回复
-    //         } else {
-    //             (void)usbd_ctl_recev (udev);        //否则就是接收
-    //         }
-    //     }
-
-    // my_len[my_len_index].len_xin = req.wLength;
-    // my_len[my_len_index ++].len_xout = transc->remain_len;
-
-// uint16_t my_len_index = 0;
-// struct kjkj my_len[32];
-
-
-    // } else {
-    //     if (req.bmRequestType & 0x80U) {
-    //         usbd_ep_stall (udev, 0x80U);
-    //         usb_ctlep_startout(udev);
-    //     } else {
-    //         usbd_ep_stall (udev, 0x00U);
-    //         usb_ctlep_startout(udev);
-    //     }
-    // }
-
-    // USBInEndpointState *isp = usbp->epc[0]->in_state;    
-    // isp->txsize = transc->remain_len;
-    // isp->txcnt = 0;
-    // isp->txbuf = transc->xfer_buf;
-
-    // usb_lld_start_in(usbp, ep);
-
 }
 
 /**
@@ -1079,8 +910,6 @@ void _usb_ep0setup(USBDriver *usbp, usbep_t ep) {
  */
 void _usb_ep0in(USBDriver *usbp, usbep_t ep) {
   size_t max;
-
-  usb_transc *transc = &usbp->udev.dev.transc_in[0];
 
   (void)ep;
   switch (usbp->ep0state) {
@@ -1103,15 +932,7 @@ void _usb_ep0in(USBDriver *usbp, usbep_t ep) {
     usbp->ep0state = USB_EP0_OUT_WAITING_STS;
 #if (USB_EP0_STATUS_STAGE == USB_EP0_STATUS_STAGE_SW)
     osalSysLockFromISR();
-    // usbStartReceiveI(usbp, 0, NULL, 0);
-
-
-      transc->remain_len = 0U;
-
-                (void)usbd_ctl_status_recev (&usbp->udev);
-
-
-
+    usbStartReceiveI(usbp, 0, usbp->epc[0]->setup_buf, 24);
     osalSysUnlockFromISR();
 #else
     usb_lld_end_setup(usbp, ep);
@@ -1183,6 +1004,7 @@ void _usb_ep0out(USBDriver *usbp, usbep_t ep) {
     usbp->ep0state = USB_EP0_STP_WAITING;
     return;
   case USB_EP0_STP_WAITING:
+    return;
   case USB_EP0_IN_TX:
   case USB_EP0_IN_WAITING_TX0:
   case USB_EP0_IN_SENDING_STS:

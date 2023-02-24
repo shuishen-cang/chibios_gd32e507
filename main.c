@@ -70,19 +70,46 @@ int main(void) {
     // usart_receiver_timeout_enable(UART4);
     // usart_interrupt_enable(UART4, USART_INT_RT);
 
-    // usbStart(&USBD1, &usbcfg);
+    
 
-    rcu_usb_clock_config(RCU_CKUSB_CKPLL_DIV3_5);   
-    rcu_periph_clock_enable(RCU_USBHS);
+    // rcu_usb_clock_config(RCU_CKUSB_CKPLL_DIV3_5);   
+    // rcu_periph_clock_enable(RCU_USBHS);
 
 
     usbd_init(&USBD1.udev, &msc_desc, &msc_class);
 
-    pllusb_rcu_config();
-
-    nvicEnableVector(STM32_OTG1_NUMBER, STM32_USB_OTG1_IRQ_PRIORITY);
-
     usbStart(&USBD1, &usbcfg);
+
+    // pllusb_rcu_config();
+//     USBD1.udev.dev.desc = &msc_desc;
+
+// //    /* class callbacks */
+//     USBD1.udev.dev.class_core = &msc_class;
+
+// //    /* create serial string */
+//     // serial_string_get(udev->dev.desc->strings[STR_IDX_SERIAL]);
+
+//     /* configure USB capabilities */
+//     (void)usb_basic_init (&USBD1.udev.bp, &USBD1.udev.regs);
+
+//     /* initializes the USB core*/
+//     (void)usb_core_init (USBD1.udev.bp, &USBD1.udev.regs);
+
+//     /* set device disconnect */
+//     usbd_disconnect (&USBD1.udev);
+
+//     /* initializes device mode */
+//     (void)usb_devcore_init (&USBD1.udev);
+
+//     /* set device connect */
+//     usbd_connect (&USBD1.udev);
+
+//     USBD1.udev.dev.cur_status = (uint8_t)USBD_DEFAULT;
+
+
+    
+
+    // usbStart(&USBD1, &usbcfg);
 
 
     while(1){

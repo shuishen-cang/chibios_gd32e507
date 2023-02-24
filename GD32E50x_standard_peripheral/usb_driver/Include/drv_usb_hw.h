@@ -58,7 +58,7 @@ void usb_timer_init (void);
 // #define usb_udelay(n)                   chThdSleepMilliseconds(n)
 
 /* configure USB clock */
-void pllusb_rcu_config(void);
+// void pllusb_rcu_config(void);
 
 #ifdef USE_HOST_MODE
 /* configure systick */
