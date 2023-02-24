@@ -790,7 +790,7 @@ void _usb_wakeup(USBDriver *usbp) {
  *
  * @notapi
  */
-#include "usbd_enum.h"
+// #include "usbd_enum.h"
 
 struct kjkj{
   uint16_t len_xin;

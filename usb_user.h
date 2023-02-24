@@ -8,7 +8,7 @@
 
 extern thread_t *usbtx_tp;
 
-// void usb_user_initial(void);
+void usb_user_initial(void);
 
 #endif
 

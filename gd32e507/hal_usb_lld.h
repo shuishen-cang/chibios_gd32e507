@@ -29,7 +29,7 @@
 
 #include "stm32_otg.h"
 // #include "drv_usb_regs.h"
-#include "drv_usb_dev.h"
+// #include "drv_usb_dev.h"
 
 /*===========================================================================*/
 /* Driver constants.                                                         */
@@ -502,7 +502,7 @@ struct USBDriver {
    * @brief   Pointer to the OTG peripheral associated to this driver.
    */
   stm32_otg_t                   *otg;
-  usb_core_driver               udev;
+  // usb_core_driver               udev;
   /**
    * @brief   Peripheral-specific parameters.
    */
