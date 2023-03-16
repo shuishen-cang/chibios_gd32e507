@@ -42,10 +42,6 @@ OF SUCH DAMAGE.
 #include "gd32e50x.h"
 // #include "gd32e507r_start.h"
 
-
-#define USE_USB_HS
-#define LPM_ENABLED                     0
-
 /* USB Core and PHY interface configuration */
 
 /****************** USB HS PHY CONFIGURATION *******************************
@@ -53,6 +49,9 @@ OF SUCH DAMAGE.
  *  The USE_EMBEDDED_PHY symbol is defined in the project compiler preprocessor
  *  when HS core is used.
 *******************************************************************************/
+
+#define USE_USB_HS
+#define LPM_ENABLED 0
 
 /* on-chip full-speed USB PHY */
 #ifdef USE_USB_FS
@@ -111,8 +110,6 @@ OF SUCH DAMAGE.
 #define TX4_FIFO_SIZE                         0U
 #define TX5_FIFO_SIZE                         0U
 
-// GD32E50X,GD32E50X_CL,USE_STDPERIPH_DRIVER,USE_USB_HS
-
 #ifdef USE_ULPI_PHY
     #define USB_EXTERNAL_ULPI_PHY_ENABLED
 #else
@@ -125,8 +122,8 @@ OF SUCH DAMAGE.
     #endif
 #endif
 
-// #define USB_INTERNAL_DMA_ENABLED
-// #define USB_DEDICATED_EP1_ENABLED
+#define USB_INTERNAL_DMA_ENABLED
+#define USB_DEDICATED_EP1_ENABLED
 
 #define USB_SOF_OUTPUT              1U
 #define USB_LOW_POWER               0U

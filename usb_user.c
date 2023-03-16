@@ -13,10 +13,10 @@ static THD_FUNCTION(usb_tx, arg) {
     for(uint16_t i = 0; i < 1024; i++){
         usb_txbuff[i] = i;
     }
-    chThdSleepMilliseconds(10000);
+    chThdSleepMilliseconds(1000);
     while (true) {
-        usbTransmit(&USBD1, USBD2_DATA_REQUEST_EP, usb_txbuff, 4);   
-        chThdSleepMilliseconds(1000);
+        usbTransmit(&USBD1, USBD2_DATA_REQUEST_EP, usb_txbuff, 1024);   
+        // chThdSleepMilliseconds(1000);
         // thread_t *tp = chMsgWait();
         // msg_t tmsg = chMsgGet(tp);
         // chMsgRelease(tp, tmsg);

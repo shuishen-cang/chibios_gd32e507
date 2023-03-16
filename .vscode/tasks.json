@@ -10,7 +10,7 @@
                 "-f",
                 "interface/cmsis-dap.cfg",
                 "-f",
-                "${input:openocd.config}",
+                "target/gd32e50x.cfg",
                 "-c",
                 "\"bindto 0.0.0.0\""
             ],
@@ -19,19 +19,29 @@
             "problemMatcher": [],
             "group": {
                 "kind": "build",
-                "isDefault": true
+                "isDefault": false
             }
-        }
-    ],
-    "inputs": [
+        },
         {
-            "id": "openocd.config",
-            "type": "pickString",
-            "description": "Select the configuration file for OpenOCD",
-            "options": [
-                "target/gd32e50x.cfg"
+            "label": "make",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "-j16"
             ],
-            "default": "target/gd32e50x.cfg"
+            
+            "isBackground": true,
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                // "reveal": "always",
+                // "revealProblems": "onProblem",
+                "close": false,
+                "panel":"shared"
+            }
         }
     ]
 }

@@ -40,7 +40,6 @@ OF SUCH DAMAGE.
 
 #include "usbd_conf.h"
 #include "drv_usb_core.h"
-#include "stm32_otg.h"
 
 #define EP_IN(x)                            ((uint8_t)(0x80U | (x)))    /*!< device IN endpoint */
 #define EP_OUT(x)                           ((uint8_t)(x))              /*!< device OUT endpoint */

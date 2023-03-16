@@ -44,7 +44,7 @@ uint8_t buff[128];
 
 // usb_core_driver msc_udisk;
 
-unsigned char SRAM[40 * 1024];
+// unsigned char SRAM[40 * 1024];
 extern void pllusb_rcu_config(void);
 
 int main(void) {
@@ -61,6 +61,9 @@ int main(void) {
     halInit();
     chSysInit();
 
+    palSetLineMode(LINE_LED, GDPAL_MODE(GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ));
+
+
     // palSetLineMode(LINE_UART3_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
     // palSetLineMode(LINE_UART3_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
 
@@ -73,11 +76,13 @@ int main(void) {
     // usart_interrupt_enable(UART4, USART_INT_RT);
 
     usbStart(&USBD1, &usbcfg);
-
     usb_user_initial();
 
     while(1){
-        chThdSleepMicroseconds(1000000);
+        palSetLine(LINE_LED);
+        chThdSleepMilliseconds(200);
+        palClearLine(LINE_LED);
+        chThdSleepMilliseconds(200);
     }
 
     // x1 = chSysGetRealtimeCounterX();

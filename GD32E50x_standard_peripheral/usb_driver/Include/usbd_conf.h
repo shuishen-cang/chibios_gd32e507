@@ -39,7 +39,6 @@ OF SUCH DAMAGE.
 #define __USBD_CONF_H
 
 #include "usb_conf.h"
-#include "ch.h"
 
 #define USBD_CFG_MAX_NUM                1U
 #define USBD_ITF_MAX_NUM                1U

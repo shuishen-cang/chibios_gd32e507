@@ -141,7 +141,7 @@ ASMXSRC = $(ALLXASMSRC)
 INCDIR = $(CONFDIR) $(ALLINC) $(TESTINC) 
 
 # Define C warning options here.
-CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Wcast-align=strict
+CWARN = -Wall -Wextra -Wundef -Wstrict-prototypes -Wcast-align=strict -Wno-cast-align
 
 # Define C++ warning options here.
 CPPWARN = -Wall -Wextra -Wundef
@@ -155,7 +155,7 @@ CPPWARN = -Wall -Wextra -Wundef
 #
 
 # List all user C define here, like -D_DEBUG=1
-UDEFS = -DGD32E50X -DGD32E50X_CL -DUSE_STDPERIPH_DRIVER -DCORTEX_USE_FPU=FALSE 
+UDEFS = -DGD32E50X -DGD32E50X_CL -DUSE_STDPERIPH_DRIVER -DCORTEX_USE_FPU=FALSE
 
 # Define ASM defines here
 UADEFS =

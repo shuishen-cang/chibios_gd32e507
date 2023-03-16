@@ -72,7 +72,7 @@ typedef enum _usb_feature
 {
     USB_FEATURE_EP_HALT           = 0x0U,  /* USB has endpoint halt feature */
     USB_FEATURE_REMOTE_WAKEUP     = 0x1U,  /* USB has endpoint remote wakeup feature */
-    // USB_FEATURE_TEST_MODE         = 0x2U,  /* USB has endpoint test mode feature */
+    USB_FEATURE_TEST_MODE         = 0x2U,  /* USB has endpoint test mode feature */
 } usb_feature;
 
 #define ENG_LANGID                0x0409U  /* english language ID */

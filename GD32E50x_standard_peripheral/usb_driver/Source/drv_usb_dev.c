@@ -90,10 +90,10 @@ usb_status usb_devcore_init (usb_core_driver *udev)
     }
 
     /* Set RX FIFO size */
-    usb_set_rxfifo(&udev->regs, (uint16_t)RX_FIFO_SIZE);			//recv fifo 512byte
+    usb_set_rxfifo(&udev->regs, (uint16_t)RX_FIFO_SIZE);
 
     /* Set endpoint 0 to 3's TX FIFO length and RAM address */
-    for (i = 0U; i < USBHS_MAX_EP_COUNT; i++) {						//send fifo
+    for (i = 0U; i < USBHS_MAX_EP_COUNT; i++) {
         usb_set_txfifo(&udev->regs, i, USBHS_TX_FIFO_SIZE[i]);
     }
 
@@ -166,7 +166,7 @@ usb_status usb_devint_enable (usb_core_driver *udev)
     udev->regs.gr->GINTF = 0xBFFFFFFFU;
 
     /* enable the USB wakeup and suspend interrupts */
-    //udev->regs.gr->GINTEN = GINTEN_WKUPIE | GINTEN_SPIE;
+    udev->regs.gr->GINTEN = GINTEN_WKUPIE | GINTEN_SPIE;
 
     /* enable device_mode-related interrupts */
     if ((uint8_t)USB_USE_FIFO == udev->bp.transfer_mode) {
@@ -216,7 +216,7 @@ usb_status usb_transc0_active (usb_core_driver *udev, usb_transc *transc)
     }
 
     /* endpoint 0 is activated after USB clock is enabled */
-    *reg_addr &= ~(DEPCTL_MPL | DEPCTL_EPTYPE | DIEPCTL_TXFNUM2);
+    *reg_addr &= ~(DEPCTL_MPL | DEPCTL_EPTYPE | DIEPCTL_TXFNUM);
 
     /* set endpoint 0 maximum packet length */
     *reg_addr |= EP0_MAXLEN[udev->regs.dr->DSTAT & DSTAT_ES];
@@ -255,7 +255,7 @@ usb_status usb_transc_active (usb_core_driver *udev, usb_transc *transc)
 
     /* if the endpoint is not active, need change the endpoint control register */
     if (!(*reg_addr & DEPCTL_EPACT)) {
-        *reg_addr &= ~(DEPCTL_MPL | DEPCTL_EPTYPE | DIEPCTL_TXFNUM2);
+        *reg_addr &= ~(DEPCTL_MPL | DEPCTL_EPTYPE | DIEPCTL_TXFNUM);
 
         /* set endpoint maximum packet length */
         if (0U == ep_num) {
@@ -338,21 +338,21 @@ usb_status usb_transc_inxfer (usb_core_driver *udev, usb_transc *transc)
     eplen &= ~(DEPLEN_TLEN | DEPLEN_PCNT);
 
     /* zero length packet or endpoint 0 */
-    if (0U == transc->xfer_len) {                                       //长度为0，接收1包
+    if (0U == transc->xfer_len) {
         /* set transfer packet count to 1 */
         eplen |= 1U << 19U;
     } else {
         /* set transfer packet count */
-        if (0U == ep_num) {                                                 //端点0
-            transc->xfer_len = USB_MIN(transc->xfer_len, transc->max_len);  //看看是否大于端点最大的字节64
+        if (0U == ep_num) {
+            transc->xfer_len = USB_MIN(transc->xfer_len, transc->max_len);
 
-            eplen |= 1U << 19U;                                             //端点0只能发送一包                            
+            eplen |= 1U << 19U;
         } else {
-            eplen |= (((transc->xfer_len - 1U) + transc->max_len) / transc->max_len) << 19U;    //0 ~ 64：发送一包，65 ~ 128：发送2包
+            eplen |= (((transc->xfer_len - 1U) + transc->max_len) / transc->max_len) << 19U;
         }
 
         /* set endpoint transfer length */
-        eplen |= transc->xfer_len;                                          //长度
+        eplen |= transc->xfer_len;
 
         if (transc->ep_type == (uint8_t)USB_EPTYPE_ISOC) {
             eplen |= DIEPLEN_MCNT & (1U << 29U);
@@ -384,8 +384,7 @@ usb_status usb_transc_inxfer (usb_core_driver *udev, usb_transc *transc)
             if (transc->xfer_len > 0U) {
                 udev->regs.dr->DIEPFEINTEN |= 1U << ep_num;
             }
-        } 
-        else {
+        } else {
             (void)usb_txfifo_write (&udev->regs, transc->xfer_buf, ep_num, (uint16_t)transc->xfer_len);
         }
     }

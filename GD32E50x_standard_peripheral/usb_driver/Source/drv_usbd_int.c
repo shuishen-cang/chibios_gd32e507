@@ -40,11 +40,17 @@ OF SUCH DAMAGE.
 #include "drv_usb_hw.h"
 
 /* local function prototypes ('static') */
-
+static uint32_t usbd_int_epout                 (usb_core_driver *udev);
+static uint32_t usbd_int_epin                  (usb_core_driver *udev);
+static uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
+static uint32_t usbd_int_reset                 (usb_core_driver *udev);
+static uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
+static uint32_t usbd_int_suspend               (usb_core_driver *udev);
+static uint32_t usbd_int_wakeup                (usb_core_driver *udev);
 #if (1U == LPM_ENABLED)
 static uint32_t usbd_int_lpm                   (usb_core_driver *udev, usb_lpm_type active_type);
 #endif /* LPM_ENABLED */
-uint32_t usbd_emptytxfifo_write         (usb_core_driver *udev, uint32_t ep_num);
+static uint32_t usbd_emptytxfifo_write         (usb_core_driver *udev, uint32_t ep_num);
 
 static const uint8_t USB_SPEED[4] = {
     [DSTAT_EM_HS_PHY_30MHZ_60MHZ] = (uint8_t)USB_SPEED_HIGH,
@@ -126,36 +132,6 @@ uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev)
 
 #endif
 
-
-struct kk_package{
-	uint16_t 	count;
-	uint8_t 	flag_dir;
-	uint8_t		flag_2;
-	uint8_t 	buff[32];
-};
-
-struct 	kk_package llk[16];
-uint8_t	kk_counter = 0;
-
-#include "string.h"
-void llk_set(uint8_t dir, uint8_t flag, void* buff, uint8_t len){
-	llk[kk_counter].flag_dir = dir;
-	llk[kk_counter].count = len;
-	llk[kk_counter].flag_2 = flag;
-	
-	memcpy(llk[kk_counter].buff, buff, len >= 32 ? 32 : len);
-	
-	if(llk[kk_counter].buff[1] == 0x05){
-		kk_counter = kk_counter;
-	}
-	
-	kk_counter ++;
-	if(kk_counter == 16){
-		kk_counter = 0;
-	}
-
-}
-
 /*!
     \brief      USB device-mode interrupts global service routine handler
     \param[in]  udev: pointer to USB device instance
@@ -203,7 +179,7 @@ void usbd_isr (usb_core_driver *udev)
         }
 
         /* receive FIFO not empty interrupt */
-        if (intr & GINTF_RXFNEIF) {							//RX FIFO 非空,用于接收
+        if (intr & GINTF_RXFNEIF) {
             (void)usbd_int_rxfifo (udev);
         }
 
@@ -279,45 +255,45 @@ void usbd_isr (usb_core_driver *udev)
     \brief      indicates that an OUT endpoint has a pending interrupt
     \param[in]  udev: pointer to USB device instance
     \param[out] none
-    \retval     operation status 
+    \retval     operation status
 */
-uint32_t usbd_int_epout (usb_core_driver *udev)
+static uint32_t usbd_int_epout (usb_core_driver *udev)
 {
     uint32_t epintnum = 0U;
     uint8_t ep_num = 0U;
 
-    for (epintnum = usb_oepintnum_read (udev); epintnum; epintnum >>= 1U) {     
+    for (epintnum = usb_oepintnum_read (udev); epintnum; epintnum >>= 1U) {
         if (epintnum & 0x01U) {
             __IO uint32_t oepintr = usb_oepintr_read (udev, ep_num);
 
             /* transfer complete interrupt */
-            if (oepintr & DOEPINTF_TF) {								//传输完成中断									
-                /* clear the bit in DOEPINTF for this interrupt */	
+            if (oepintr & DOEPINTF_TF) {
+                /* clear the bit in DOEPINTF for this interrupt */
                 udev->regs.er_out[ep_num]->DOEPINTF = DOEPINTF_TF;
 
                 if ((uint8_t)USB_USE_DMA == udev->bp.transfer_mode) {
-                    __IO uint32_t eplen = udev->regs.er_out[ep_num]->DOEPLEN;		//DMA0 接收的长度
+                    __IO uint32_t eplen = udev->regs.er_out[ep_num]->DOEPLEN;
 
                     udev->dev.transc_out[ep_num].xfer_count = udev->dev.transc_out[ep_num].max_len - \
-                                                                (eplen & DEPLEN_TLEN);	//当前本次传输的长度
+                                                                (eplen & DEPLEN_TLEN);
                 }
 
                 /* inform upper layer: data ready */
-                (void)usbd_out_transc (udev, ep_num);					//数据准备
+                (void)usbd_out_transc (udev, ep_num);
 
                 if ((uint8_t)USB_USE_DMA == udev->bp.transfer_mode) {
                     if ((0U == ep_num) && ((uint8_t)USB_CTL_STATUS_OUT == udev->dev.control.ctl_state)) {
-                        usb_ctlep_startout (udev);						//当前传输完成一次了，那么再开启一次接收setup的DMA
+                        usb_ctlep_startout (udev);
                     }
                 }
             }
 
             /* setup phase finished interrupt (control endpoints) */
-            if (oepintr & DOEPINTF_STPF) {								//数据setup												
+            if (oepintr & DOEPINTF_STPF) {
                 /* inform the upper layer that a setup packet is available */
-                (void)usbd_setup_transc (udev);							//枚举从这里进
+                (void)usbd_setup_transc (udev);
 
-                udev->regs.er_out[ep_num]->DOEPINTF = DOEPINTF_STPF;	//清除FLAG
+                udev->regs.er_out[ep_num]->DOEPINTF = DOEPINTF_STPF;
             }
         }
         
@@ -333,10 +309,7 @@ uint32_t usbd_int_epout (usb_core_driver *udev)
     \param[out] none
     \retval     operation status
 */
-// extern USBDriver USBD1;
-extern void lklklkl(void);
-
-uint32_t usbd_int_epin (usb_core_driver *udev)
+static uint32_t usbd_int_epin (usb_core_driver *udev)
 {
     uint32_t epintnum = 0U;
     uint8_t ep_num = 0U;
@@ -359,7 +332,6 @@ uint32_t usbd_int_epin (usb_core_driver *udev)
             }
 
             if (iepintr & DIEPINTF_TXFE) {
-
                 usbd_emptytxfifo_write (udev, (uint32_t)ep_num);
 
                 udev->regs.er_in[ep_num]->DIEPINTF = DIEPINTF_TXFE;
@@ -378,7 +350,7 @@ uint32_t usbd_int_epin (usb_core_driver *udev)
     \param[out] none
     \retval     operation status
 */
-uint32_t usbd_int_rxfifo (usb_core_driver *udev)
+static uint32_t usbd_int_rxfifo (usb_core_driver *udev)
 {
     usb_transc *transc = NULL;
 
@@ -388,16 +360,16 @@ uint32_t usbd_int_rxfifo (usb_core_driver *udev)
     __IO uint32_t devrxstat = 0U;
 
     /* disable the Rx status queue non-empty interrupt */
-    udev->regs.gr->GINTEN &= ~GINTEN_RXFNEIE;							//清除标志
+    udev->regs.gr->GINTEN &= ~GINTEN_RXFNEIE;
 
     /* get the status from the top of the FIFO */
-    devrxstat = udev->regs.gr->GRSTATP;									//包状态
+    devrxstat = udev->regs.gr->GRSTATP;
 
-    uint8_t ep_num = (uint8_t)(devrxstat & GRSTATRP_EPNUM);				//端点号
+    uint8_t ep_num = (uint8_t)(devrxstat & GRSTATRP_EPNUM);
 
-    transc = &udev->dev.transc_out[ep_num];								//端点的地址
+    transc = &udev->dev.transc_out[ep_num];
 
-    bcount = (devrxstat & GRSTATRP_BCOUNT) >> 4U;	
+    bcount = (devrxstat & GRSTATRP_BCOUNT) >> 4U;
     data_PID = (uint8_t)((devrxstat & GRSTATRP_DPID) >> 15U);
 
     switch ((devrxstat & GRSTATRP_RPCKST) >> 17U) {
@@ -422,12 +394,12 @@ uint32_t usbd_int_rxfifo (usb_core_driver *udev)
             break;
 
         case RSTAT_SETUP_UPDT:
-            // if ((0U == transc->ep_addr.num) && (8U == bcount) && (DPID_DATA0 == data_PID)) {
+            if ((0U == transc->ep_addr.num) && (8U == bcount) && (DPID_DATA0 == data_PID)) {
                 /* copy the setup packet received in FIFO into the setup buffer in RAM */
                 (void)usb_rxfifo_read (&udev->regs, (uint8_t *)&udev->dev.control.req, (uint16_t)bcount);
-				
+
                 transc->xfer_count += bcount;
-            // }
+            }
             break;
 
         default:
@@ -446,7 +418,7 @@ uint32_t usbd_int_rxfifo (usb_core_driver *udev)
     \param[out] none
     \retval     status
 */
-uint32_t usbd_int_reset (usb_core_driver *udev)
+static uint32_t usbd_int_reset (usb_core_driver *udev)
 {
     uint32_t i;
 
@@ -520,9 +492,7 @@ uint32_t usbd_int_reset (usb_core_driver *udev)
     \param[out] none
     \retval     status
 */
-#include "stm32_otg.h"
-
-uint32_t usbd_int_enumfinish (usb_core_driver *udev)
+static uint32_t usbd_int_enumfinish (usb_core_driver *udev)
 {
     uint8_t enum_speed = (uint8_t)((udev->regs.dr->DSTAT & DSTAT_ES) >> 1U);
 
@@ -554,7 +524,7 @@ uint32_t usbd_int_enumfinish (usb_core_driver *udev)
     \param[out] none
     \retval     operation status
 */
-uint32_t usbd_int_suspend (usb_core_driver *udev)
+static uint32_t usbd_int_suspend (usb_core_driver *udev)
 {
     __IO uint8_t low_power = udev->bp.low_power;
     __IO uint8_t suspend = (uint8_t)(udev->regs.dr->DSTAT & DSTAT_SPST);
@@ -583,7 +553,7 @@ uint32_t usbd_int_suspend (usb_core_driver *udev)
     \param[out] none
     \retval     operation status
 */
-uint32_t usbd_int_wakeup(usb_core_driver *udev)
+static uint32_t usbd_int_wakeup(usb_core_driver *udev)
 {
     __IO uint8_t low_power = udev->bp.low_power;
     __IO uint8_t remote_wakeup = udev->dev.pm.dev_remote_wakeup;
@@ -680,7 +650,7 @@ static uint32_t usbd_int_lpm (usb_core_driver *udev, usb_lpm_type active_type)
     \param[out] none
     \retval     status
 */
-uint32_t usbd_emptytxfifo_write (usb_core_driver *udev, uint32_t ep_num)
+static uint32_t usbd_emptytxfifo_write (usb_core_driver *udev, uint32_t ep_num)
 {
     uint32_t len;
     uint32_t word_count;

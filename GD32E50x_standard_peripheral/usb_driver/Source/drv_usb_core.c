@@ -37,7 +37,6 @@ OF SUCH DAMAGE.
 
 #include "drv_usb_core.h"
 #include "drv_usb_hw.h"
-#include "stm32_otg.h"
 
 /* local function prototypes ('static') */
 static void usb_core_reset (usb_core_regs *usb_regs);
@@ -234,7 +233,7 @@ usb_status usb_core_init (usb_core_basic usb_basic, usb_core_regs *usb_regs)
 
     return USB_OK;
 }
-extern void llk_set(uint8_t dir, uint8_t flag, void* buff, uint8_t len);
+
 /*!
     \brief      write a packet into the TX FIFO associated with the endpoint
     \param[in]  usb_regs: pointer to USB core registers
@@ -250,8 +249,6 @@ usb_status usb_txfifo_write (usb_core_regs *usb_regs,
                              uint16_t byte_count)
 {
     uint32_t word_count = (byte_count + 3U) / 4U;
-	
-	llk_set(1, 3, src_buf, byte_count);
 
     __IO uint32_t *fifo = usb_regs->DFIFO[fifo_num];
 
@@ -272,23 +269,17 @@ usb_status usb_txfifo_write (usb_core_regs *usb_regs,
     \param[out] none
     \retval     void type pointer
 */
-
 void *usb_rxfifo_read (usb_core_regs *usb_regs, uint8_t *dest_buf, uint16_t byte_count)
 {
     uint32_t word_count = (byte_count + 3U) / 4U;
-	
-	uint8_t* lklk2 = dest_buf;
-	
+
     __IO uint32_t *fifo = usb_regs->DFIFO[0];
-	
+
     while (word_count-- > 0U) {
         *(uint32_t *)dest_buf = *fifo;
 
         dest_buf += 4U;
     }
-	
-	llk_set(0, 2, lklk2, byte_count);
-	
 
     return ((void *)dest_buf);
 }
@@ -310,7 +301,7 @@ usb_status usb_txfifo_flush (usb_core_regs *usb_regs, uint8_t fifo_num)
     }
 
     /* wait for 3 PHY clocks*/
-    chSysPolledDelayX(18);
+    usb_udelay(3U);
 
     return USB_OK;
 }
@@ -331,8 +322,7 @@ usb_status usb_rxfifo_flush (usb_core_regs *usb_regs)
     }
 
     /* wait for 3 PHY clocks */
-    chSysPolledDelayX(18);
-    
+    usb_udelay(3U);
 
     return USB_OK;
 }
@@ -400,5 +390,5 @@ static void usb_core_reset (usb_core_regs *usb_regs)
     }
 
     /* wait for additional 3 PHY clocks */
-    chSysPolledDelayX(18);
+    usb_udelay(3U);
 }

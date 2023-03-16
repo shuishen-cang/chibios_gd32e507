@@ -51,12 +51,4 @@ uint32_t usbd_int_dedicated_ep1in (usb_core_driver *udev);
 /* USB device-mode interrupts global service routine handler */
 void usbd_isr (usb_core_driver *udev);
 
-uint32_t usbd_int_epout                 (usb_core_driver *udev);
-uint32_t usbd_int_epin                  (usb_core_driver *udev);
-uint32_t usbd_int_rxfifo                (usb_core_driver *udev);
-uint32_t usbd_int_reset                 (usb_core_driver *udev);
-uint32_t usbd_int_enumfinish            (usb_core_driver *udev);
-uint32_t usbd_int_suspend               (usb_core_driver *udev);
-uint32_t usbd_int_wakeup                (usb_core_driver *udev);
-
 #endif /* __DRV_USBD_INT_H */

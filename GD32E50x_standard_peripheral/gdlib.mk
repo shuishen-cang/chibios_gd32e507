@@ -6,23 +6,20 @@ GDLIBSRC = 	$(CHIBIOS)/GD32E50x_standard_peripheral/system_gd32e50x.c 		\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_usart.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_gpio.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_pmu.c	\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usb_core.c	\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usb_dev.c		\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usbd_int.c 	\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_core.c		\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_enum.c		\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_msc_core.c	\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_msc_bbb.c	\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_storage_msd.c\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_msc_scsi.c	\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/sram_msd.c		\
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_transc.c	
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usb_core.c	\
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usb_dev.c		\
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usbd_int.c 	\
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_core.c		\
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_enum.c		\
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/usbd_transc.c		
+			
 
 
 # Required include directories
-GDLIBINC = 	$(CHIBIOS)/GD32E50x_standard_peripheral/Include 
-			# $(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Include \
+GDLIBINC = 	$(CHIBIOS)/GD32E50x_standard_peripheral/Include \
+			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Include 
 
 # Shared variables
 ALLCSRC += $(GDLIBSRC)
 ALLINC  += $(GDLIBINC)
+

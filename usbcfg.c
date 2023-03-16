@@ -113,12 +113,12 @@ static const uint8_t vcom_configuration_descriptor_data[67] = {
   /* Endpoint 3 Descriptor.*/
   USB_DESC_ENDPOINT     (USBD2_DATA_AVAILABLE_EP,       /* bEndpointAddress.*/
                          0x02,          /* bmAttributes (Bulk).             */
-                         0x0040,        /* wMaxPacketSize.                  */
+                         512,           /* wMaxPacketSize.                  */
                          0x00),         /* bInterval.                       */
   /* Endpoint 1 Descriptor.*/
   USB_DESC_ENDPOINT     (USBD2_DATA_REQUEST_EP|0x80,    /* bEndpointAddress.*/
                          0x02,          /* bmAttributes (Bulk).             */
-                         0x0040,        /* wMaxPacketSize.                  */
+                         512,           /* wMaxPacketSize.                  */
                          0x00)          /* bInterval.                       */
 };
 
@@ -223,8 +223,8 @@ static const USBEndpointConfig ep1config = {
   NULL,
   NULL,
   NULL,
-  0x0040,
-  0x0040,
+  512,
+  512,
   &ep1instate,
   &ep1outstate,
   4,

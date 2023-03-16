@@ -126,10 +126,10 @@ uint8_t usbd_setup_transc (usb_core_driver *udev)
 
     usb_req req = udev->dev.control.req;
 
-    switch (req.bmRequestType & USB_REQTYPE_MASK) {             //
+    switch (req.bmRequestType & USB_REQTYPE_MASK) {
     /* standard device request */
     case USB_REQTYPE_STRD:
-        reqstat = usbd_standard_request (udev, &req);			//标准请求，枚举
+        reqstat = usbd_standard_request (udev, &req);
         break;
 
     /* device class request */
@@ -148,7 +148,7 @@ uint8_t usbd_setup_transc (usb_core_driver *udev)
 
     if (REQ_SUPP == reqstat) {
         if (0U == req.wLength) {
-            (void)usbd_ctl_status_send (udev);                  //长度0，需要反馈
+            (void)usbd_ctl_status_send (udev);
         } else {
             if (req.bmRequestType & 0x80U) {
                 (void)usbd_ctl_send (udev);
