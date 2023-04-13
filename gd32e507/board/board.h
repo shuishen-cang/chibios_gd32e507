@@ -26,6 +26,12 @@
 #define LINE_LED2                   PAL_LINE(GPIOA, 10U)
 #define LINE_LED3                   PAL_LINE(GPIOC, 13U)
 
+#define LINE_UART0_TX               PAL_LINE(GPIOA, 9U)  
+#define LINE_UART0_RX               PAL_LINE(GPIOA, 10U) 
+
+#define LINE_UART1_TX               PAL_LINE(GPIOA, 2U)  
+#define LINE_UART1_RX               PAL_LINE(GPIOA, 3U) 
+
 #define LINE_UART3_TX               PAL_LINE(GPIOC, 10U)  
 #define LINE_UART3_RX               PAL_LINE(GPIOC, 11U)  
 

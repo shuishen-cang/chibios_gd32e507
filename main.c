@@ -22,67 +22,55 @@ limitations under the License.
 #include "chprintf.h"
 #include "usbcfg.h"
 #include "usb_user.h"
-// #include "usbd_core.h"
-// #include "usbd_msc_core.h"
-// #include "rt_test_root.h"
-// #include "oslib_test_root.h"
 
-uint8_t buff[128];
+uint8_t buff[128] = {1,2,3,4};
 
-
-// const USBConfig usbcfg = {
-//   NULL,
-//   NULL,
-//   NULL,
-//   NULL
-// };
-
-/*
-* Application entry point.
-*/
-
-
-// usb_core_driver msc_udisk;
-
-// unsigned char SRAM[40 * 1024];
-extern void pllusb_rcu_config(void);
+UARTConfig uart1_param = {
+    .txend1_cb = NULL           ,
+    .txend2_cb = NULL           ,
+    .rxend_cb = NULL            ,
+    .rxchar_cb = NULL           ,
+    .rxerr_cb = NULL           
+};
 
 int main(void) {
     // rtcnt_t x1, x2;
     // event_listener_t el;
 
-    /*
-    * System initializations.
-    * - HAL initialization, this also initializes the configured device drivers
-    *   and performs the board-specific initializations.
-    * - Kernel initialization, the main() function becomes a thread and the
-    *   RTOS is active.
-    */
     halInit();
     chSysInit();
 
     palSetLineMode(LINE_LED, GDPAL_MODE(GPIO_MODE_OUT_PP, GPIO_OSPEED_2MHZ));
 
-
-    // palSetLineMode(LINE_UART3_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
-    // palSetLineMode(LINE_UART3_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
+    palSetLineMode(LINE_UART1_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
+    palSetLineMode(LINE_UART1_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
 
     // palSetLineMode(LINE_UART4_TX, GDPAL_MODE(GPIO_MODE_AF_PP, GPIO_OSPEED_50MHZ));
     // palSetLineMode(LINE_UART4_RX, GDPAL_MODE(GPIO_MODE_IN_FLOATING, GPIO_OSPEED_50MHZ));
 
-    // sdStart(&SD4, NULL);
+    // sdStart(&SD1, NULL);
     // usart_receiver_timeout_threshold_config(UART4,30);                                          //帧尾检测
     // usart_receiver_timeout_enable(UART4);
     // usart_interrupt_enable(UART4, USART_INT_RT);
 
     usbStart(&USBD1, &usbcfg);
-    usb_user_initial();
+    // usb_user_initial();
+
+    uartStart(&UARTD1, &uart1_param);
 
     while(1){
-        palSetLine(LINE_LED);
-        chThdSleepMilliseconds(200);
-        palClearLine(LINE_LED);
-        chThdSleepMilliseconds(200);
+        size_t tsize = 4;
+        uartReceiveTimeout(&UARTD1, &tsize, buff, TIME_INFINITE);
+        uartSendTimeout(&UARTD1, &tsize, buff, TIME_INFINITE);
+
+        // palSetLine(LINE_LED);
+        // chThdSleepMilliseconds(200);
+        // palClearLine(LINE_LED);
+        // chThdSleepMilliseconds(200);
+
+        // uartStartSend(&UARTD1, 4, buff);
+        // USART_DATA(USART1) = 0X55;
+        // chprintf((void*)&SD1,"hello!\n");
     }
 
     // x1 = chSysGetRealtimeCounterX();

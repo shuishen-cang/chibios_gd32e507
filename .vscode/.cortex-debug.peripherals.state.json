@@ -1,1 +1,1 @@
-[{"node":"UART3.STAT0","expanded":true,"format":0},{"node":"UART3.CTL0","expanded":true,"format":0},{"node":"UART4.STAT0","expanded":true,"format":0}]
+[{"node":"DMA0","expanded":true,"format":0,"pinned":true},{"node":"UART3.STAT0","expanded":true,"format":0},{"node":"UART3.CTL0","expanded":true,"format":0},{"node":"UART4.STAT0","expanded":true,"format":0}]

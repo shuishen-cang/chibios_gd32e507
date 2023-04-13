@@ -175,6 +175,7 @@
 #define STM32_IRQ_TIM20_UP_PRIORITY         4
 #define STM32_IRQ_TIM20_CC_PRIORITY         4
 
+#define STM32_IRQ_USART0_PRIORITY           5
 #define STM32_IRQ_USART1_PRIORITY           5
 #define STM32_IRQ_USART2_PRIORITY           5
 #define STM32_IRQ_USART3_PRIORITY           5
@@ -251,10 +252,11 @@
 /*
  * SERIAL driver system settings.
  */
-#define STM32_SERIAL_USE_USART1             FALSE
+#define STM32_SERIAL_USE_USART0             FALSE
+#define STM32_SERIAL_USE_USART1             TRUE
 #define STM32_SERIAL_USE_USART2             FALSE
-#define STM32_SERIAL_USE_USART3             TRUE
-#define STM32_SERIAL_USE_UART4              TRUE
+#define STM32_SERIAL_USE_USART3             FALSE
+#define STM32_SERIAL_USE_UART4              FALSE
 #define STM32_SERIAL_USE_UART5              FALSE
 #define STM32_SERIAL_USE_LPUART1            FALSE
 
@@ -287,7 +289,10 @@
 /*
  * UART driver system settings.
  */
-
+#define PLATFORM_UART_USE_UART1             TRUE
+#define STM32_UART_USART1_IRQ_PRIORITY      12
+#define STM32_UART_USART2_IRQ_PRIORITY      12
+#define STM32_UART_USART3_IRQ_PRIORITY      12
 /*
  * USB driver system settings.
  */

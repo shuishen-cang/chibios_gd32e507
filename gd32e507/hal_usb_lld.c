@@ -726,7 +726,7 @@ void usb_lld_init(void) {
 #endif
 }
 
-void pllusb_rcu_config(void)
+static void pllusb_rcu_config(void)
 {
     if (rcu_flag_get(RCU_FLAG_HXTALSTB) != SET) {
         rcu_pllusbpresel_config(RCU_PLLUSBPRESRC_IRC48M);

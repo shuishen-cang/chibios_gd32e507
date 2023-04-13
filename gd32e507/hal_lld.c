@@ -70,7 +70,9 @@ const halclkcfg_t hal_clkcfg_default = {
  * @notapi
  */
 void hal_lld_init(void) {
-  // dmaInit();
+#if defined(STM32_DMA_REQUIRED) || defined(__DOXYGEN__)
+ dmaInit();
+#endif
   nvicInit();
 }
 

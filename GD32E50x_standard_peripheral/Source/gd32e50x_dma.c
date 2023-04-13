@@ -159,6 +159,8 @@ void dma_init(uint32_t dma_periph, dma_channel_enum channelx, dma_parameter_stru
     }else{
         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_DIR;
     }
+
+    *((uint32_t*)0x40020080) = 0x1234;
 }
 
 /*!

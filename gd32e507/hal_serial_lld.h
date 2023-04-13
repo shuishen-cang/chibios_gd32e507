@@ -48,6 +48,13 @@
 #define PLATFORM_SERIAL_USE_USART1             FALSE
 #endif
 
+#if STM32_SERIAL_USE_USART0
+extern SerialDriver SD0;
+#endif
+
+#if STM32_SERIAL_USE_USART1
+extern SerialDriver SD1;
+#endif
 
 #if STM32_SERIAL_USE_USART3
 extern SerialDriver SD3;

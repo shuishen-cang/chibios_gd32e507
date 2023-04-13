@@ -39,6 +39,12 @@
 SerialDriver SD1;
 #endif
 
+#if (STM32_SERIAL_USE_USART0 == TRUE)
+SerialDriver SD0;
+#endif
+#if (STM32_SERIAL_USE_USART1 == TRUE)
+SerialDriver SD1;
+#endif
 #if (STM32_SERIAL_USE_USART3 == TRUE)
 SerialDriver SD3;
 #endif
@@ -74,6 +80,27 @@ static const SerialConfig default_config = {
  *
  * @notapi
  */
+#if STM32_SERIAL_USE_USART0 || defined(__DOXYGEN__)
+OSAL_IRQ_HANDLER(VectorD4) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  sd_lld_serve_interrupt(&SD0);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif
+
+#if STM32_SERIAL_USE_USART1 || defined(__DOXYGEN__)
+OSAL_IRQ_HANDLER(VectorD8) {
+
+  OSAL_IRQ_PROLOGUE();
+
+  sd_lld_serve_interrupt(&SD1);
+
+  OSAL_IRQ_EPILOGUE();
+}
+#endif
 
 #if STM32_SERIAL_USE_USART3 || defined(__DOXYGEN__)
 OSAL_IRQ_HANDLER(Vector110) {
@@ -104,6 +131,21 @@ OSAL_IRQ_HANDLER(Vector114) {
 }
 #endif
 
+#if STM32_SERIAL_USE_USART0 || defined(__DOXYGEN__)
+static void notify0(io_queue_t *qp) {
+
+  (void)qp;
+  USART_CTL0(USART0) |= 0x80;
+}
+#endif
+
+#if STM32_SERIAL_USE_USART1 || defined(__DOXYGEN__)
+static void notify1(io_queue_t *qp) {
+
+  (void)qp;
+  USART_CTL0(USART1) |= 0x80;
+}
+#endif
 
 #if STM32_SERIAL_USE_USART3 || defined(__DOXYGEN__)
 static void notify3(io_queue_t *qp) {
@@ -124,8 +166,14 @@ static void notify4(io_queue_t *qp) {
 
 void sd_lld_init(void) {
 
-#if PLATFORM_SERIAL_USE_USART1 == TRUE
+#if STM32_SERIAL_USE_USART0 == TRUE
+  sdObjectInit(&SD0, NULL, notify0);
+  SD0.uart_basic = USART0;
+#endif
+
+#if STM32_SERIAL_USE_USART1 == TRUE
   sdObjectInit(&SD1, NULL, notify1);
+  SD1.uart_basic = USART1;
 #endif
 
 #if STM32_SERIAL_USE_USART3
@@ -159,6 +207,34 @@ void sd_lld_start(SerialDriver *sdp, const SerialConfig *config) {
     if (&SD1 == sdp) {
 
     }
+#endif
+
+#if STM32_SERIAL_USE_USART0
+    rcu_periph_clock_enable(RCU_USART0);
+    usart_deinit(USART0);
+    usart_word_length_set(USART0, USART_WL_8BIT);
+    usart_stop_bit_set(USART0, USART_STB_1BIT);
+    usart_parity_config(USART0, USART_PM_NONE);
+    usart_baudrate_set(USART0, SERIAL_DEFAULT_BITRATE);
+    usart_receive_config(USART0, USART_RECEIVE_ENABLE);
+    usart_transmit_config(USART0, USART_TRANSMIT_ENABLE);
+    usart_enable(USART0);
+    nvicEnableVector(USART0_IRQn, STM32_IRQ_USART0_PRIORITY);
+    usart_interrupt_enable(USART0, USART_INT_RBNE);
+#endif
+
+#if STM32_SERIAL_USE_USART1
+    rcu_periph_clock_enable(RCU_USART1);
+    usart_deinit(USART1);
+    usart_word_length_set(USART1, USART_WL_8BIT);
+    usart_stop_bit_set(USART1, USART_STB_1BIT);
+    usart_parity_config(USART1, USART_PM_NONE);
+    usart_baudrate_set(USART1, SERIAL_DEFAULT_BITRATE);
+    usart_receive_config(USART1, USART_RECEIVE_ENABLE);
+    usart_transmit_config(USART1, USART_TRANSMIT_ENABLE);
+    usart_enable(USART1);
+    nvicEnableVector(USART1_IRQn, STM32_IRQ_USART1_PRIORITY);
+    usart_interrupt_enable(USART1, USART_INT_RBNE);
 #endif
 
 #if STM32_SERIAL_USE_USART3

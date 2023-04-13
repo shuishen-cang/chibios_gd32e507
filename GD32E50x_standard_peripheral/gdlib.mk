@@ -5,6 +5,7 @@ GDLIBSRC = 	$(CHIBIOS)/GD32E50x_standard_peripheral/system_gd32e50x.c 		\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_timer.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_usart.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_gpio.c	\
+			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_dma.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/Source/gd32e50x_pmu.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usb_core.c	\
 			$(CHIBIOS)/GD32E50x_standard_peripheral/usb_driver/Source/drv_usb_dev.c		\
@@ -23,3 +24,4 @@ GDLIBINC = 	$(CHIBIOS)/GD32E50x_standard_peripheral/Include \
 ALLCSRC += $(GDLIBSRC)
 ALLINC  += $(GDLIBINC)
 
+include $(CHIBIOS)/GD32E50x_standard_peripheral/DMAv1/driver.mk

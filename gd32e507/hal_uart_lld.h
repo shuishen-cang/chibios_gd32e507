@@ -167,7 +167,25 @@ struct hal_uart_driver {
   UART_DRIVER_EXT_FIELDS
 #endif
   /* End of the mandatory fields.*/
+  uint32_t                  uart_basic;  
+// uint32_t                  dmatxmode;
+  /**
+   * @brief Receive DMA channel.
+   */
+  const stm32_dma_stream_t  *dmarx;
+  /**
+   * @brief Transmit DMA channel.
+   */
+  const stm32_dma_stream_t  *dmatx;
+  /**
+   * @brief Default receive buffer while into @p UART_RX_IDLE state.
+   */
+  volatile uint16_t         rxbuf;
 };
+
+#if !defined(STM32_DMA_REQUIRED)
+#define STM32_DMA_REQUIRED
+#endif
 
 /*===========================================================================*/
 /* Driver macros.                                                            */
@@ -176,6 +194,13 @@ struct hal_uart_driver {
 /*===========================================================================*/
 /* External declarations.                                                    */
 /*===========================================================================*/
+#define STM32_UART_USART0_RX_DMA_STREAM     STM32_DMA_STREAM_ID(1, 5)
+#define STM32_UART_USART0_TX_DMA_STREAM     STM32_DMA_STREAM_ID(1, 4)
+#define STM32_UART_USART1_RX_DMA_STREAM     STM32_DMA_STREAM_ID(1, 6)
+#define STM32_UART_USART1_TX_DMA_STREAM     STM32_DMA_STREAM_ID(1, 7)
+#define STM32_UART_USART2_RX_DMA_STREAM     STM32_DMA_STREAM_ID(1, 3)
+#define STM32_UART_USART2_TX_DMA_STREAM     STM32_DMA_STREAM_ID(1, 2)
+
 
 #if (PLATFORM_UART_USE_UART1 == TRUE) && !defined(__DOXYGEN__)
 extern UARTDriver UARTD1;
